@@ -8,6 +8,8 @@
         <item name="titleSeparatorHeight">@dimen/dialog_title_separator_height</item>
         <item name="titleTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.Title</item>
         <item name="messageTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.Message</item>
+        <item name="buttonTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.Button</item>
+        <item name="listItemTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.ListItem</item>
         <item name="buttonTopDividerBackground">@color/holo_dark_divider</item>
         <item name="buttonVerticalDividerBackground">@color/holo_dark_divider</item>
         <item name="backgroundFull">@drawable/dialog_full_holo_dark</item>
@@ -22,6 +24,8 @@
         <item name="titleSeparatorHeight">@dimen/dialog_title_separator_height</item>
         <item name="titleTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.Title</item>
         <item name="messageTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.Message</item>
+        <item name="buttonTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.Button</item>
+        <item name="listItemTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.ListItem</item>
         <item name="buttonTopDividerBackground">@color/holo_light_divider</item>
         <item name="buttonVerticalDividerBackground">@color/holo_light_divider</item>
         <item name="backgroundFull">@drawable/dialog_full_holo_light</item>
