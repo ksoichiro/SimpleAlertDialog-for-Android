@@ -1,0 +1,73 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Black">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="CustomBaseTheme" parent="android:Theme.Black">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <style name="CustomTheme" parent="CustomBaseTheme">
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="simpleAlertDialogStyle">@style/SimpleAlertDialogStyle</item>
+    </style>
+
+    <style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog">
+        <item name="listChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>
+        <item name="titleSeparatorBackground">@drawable/title_separator</item>
+        <item name="titleSeparatorHeight">1dp</item>
+        <item name="titleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>
+        <item name="messageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
+        <item name="buttonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
+        <item name="listItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
+    </style>
+
+    <style name="SimpleAlertDialogTitleTextStyle">
+        <item name="android:textColor">#FF99CC00</item>
+    </style>
+
+    <style name="SimpleAlertDialogMessageTextStyle"></style>
+
+    <style name="SimpleAlertDialogButtonTextStyle"></style>
+
+    <style name="SimpleAlertDialogListItemTextStyle"></style>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="HoloLightBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="HoloLightTheme" parent="HoloLightBaseTheme">
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="simpleAlertDialogStyle">@style/Theme.SimpleAlertDialog.Light</item>
+    </style>
+
+</resources>

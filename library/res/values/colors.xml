@@ -1,0 +1,9 @@
+<resources>
+
+    <color name="holo_blue">#FF33B5E5</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="holo_dark_divider">#FF373a3c</color>
+    <color name="holo_light_divider">#FFd7d7d7</color>
+
+</resources>

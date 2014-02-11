@@ -1,0 +1,33 @@
+<resources>
+
+    <style name="Theme"></style>
+
+    <style name="Theme.SimpleAlertDialog">
+        <item name="listChoiceIndicatorSingle">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="titleSeparatorBackground">@color/holo_blue</item>
+        <item name="titleSeparatorHeight">@dimen/dialog_title_separator_height</item>
+        <item name="titleTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.Title</item>
+        <item name="messageTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.Message</item>
+        <item name="buttonTopDividerBackground">@color/holo_dark_divider</item>
+        <item name="buttonVerticalDividerBackground">@color/holo_dark_divider</item>
+        <item name="backgroundFull">@drawable/dialog_full_holo_dark</item>
+        <item name="backgroundTop">@drawable/dialog_top_holo_dark</item>
+        <item name="backgroundMiddle">@drawable/dialog_middle_holo_dark</item>
+        <item name="backgroundBottom">@drawable/dialog_bottom_holo_dark</item>
+    </style>
+
+    <style name="Theme.SimpleAlertDialog.Light">
+        <item name="listChoiceIndicatorSingle">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="titleSeparatorBackground">@color/holo_blue</item>
+        <item name="titleSeparatorHeight">@dimen/dialog_title_separator_height</item>
+        <item name="titleTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.Title</item>
+        <item name="messageTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.Message</item>
+        <item name="buttonTopDividerBackground">@color/holo_light_divider</item>
+        <item name="buttonVerticalDividerBackground">@color/holo_light_divider</item>
+        <item name="backgroundFull">@drawable/dialog_full_holo_light</item>
+        <item name="backgroundTop">@drawable/dialog_top_holo_light</item>
+        <item name="backgroundMiddle">@drawable/dialog_middle_holo_light</item>
+        <item name="backgroundBottom">@drawable/dialog_bottom_holo_light</item>
+    </style>
+
+</resources>

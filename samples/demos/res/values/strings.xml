@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SimpleAlertDialogDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_about">About this app</string>
+    <string name="msg_version">Version</string>
+    <string name="msg_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
+    <string name="msg_about_description">Demo app for SimpleAlertDialog.</string>
+    <string name="msg_about_fork_me_on_github">Fork me on GitHub!</string>
+    <string name="msg_about_github_url">https://github.com/ksoichiro/SimpleAlertDialog</string>
+    <string name="msg_about_afe_description">SimpleAlertDialog is a library for implementing DialogFragment easily in the Android application.</string>
+    <string name="menu_about">About</string>
+
+</resources>

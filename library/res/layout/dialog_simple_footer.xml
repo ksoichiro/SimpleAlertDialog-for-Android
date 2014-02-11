@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/footer"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/button_positive"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@drawable/list_selector_holo_dark"
+        android:clickable="true"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/button_positive_label"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:text="@android:string/ok"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/button_divider"
+        android:layout_width="0.6dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="0"
+        android:background="@color/holo_dark_divider" />
+
+    <LinearLayout
+        android:id="@+id/button_negative"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@drawable/list_selector_holo_dark"
+        android:clickable="true"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/button_negative_label"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:text="@android:string/cancel"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
+</LinearLayout>

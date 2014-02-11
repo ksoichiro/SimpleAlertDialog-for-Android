@@ -1,0 +1,36 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme for API 16+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 16+ devices.
+    -->
+    <style name="AppBaseTheme" parent="@android:style/Theme.Holo">
+        <!-- API 11 theme customizations can go here. -->
+    </style>
+
+    <!--
+        Base application theme for API 16+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 16+ devices.
+    -->
+    <style name="CustomBaseTheme" parent="@android:style/Theme.Holo">
+        <!-- API 16 theme customizations can go here. -->
+    </style>
+
+    <style name="SimpleAlertDialogTitleTextStyle">
+        <item name="android:textColor">#FF99CC00</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="SimpleAlertDialogMessageTextStyle">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="SimpleAlertDialogButtonTextStyle">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="SimpleAlertDialogListItemTextStyle">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+</resources>

@@ -1,0 +1,31 @@
+<resources>
+
+    <style name="TextAppearance"></style>
+
+    <style name="TextAppearance.SimpleAlertDialog"></style>
+
+    <style name="TextAppearance.SimpleAlertDialog.Widget"></style>
+
+    <style name="TextAppearance.SimpleAlertDialog.Widget.Title">
+        <item name="android:textColor">@color/holo_blue</item>
+    </style>
+
+    <style name="TextAppearance.SimpleAlertDialog.Widget.Message">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.SimpleAlertDialog"></style>
+
+    <style name="TextAppearance.SimpleAlertDialog.Light"></style>
+
+    <style name="TextAppearance.SimpleAlertDialog.Light.Widget"></style>
+
+    <style name="TextAppearance.SimpleAlertDialog.Light.Widget.Title">
+        <item name="android:textColor">@color/holo_blue</item>
+    </style>
+
+    <style name="TextAppearance.SimpleAlertDialog.Light.Widget.Message">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>

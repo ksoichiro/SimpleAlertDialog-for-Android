@@ -1,0 +1,9 @@
+<resources>
+
+    <string-array name="single_choice">
+        <item>English</item>
+        <item>Japanese</item>
+        <item>Chinese</item>
+    </string-array>
+
+</resources>
