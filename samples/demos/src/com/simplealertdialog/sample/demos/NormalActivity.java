@@ -71,21 +71,23 @@ public class NormalActivity extends Activity
     }
 
     @Override
-    public void onDialogPositiveButtonClicked(int requestCode) {
+    public void onDialogPositiveButtonClicked(final SimpleAlertDialog dialog, int requestCode,
+            final View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(this, "OK button clicked", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public void onDialogNegativeButtonClicked(int requestCode) {
+    public void onDialogNegativeButtonClicked(final SimpleAlertDialog dialog, int requestCode,
+            final View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public CharSequence[] onCreateSingleChoiceArray(int requestCode) {
+    public CharSequence[] onCreateSingleChoiceArray(final SimpleAlertDialog dialog, int requestCode) {
         if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
             return getResources().getTextArray(R.array.single_choice);
         }
@@ -93,7 +95,7 @@ public class NormalActivity extends Activity
     }
 
     @Override
-    public void onItemClick(int requestCode, int position) {
+    public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int requestCode, int position) {
         if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
             Toast.makeText(this,
                     getResources().getTextArray(R.array.single_choice)[position] + " selected",
