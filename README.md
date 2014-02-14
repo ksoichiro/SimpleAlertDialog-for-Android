@@ -19,44 +19,52 @@ SimpleAlertDialog is a library for using `DialogFragment` like `AlertDialog` in 
 
 If you want to show just a message and OK button:
 
-    new SimpleAlertDialogFragment.Builder()
-            .setMessage("Hello world!")
-            .setPositiveButton(android.R.string.ok)
-            .create().show(getFragmentManager(), "dialog");
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setMessage("Hello world!")
+        .setPositiveButton(android.R.string.ok)
+        .create().show(getFragmentManager(), "dialog");
+```
 
 ### Handling button click
 
 If you want to handle button click event, build dialog like this:
 
-    new SimpleAlertDialogFragment.Builder()
-            .setMessage("Hello world!")
-            .setPositiveButton(android.R.string.ok)
-            .setNegativeButton(android.R.string.cancel)
-            .setRequestCode(1)
-            .create().show(getFragmentManager(), "dialog");
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setMessage("Hello world!")
+        .setPositiveButton(android.R.string.ok)
+        .setNegativeButton(android.R.string.cancel)
+        .setRequestCode(1)
+        .create().show(getFragmentManager(), "dialog");
+```
 
 Make the activity to implement `SimpleAlertDialog.OnClickListener`:
 
-    public class NormalActivity extends Activity
-            implements SimpleAlertDialog.OnClickListener
+```java
+public class NormalActivity extends Activity
+        implements SimpleAlertDialog.OnClickListener
+```
 
 Then write handlers:
 
-    @Override
-    public void onDialogPositiveButtonClicked(SimpleAlertDialog dialog,
-            int requestCode, View view) {
-        if (requestCode == 1) {
-            Toast.makeText(this, "OK button clicked", Toast.LENGTH_SHORT).show();
-        }
+```java
+@Override
+public void onDialogPositiveButtonClicked(SimpleAlertDialog dialog,
+        int requestCode, View view) {
+    if (requestCode == 1) {
+        Toast.makeText(this, "OK button clicked", Toast.LENGTH_SHORT).show();
     }
+}
 
-    @Override
-    public void onDialogNegativeButtonClicked(SimpleAlertDialog dialog,
-            int requestCode, View view) {
-        if (requestCode == 1) {
-            Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
-        }
+@Override
+public void onDialogNegativeButtonClicked(SimpleAlertDialog dialog,
+        int requestCode, View view) {
+    if (requestCode == 1) {
+        Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
     }
+}
+```
 
 Don't forget to set the request code.  
 If you handle multiple dialogs in an `Actvity` or `Fragment`, those dialogs call the same event handlers, so the request code is necessery to distinguish them.
@@ -67,33 +75,39 @@ You can use the single choice list style dialog.
 
 Create dialog:
 
-    new SimpleAlertDialogFragment.Builder()
-            .setTitle("Choose one")
-            .setSingleChoiceCheckedItem(0) // This enables a single choice list
-            .setRequestCode(REQUEST_CODE_SINGLE_CHOICE_LIST)
-            .create().show(getFragmentManager(), "dialog");
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setTitle("Choose one")
+        .setSingleChoiceCheckedItem(0) // This enables a single choice list
+        .setRequestCode(REQUEST_CODE_SINGLE_CHOICE_LIST)
+        .create().show(getFragmentManager(), "dialog");
+```
 
 Implement the interface:
 
-    implements SimpleAlertDialog.SingleChoiceArrayItemProvider
+```java
+implements SimpleAlertDialog.SingleChoiceArrayItemProvider
+```
 
 Implement callbacks:
 
-    @Override
-    public CharSequence[] onCreateSingleChoiceArray(final SimpleAlertDialog dialog, int requestCode) {
-        if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
-            return getResources().getTextArray(R.array.single_choice);
-        }
-        return null;
+```java
+@Override
+public CharSequence[] onCreateSingleChoiceArray(final SimpleAlertDialog dialog, int requestCode) {
+    if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
+        return getResources().getTextArray(R.array.single_choice);
     }
+    return null;
+}
 
-    @Override
-    public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int requestCode,
-            int position) {
-        if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
-            // Do something
-        }
+@Override
+public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int requestCode,
+        int position) {
+    if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
+        // Do something
     }
+}
+```
 
 ### Custom adapter
 
@@ -101,33 +115,39 @@ You can use your custom `ListAdapter` in the dialog.
 
 Create dialog:
 
-    new SimpleAlertDialogFragment.Builder()
-            .setTitle("Choose your favorite")
-            .setUseAdapter(true) // This enables a custom adapter
-            .setRequestCode(REQUEST_CODE_ADAPTER)
-            .create().show(getFragmentManager(), "dialog");
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setTitle("Choose your favorite")
+        .setUseAdapter(true) // This enables a custom adapter
+        .setRequestCode(REQUEST_CODE_ADAPTER)
+        .create().show(getFragmentManager(), "dialog");
+```
 
 Implement the interface:
 
-    implements SimpleAlertDialog.ListProvider
+```java
+implements SimpleAlertDialog.ListProvider
+```
 
 Implement callbacks:
 
-    @Override
-    public ListAdapter onCreateList(SimpleAlertDialog dialog, int requestCode) {
-        if (requestCode == REQUEST_CODE_ADAPTER) {
-            // Create your custom adapter
-            return new SweetsAdapter(this, SWEETS_LIST);
-        }
-        return null;
+```java
+@Override
+public ListAdapter onCreateList(SimpleAlertDialog dialog, int requestCode) {
+    if (requestCode == REQUEST_CODE_ADAPTER) {
+        // Create your custom adapter
+        return new SweetsAdapter(this, SWEETS_LIST);
     }
+    return null;
+}
 
-    @Override
-    public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int position) {
-        if (requestCode == REQUEST_CODE_ADAPTER) {
-            // Do something
-        }
+@Override
+public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int position) {
+    if (requestCode == REQUEST_CODE_ADAPTER) {
+        // Do something
     }
+}
+```
 
 ### Custom view
 
@@ -135,66 +155,80 @@ You can use your custom view in the dialog.
 
 Create dialog:
 
-    new SimpleAlertDialogFragment.Builder()
-            .setTitle("Enter something")
-            .setUseView(true) // This enables a custom view
-            .setRequestCode(REQUEST_CODE_VIEW)
-            .create().show(getFragmentManager(), "dialog");
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setTitle("Enter something")
+        .setUseView(true) // This enables a custom view
+        .setRequestCode(REQUEST_CODE_VIEW)
+        .create().show(getFragmentManager(), "dialog");
+```
 
 Implement the interface:
 
-    implements SimpleAlertDialog.ViewProvider
+```java
+implements SimpleAlertDialog.ViewProvider
+```
 
 Implement callbacks:
 
-    @Override
-    public View onCreateView(SimpleAlertDialog dialog, int requestCode) {
-        if (requestCode == REQUEST_CODE_VIEW) {
-            final View view = LayoutInflater.from(this).inflate(R.layout.view_editor, null);
-            ((EditText) view.findViewById(R.id.text)).setText("Sample");
-            return view;
-        }
-        return null;
+```java
+@Override
+public View onCreateView(SimpleAlertDialog dialog, int requestCode) {
+    if (requestCode == REQUEST_CODE_VIEW) {
+        final View view = LayoutInflater.from(this).inflate(R.layout.view_editor, null);
+        ((EditText) view.findViewById(R.id.text)).setText("Sample");
+        return view;
     }
+    return null;
+}
+```
 
 ## Customizing styles
 
 You can customize each part of the dialog.  
 Define `simpleAlertDialogStyle` in your theme:
 
-    <style name="CustomTheme" parent="CustomBaseTheme">
-        <item name="simpleAlertDialogStyle">@style/SimpleAlertDialogStyle</item>
-    </style>
+```xml
+<style name="CustomTheme" parent="CustomBaseTheme">
+    <item name="simpleAlertDialogStyle">@style/SimpleAlertDialogStyle</item>
+</style>
+```
 
 This style can be constructed like this:
 
-    <style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog">
-        <!-- Title separator styles -->
-        <item name="titleSeparatorBackground">@drawable/title_separator</item>
-        <item name="titleSeparatorHeight">1dp</item>
-        <!-- TextView style of the title -->
-        <item name="titleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>
-        <!-- TextView style of the message -->
-        <item name="messageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
-        <!-- TextView style of the OK / Cancel buttons -->
-        <item name="buttonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
-        <!-- TextView in the Single choise list item -->
-        <item name="listItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
-        <!-- Drawable for radio button of the single choice list item -->
-        <item name="listChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>
-    </style>
+```xml
+<style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog">
+    <!-- Title separator styles -->
+    <item name="titleSeparatorBackground">@drawable/title_separator</item>
+    <item name="titleSeparatorHeight">1dp</item>
+    <!-- TextView style of the title -->
+    <item name="titleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>
+    <!-- TextView style of the message -->
+    <item name="messageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
+    <!-- TextView style of the OK / Cancel buttons -->
+    <item name="buttonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
+    <!-- TextView in the Single choise list item -->
+    <item name="listItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
+    <!-- Drawable for radio button of the single choice list item -->
+    <item name="listChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>
+</style>
+```
 
 Styles in the `xxxTextStyle` will be used as `TextAppearance`.  
 So you can customize their styles as if they were just a `TextView`.
 
-    <style name="SimpleAlertDialogTitleTextStyle">
-        <item name="android:textColor">#FF99CC00</item>
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
+```xml
+<style name="SimpleAlertDialogTitleTextStyle">
+    <item name="android:textColor">#FF99CC00</item>
+    <item name="android:fontFamily">sans-serif-light</item>
+</style>
+```
 
 If you want to use styles based on Holo Light, set replace the `parent` attribute to `@style/Theme.SimpleAlertDialog.Light`:
 
-    <style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog.Light">
+```xml
+<style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog.Light">
+```
 
 
 ## Samples
