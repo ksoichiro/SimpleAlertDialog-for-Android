@@ -3,6 +3,9 @@ SimpleAlertDialog
 
 SimpleAlertDialog is a library for using `DialogFragment` like `AlertDialog` in the Android application.  
 
+![Holo Dark](samples/images/screenshot_holo_dark.png "Holo Dark style")
+![Holo Light](samples/images/screenshot_holo_light.png "Holo Light style")
+![Custom](samples/images/screenshot_custom.png "Custom style")
 
 ## Features
 
