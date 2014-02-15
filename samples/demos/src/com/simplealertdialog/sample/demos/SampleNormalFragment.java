@@ -30,9 +30,6 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class SampleNormalFragment extends Fragment
         implements SimpleAlertDialog.OnClickListener,
@@ -47,21 +44,6 @@ public class SampleNormalFragment extends Fragment
     private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -2;
     private static final int REQUEST_CODE_ADAPTER = -3;
     private static final int REQUEST_CODE_VIEW = -4;
-
-    @SuppressWarnings("serial")
-    private static final List<Sweets> SWEETS_LIST = new ArrayList<Sweets>() {
-        {
-            add(new Sweets("1.5", "Cupcake"));
-            add(new Sweets("1.6", "Donut"));
-            add(new Sweets("2.0", "Eclair"));
-            add(new Sweets("2.2", "Froyo"));
-            add(new Sweets("2.3", "Gingerbread"));
-            add(new Sweets("3.0", "Honeycomb"));
-            add(new Sweets("4.0", "Ice Cream Sandwich"));
-            add(new Sweets("4.1", "Jelly Beans"));
-            add(new Sweets("4.4", "KitKat"));
-        }
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -189,7 +171,7 @@ public class SampleNormalFragment extends Fragment
     @Override
     public ListAdapter onCreateList(SimpleAlertDialog dialog, int requestCode) {
         if (requestCode == REQUEST_CODE_ADAPTER) {
-            return new SweetsAdapter(getActivity(), SWEETS_LIST);
+            return new SweetsAdapter(getActivity(), Sweets.SWEETS_LIST);
         }
         return null;
     }
@@ -198,7 +180,7 @@ public class SampleNormalFragment extends Fragment
     public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int position) {
         if (requestCode == REQUEST_CODE_ADAPTER) {
             Toast.makeText(getActivity(),
-                    "Fragment: " + SWEETS_LIST.get(position).name + " selected",
+                    "Fragment: " + Sweets.SWEETS_LIST.get(position).name + " selected",
                     Toast.LENGTH_SHORT).show();
         }
     }

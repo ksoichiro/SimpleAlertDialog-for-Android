@@ -16,6 +16,9 @@
 
 package com.simplealertdialog.sample.demos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sweets {
 
     public String id;
@@ -28,4 +31,19 @@ public class Sweets {
         this.id = id;
         this.name = name;
     }
+
+    @SuppressWarnings("serial")
+    public static final List<Sweets> SWEETS_LIST = new ArrayList<Sweets>() {
+        {
+            add(new Sweets("1.5", "Cupcake"));
+            add(new Sweets("1.6", "Donut"));
+            add(new Sweets("2.0", "Eclair"));
+            add(new Sweets("2.2", "Froyo"));
+            add(new Sweets("2.3", "Gingerbread"));
+            add(new Sweets("3.0", "Honeycomb"));
+            add(new Sweets("4.0", "Ice Cream Sandwich"));
+            add(new Sweets("4.1", "Jelly Beans"));
+            add(new Sweets("4.4", "KitKat"));
+        }
+    };
 }
