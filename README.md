@@ -20,6 +20,8 @@ SimpleAlertDialog is a library for using `DialogFragment` like `AlertDialog` in 
 
 ### Message and a button
 
+![Message and a button](samples/images/screenshot_dialog1_message_button.png "Message and a button")
+
 If you want to show just a message and OK button:
 
 ```java
@@ -30,6 +32,8 @@ new SimpleAlertDialogFragment.Builder()
 ```
 
 ### Handling button click
+
+![Handling button click](samples/images/screenshot_dialog2_buttons.png "Handling button click")
 
 If you want to handle button click event, build dialog like this:
 
@@ -74,6 +78,8 @@ If you handle multiple dialogs in an `Actvity` or `Fragment`, those dialogs call
 
 ### Single choice list
 
+![Single choice list](samples/images/screenshot_dialog3_singlechoice.png "Single choice list")
+
 You can use the single choice list style dialog.
 
 Create dialog:
@@ -114,6 +120,8 @@ public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int req
 
 ### Custom adapter
 
+![Custom adapter](samples/images/screenshot_dialog4_adapter.png "Custom adapter")
+
 You can use your custom `ListAdapter` in the dialog.
 
 Create dialog:
@@ -153,6 +161,8 @@ public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int posit
 ```
 
 ### Custom view
+
+![Custom view](samples/images/screenshot_dialog5_view.png "Custom view")
 
 You can use your custom view in the dialog.
 
