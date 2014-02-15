@@ -16,12 +16,8 @@
 -->
 <resources>
 
-    <style name="Theme.SimpleAlertDialog" parent="@style/Theme.SimpleAlertDialogBase">
-        <item name="sadListSelectorBackground">@null</item>
-    </style>
+    <style name="Theme.SimpleAlertDialog" parent="@style/Theme.SimpleAlertDialogBase"></style>
 
-    <style name="Theme.SimpleAlertDialog.Light" parent="@style/Theme.SimpleAlertDialogBase.Light">
-        <item name="sadListSelectorBackground">@null</item>
-    </style>
+    <style name="Theme.SimpleAlertDialog.Light" parent="@style/Theme.SimpleAlertDialogBase.Light"></style>
 
 </resources>
