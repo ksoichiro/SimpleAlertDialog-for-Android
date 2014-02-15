@@ -18,6 +18,8 @@
 
     <string name="app_name">SimpleAlertDialogDemo</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_fragment_normal">Using fragment</string>
+    <string name="title_activity_fragment_support">Using support v4 fragment</string>
     <string name="title_activity_normal">Without support v4 library</string>
     <string name="title_activity_support">Using support v4 library</string>
     <string name="title_activity_support_custom">Custom styles</string>

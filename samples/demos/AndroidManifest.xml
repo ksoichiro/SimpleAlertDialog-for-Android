@@ -77,6 +77,25 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".FragmentNormalActivity"
+            android:label="@string/title_activity_fragment_normal" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.simplealertdialog.sample.demos" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FragmentSupportActivity"
+            android:label="@string/title_activity_fragment_support" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.simplealertdialog.sample.demos" />
+                <category android:name="com.simplealertdialog.sample.demos.gingerbread" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" />
     </application>

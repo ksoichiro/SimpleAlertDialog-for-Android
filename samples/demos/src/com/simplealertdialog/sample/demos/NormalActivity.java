@@ -62,8 +62,15 @@ public class NormalActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_support);
+        initLayout();
+    }
 
+    protected void initLayout() {
+        setContentView(R.layout.activity_support);
+        initButtons();
+    }
+
+    protected void initButtons() {
         findViewById(R.id.btn_message).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {

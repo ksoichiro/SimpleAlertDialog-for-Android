@@ -17,12 +17,15 @@
 package com.simplealertdialog.sample.demos;
 
 import com.simplealertdialog.SimpleAlertDialog;
-import com.simplealertdialog.SimpleAlertDialogSupportFragment;
+import com.simplealertdialog.SimpleAlertDialogFragment;
 
+import android.annotation.TargetApi;
+import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Toast;
@@ -30,16 +33,20 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SupportActivity extends FragmentActivity
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+public class SampleNormalFragment extends Fragment
         implements SimpleAlertDialog.OnClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
         SimpleAlertDialog.ViewProvider {
 
-    private static final int REQUEST_CODE_BUTTONS = 1;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 2;
-    private static final int REQUEST_CODE_ADAPTER = 3;
-    private static final int REQUEST_CODE_VIEW = 4;
+    // XXX Warning: Don't use codes which the parent activity uses.
+    // If you do so, both the activity's and fragment's handler will be
+    // executed.
+    private static final int REQUEST_CODE_BUTTONS = -1;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -2;
+    private static final int REQUEST_CODE_ADAPTER = -3;
+    private static final int REQUEST_CODE_VIEW = -4;
 
     @SuppressWarnings("serial")
     private static final List<Sweets> SWEETS_LIST = new ArrayList<Sweets>() {
@@ -57,93 +64,96 @@ public class SupportActivity extends FragmentActivity
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initLayout();
-    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sample_support, container, false);
 
-    protected void initLayout() {
-        setContentView(R.layout.activity_support);
-        initButtons();
-    }
-
-    protected void initButtons() {
-        findViewById(R.id.btn_message).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_frag_message).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                new SimpleAlertDialogSupportFragment.Builder()
+                new SimpleAlertDialogFragment.Builder()
                         .setMessage("Hello world!")
                         .setPositiveButton(android.R.string.ok)
-                        .create().show(getSupportFragmentManager(), "dialog");
+                        .setTargetFragment(SampleNormalFragment.this)
+                        .create().show(getActivity().getFragmentManager(), "dialog");
             }
         });
 
-        findViewById(R.id.btn_message_title).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                new SimpleAlertDialogSupportFragment.Builder()
-                        .setTitle("Hello world!")
-                        .setMessage("Hello world!")
-                        .setPositiveButton(android.R.string.ok)
-                        .create().show(getSupportFragmentManager(), "dialog");
-            }
-        });
+        view.findViewById(R.id.btn_frag_message_title).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        new SimpleAlertDialogFragment.Builder()
+                                .setTitle("Hello world!")
+                                .setMessage("Hello world!")
+                                .setPositiveButton(android.R.string.ok)
+                                .setTargetFragment(SampleNormalFragment.this)
+                                .create().show(getActivity().getFragmentManager(), "dialog");
+                    }
+                });
 
-        findViewById(R.id.btn_buttons).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_frag_buttons).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                new SimpleAlertDialogSupportFragment.Builder()
+                new SimpleAlertDialogFragment.Builder()
                         .setTitle("Hello world!")
                         .setMessage("Hello world!")
                         .setPositiveButton(android.R.string.ok)
                         .setNegativeButton(android.R.string.cancel)
                         .setRequestCode(REQUEST_CODE_BUTTONS)
-                        .create().show(getSupportFragmentManager(), "dialog");
+                        .setTargetFragment(SampleNormalFragment.this)
+                        .create().show(getActivity().getFragmentManager(), "dialog");
             }
         });
 
-        findViewById(R.id.btn_single_choice_list).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                new SimpleAlertDialogSupportFragment.Builder()
-                        .setTitle("Choose one")
-                        .setSingleChoiceCheckedItem(0)
-                        .setRequestCode(REQUEST_CODE_SINGLE_CHOICE_LIST)
-                        .create().show(getSupportFragmentManager(), "dialog");
-            }
-        });
+        view.findViewById(R.id.btn_frag_single_choice_list).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        new SimpleAlertDialogFragment.Builder()
+                                .setTitle("Choose one")
+                                .setSingleChoiceCheckedItem(0)
+                                .setRequestCode(REQUEST_CODE_SINGLE_CHOICE_LIST)
+                                .setTargetFragment(SampleNormalFragment.this)
+                                .create().show(getActivity().getFragmentManager(), "dialog");
+                    }
+                });
 
-        findViewById(R.id.btn_adapter).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_frag_adapter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                new SimpleAlertDialogSupportFragment.Builder()
+                new SimpleAlertDialogFragment.Builder()
                         .setTitle("Choose your favorite")
                         .setUseAdapter(true)
                         .setRequestCode(REQUEST_CODE_ADAPTER)
-                        .create().show(getSupportFragmentManager(), "dialog");
+                        .setTargetFragment(SampleNormalFragment.this)
+                        .create().show(getActivity().getFragmentManager(), "dialog");
             }
         });
 
-        findViewById(R.id.btn_view).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_frag_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                new SimpleAlertDialogSupportFragment.Builder()
+                new SimpleAlertDialogFragment.Builder()
                         .setTitle("Enter something")
                         .setUseView(true)
                         .setRequestCode(REQUEST_CODE_VIEW)
-                        .create().show(getSupportFragmentManager(), "dialog");
+                        .setTargetFragment(SampleNormalFragment.this)
+                        .create().show(getActivity().getFragmentManager(), "dialog");
             }
         });
+
+        return view;
     }
 
     @Override
     public void onDialogPositiveButtonClicked(final SimpleAlertDialog dialog, int requestCode,
             View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
-            Toast.makeText(this, "OK button clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Fragment: OK button clicked", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
             String text = ((EditText) view.findViewById(R.id.text)).getText().toString();
-            Toast.makeText(this, "You typed: " + text, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Fragment: You typed: " + text, Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 
@@ -151,7 +161,8 @@ public class SupportActivity extends FragmentActivity
     public void onDialogNegativeButtonClicked(final SimpleAlertDialog dialog, int requestCode,
             View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
-            Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Fragment: Cancel button clicked", Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 
@@ -167,8 +178,10 @@ public class SupportActivity extends FragmentActivity
     public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int requestCode,
             int position) {
         if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
-            Toast.makeText(this,
-                    getResources().getTextArray(R.array.single_choice)[position] + " selected",
+            Toast.makeText(
+                    getActivity(),
+                    "Fragment: " + getResources().getTextArray(R.array.single_choice)[position]
+                            + " selected",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -176,7 +189,7 @@ public class SupportActivity extends FragmentActivity
     @Override
     public ListAdapter onCreateList(SimpleAlertDialog dialog, int requestCode) {
         if (requestCode == REQUEST_CODE_ADAPTER) {
-            return new SweetsAdapter(this, SWEETS_LIST);
+            return new SweetsAdapter(getActivity(), SWEETS_LIST);
         }
         return null;
     }
@@ -184,8 +197,8 @@ public class SupportActivity extends FragmentActivity
     @Override
     public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int position) {
         if (requestCode == REQUEST_CODE_ADAPTER) {
-            Toast.makeText(this,
-                    SWEETS_LIST.get(position).name + " selected",
+            Toast.makeText(getActivity(),
+                    "Fragment: " + SWEETS_LIST.get(position).name + " selected",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -193,7 +206,8 @@ public class SupportActivity extends FragmentActivity
     @Override
     public View onCreateView(SimpleAlertDialog dialog, int requestCode) {
         if (requestCode == REQUEST_CODE_VIEW) {
-            final View view = LayoutInflater.from(this).inflate(R.layout.view_editor, null);
+            final View view = LayoutInflater.from(getActivity())
+                    .inflate(R.layout.view_editor, null);
             ((EditText) view.findViewById(R.id.text)).setText("Sample");
             return view;
         }
