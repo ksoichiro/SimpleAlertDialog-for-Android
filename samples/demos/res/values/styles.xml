@@ -48,13 +48,13 @@
     </style>
 
     <style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog">
-        <item name="listChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>
-        <item name="titleSeparatorBackground">@drawable/title_separator</item>
-        <item name="titleSeparatorHeight">1dp</item>
-        <item name="titleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>
-        <item name="messageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
-        <item name="buttonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
-        <item name="listItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
+        <item name="sadListChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>
+        <item name="sadTitleSeparatorBackground">@drawable/title_separator</item>
+        <item name="sadTitleSeparatorHeight">1dp</item>
+        <item name="sadTitleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>
+        <item name="sadMessageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
+        <item name="sadButtonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
+        <item name="sadListItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
     </style>
 
     <style name="SimpleAlertDialogTitleTextStyle">

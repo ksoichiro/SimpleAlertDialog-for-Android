@@ -20,23 +20,23 @@
         <attr name="simpleAlertDialogStyle" format="reference" />
     </declare-styleable>
     <declare-styleable name="SimpleAlertDialogStyle">
-        <attr name="titleTextStyle" format="reference" />
-        <attr name="messageTextStyle" format="reference" />
-        <attr name="buttonTextStyle" format="reference" />
-        <attr name="listItemTextStyle" format="reference" />
-        <attr name="titleSeparatorBackground" format="reference|color|integer" />
-        <attr name="titleSeparatorHeight" format="dimension">
+        <attr name="sadTitleTextStyle" format="reference" />
+        <attr name="sadMessageTextStyle" format="reference" />
+        <attr name="sadButtonTextStyle" format="reference" />
+        <attr name="sadListItemTextStyle" format="reference" />
+        <attr name="sadTitleSeparatorBackground" format="reference|color|integer" />
+        <attr name="sadTitleSeparatorHeight" format="dimension">
             <enum name="fill_parent" value="-1" />
             <enum name="match_parent" value="-1" />
             <enum name="wrap_content" value="-2" />
         </attr>
-        <attr name="listChoiceIndicatorSingle" format="reference" />
-        <attr name="buttonTopDividerBackground" format="reference|color|integer" />
-        <attr name="buttonVerticalDividerBackground" format="reference|color|integer" />
-        <attr name="backgroundFull" format="reference|integer" />
-        <attr name="backgroundTop" format="reference|integer" />
-        <attr name="backgroundMiddle" format="reference|integer" />
-        <attr name="backgroundBottom" format="reference|integer" />
+        <attr name="sadListChoiceIndicatorSingle" format="reference" />
+        <attr name="sadButtonTopDividerBackground" format="reference|color|integer" />
+        <attr name="sadButtonVerticalDividerBackground" format="reference|color|integer" />
+        <attr name="sadBackgroundFull" format="reference|integer" />
+        <attr name="sadBackgroundTop" format="reference|integer" />
+        <attr name="sadBackgroundMiddle" format="reference|integer" />
+        <attr name="sadBackgroundBottom" format="reference|integer" />
     </declare-styleable>
 
 </resources>

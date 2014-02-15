@@ -24,7 +24,7 @@
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dialog_top_holo_dark"
+        android:background="@drawable/sad__dialog_top_holo_dark"
         android:orientation="horizontal" >
 
         <ImageView
@@ -48,7 +48,7 @@
         android:id="@+id/bar_wrapper"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dialog_middle_holo_dark" >
+        android:background="@drawable/sad__dialog_middle_holo_dark" >
 
         <View
             android:id="@+id/bar"
@@ -61,7 +61,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:background="@drawable/dialog_bottom_holo_dark"
+        android:background="@drawable/sad__dialog_bottom_holo_dark"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -102,7 +102,7 @@
 
         <include
             android:id="@+id/footer"
-            layout="@layout/dialog_simple_footer" />
+            layout="@layout/sad__dialog_simple_footer" />
     </LinearLayout>
 
 </LinearLayout>

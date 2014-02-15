@@ -22,38 +22,11 @@
     android:orientation="horizontal" >
 
     <LinearLayout
-        android:id="@+id/button_negative"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:layout_weight="1"
-        android:background="@drawable/list_selector_holo_dark"
-        android:clickable="true"
-        android:gravity="center" >
-
-        <TextView
-            android:id="@+id/button_negative_label"
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:duplicateParentState="true"
-            android:gravity="center"
-            android:text="@android:string/cancel"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/button_divider"
-        android:layout_width="0.6dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="0"
-        android:background="@color/holo_dark_divider" />
-
-    <LinearLayout
         android:id="@+id/button_positive"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:layout_weight="1"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="@drawable/sad__list_selector_holo_dark"
         android:clickable="true"
         android:gravity="center" >
 
@@ -65,6 +38,33 @@
             android:duplicateParentState="true"
             android:gravity="center"
             android:text="@android:string/ok"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/button_divider"
+        android:layout_width="0.6dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="0"
+        android:background="@color/holo_dark_divider" />
+
+    <LinearLayout
+        android:id="@+id/button_negative"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@drawable/sad__list_selector_holo_dark"
+        android:clickable="true"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/button_negative_label"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:text="@android:string/cancel"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 

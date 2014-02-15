@@ -199,18 +199,18 @@ This style can be constructed like this:
 ```xml
 <style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog">
     <!-- Title separator styles -->
-    <item name="titleSeparatorBackground">@drawable/title_separator</item>
-    <item name="titleSeparatorHeight">1dp</item>
+    <item name="sadTitleSeparatorBackground">@drawable/title_separator</item>
+    <item name="sadTitleSeparatorHeight">1dp</item>
     <!-- TextView style of the title -->
-    <item name="titleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>
+    <item name="sadTitleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>
     <!-- TextView style of the message -->
-    <item name="messageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
+    <item name="sadMessageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
     <!-- TextView style of the OK / Cancel buttons -->
-    <item name="buttonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
+    <item name="sadButtonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
     <!-- TextView in the Single choise list item -->
-    <item name="listItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
+    <item name="sadListItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
     <!-- Drawable for radio button of the single choice list item -->
-    <item name="listChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>
+    <item name="sadListChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>
 </style>
 ```
 
