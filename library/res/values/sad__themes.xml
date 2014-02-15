@@ -18,7 +18,7 @@
 
     <style name="Theme"></style>
 
-    <style name="Theme.SimpleAlertDialog">
+    <style name="Theme.SimpleAlertDialogBase">
         <item name="sadListChoiceIndicatorSingle">?android:attr/listChoiceIndicatorSingle</item>
         <item name="sadTitleSeparatorBackground">@color/holo_blue</item>
         <item name="sadTitleSeparatorHeight">@dimen/dialog_title_separator_height</item>
@@ -26,6 +26,7 @@
         <item name="sadMessageTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.Message</item>
         <item name="sadButtonTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.Button</item>
         <item name="sadListItemTextStyle">@style/TextAppearance.SimpleAlertDialog.Widget.ListItem</item>
+        <item name="sadListSelectorBackground">@drawable/sad__list_selector_holo_dark</item>
         <item name="sadButtonTopDividerBackground">@color/holo_dark_divider</item>
         <item name="sadButtonVerticalDividerBackground">@color/holo_dark_divider</item>
         <item name="sadBackgroundFull">@drawable/sad__dialog_full_holo_dark</item>
@@ -34,7 +35,11 @@
         <item name="sadBackgroundBottom">@drawable/sad__dialog_bottom_holo_dark</item>
     </style>
 
-    <style name="Theme.SimpleAlertDialog.Light">
+    <style name="Theme.SimpleAlertDialog" parent="@style/Theme.SimpleAlertDialogBase">
+        <item name="sadListSelectorBackground">@drawable/sad__list_selector_jb_holo_dark</item>
+    </style>
+
+    <style name="Theme.SimpleAlertDialogBase.Light">
         <item name="sadListChoiceIndicatorSingle">?android:attr/listChoiceIndicatorSingle</item>
         <item name="sadTitleSeparatorBackground">@color/holo_blue</item>
         <item name="sadTitleSeparatorHeight">@dimen/dialog_title_separator_height</item>
@@ -42,12 +47,17 @@
         <item name="sadMessageTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.Message</item>
         <item name="sadButtonTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.Button</item>
         <item name="sadListItemTextStyle">@style/TextAppearance.SimpleAlertDialog.Light.Widget.ListItem</item>
+        <item name="sadListSelectorBackground">@drawable/sad__list_selector_holo_dark</item>
         <item name="sadButtonTopDividerBackground">@color/holo_light_divider</item>
         <item name="sadButtonVerticalDividerBackground">@color/holo_light_divider</item>
         <item name="sadBackgroundFull">@drawable/sad__dialog_full_holo_light</item>
         <item name="sadBackgroundTop">@drawable/sad__dialog_top_holo_light</item>
         <item name="sadBackgroundMiddle">@drawable/sad__dialog_middle_holo_light</item>
         <item name="sadBackgroundBottom">@drawable/sad__dialog_bottom_holo_light</item>
+    </style>
+
+    <style name="Theme.SimpleAlertDialog.Light" parent="@style/Theme.SimpleAlertDialogBase.Light">
+        <item name="sadListSelectorBackground">@drawable/sad__list_selector_jb_holo_light</item>
     </style>
 
 </resources>

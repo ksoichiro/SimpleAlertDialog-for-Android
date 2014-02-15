@@ -24,6 +24,7 @@
         <attr name="sadMessageTextStyle" format="reference" />
         <attr name="sadButtonTextStyle" format="reference" />
         <attr name="sadListItemTextStyle" format="reference" />
+        <attr name="sadListSelectorBackground" format="reference|color|integer" />
         <attr name="sadTitleSeparatorBackground" format="reference|color|integer" />
         <attr name="sadTitleSeparatorHeight" format="dimension">
             <enum name="fill_parent" value="-1" />

@@ -104,6 +104,7 @@ public class SimpleAlertDialog extends Dialog {
     private int mMessageTextStyle;
     private int mButtonTextStyle;
     private int mListItemTextStyle;
+    private Drawable mListSelectorBackground;
     private Drawable mTitleSeparatorBackground;
     private int mTitleSeparatorHeight;
     private Drawable mButtonTopDividerBackground;
@@ -348,6 +349,7 @@ public class SimpleAlertDialog extends Dialog {
                     if (mListItemTextStyle != 0) {
                         c.setTextAppearance(getContext(), mListItemTextStyle);
                     }
+                    setBackground(c, mListSelectorBackground);
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
                         Resources res = getContext().getResources();
                         c.setPadding(
@@ -401,10 +403,15 @@ public class SimpleAlertDialog extends Dialog {
         mListChoiceIndicatorSingle = a.getResourceId(
                 R.styleable.SimpleAlertDialogStyle_sadListChoiceIndicatorSingle, 0);
         mTitleTextStyle = a.getResourceId(R.styleable.SimpleAlertDialogStyle_sadTitleTextStyle, 0);
-        mMessageTextStyle = a.getResourceId(R.styleable.SimpleAlertDialogStyle_sadMessageTextStyle, 0);
-        mButtonTextStyle = a.getResourceId(R.styleable.SimpleAlertDialogStyle_sadButtonTextStyle, 0);
-        mListItemTextStyle = a.getResourceId(R.styleable.SimpleAlertDialogStyle_sadListItemTextStyle,
+        mMessageTextStyle = a.getResourceId(R.styleable.SimpleAlertDialogStyle_sadMessageTextStyle,
                 0);
+        mButtonTextStyle = a
+                .getResourceId(R.styleable.SimpleAlertDialogStyle_sadButtonTextStyle, 0);
+        mListItemTextStyle = a.getResourceId(
+                R.styleable.SimpleAlertDialogStyle_sadListItemTextStyle,
+                0);
+        mListSelectorBackground = a
+                .getDrawable(R.styleable.SimpleAlertDialogStyle_sadListSelectorBackground);
         mTitleSeparatorBackground = a
                 .getDrawable(R.styleable.SimpleAlertDialogStyle_sadTitleSeparatorBackground);
         mTitleSeparatorHeight = a.getLayoutDimension(
@@ -423,18 +430,23 @@ public class SimpleAlertDialog extends Dialog {
         a.recycle();
     }
 
-    @SuppressWarnings("deprecation")
     private void setBackground(final int resId, final Drawable d) {
         if (resId == 0 || d == null) {
             return;
         }
         View view = findViewById(resId);
-        if (view != null) {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-                view.setBackground(d);
-            } else {
-                view.setBackgroundDrawable(d);
-            }
+        setBackground(view, d);
+    }
+
+    @SuppressWarnings("deprecation")
+    private void setBackground(final View view, final Drawable d) {
+        if (view == null || d == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            view.setBackground(d.getConstantState().newDrawable());
+        } else {
+            view.setBackgroundDrawable(d.getConstantState().newDrawable());
         }
     }
 
