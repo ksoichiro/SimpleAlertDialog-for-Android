@@ -51,7 +51,7 @@
     </style>
 
     <style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog">
-        <item name="sadListChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>
+        <item name="sadListChoiceIndicatorSingle">@drawable/simplegreen_btn_radio</item>
         <item name="sadTitleSeparatorBackground">@drawable/title_separator</item>
         <item name="sadTitleSeparatorHeight">1dp</item>
         <item name="sadTitleTextStyle">@style/SimpleAlertDialogTitleTextStyle</item>

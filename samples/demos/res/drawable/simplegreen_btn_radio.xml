@@ -16,10 +16,10 @@
 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/simpleblue_btn_radio_on" android:state_checked="true" android:state_enabled="true" android:state_pressed="false"/>
-    <item android:drawable="@drawable/simpleblue_btn_radio_off" android:state_checked="false" android:state_enabled="true"/>
-    <item android:drawable="@drawable/simpleblue_btn_radio_on_pressed" android:state_checked="true" android:state_enabled="true" android:state_pressed="true"/>
-    <item android:drawable="@drawable/simpleblue_btn_radio_on_disabled" android:state_checked="true"/>
-    <item android:drawable="@drawable/simpleblue_btn_radio_off_disabled" android:state_checked="false"/>
+    <item android:drawable="@drawable/simplegreen_btn_radio_on" android:state_checked="true" android:state_enabled="true" android:state_pressed="false"/>
+    <item android:drawable="@drawable/simplegreen_btn_radio_off" android:state_checked="false" android:state_enabled="true"/>
+    <item android:drawable="@drawable/simplegreen_btn_radio_on_pressed" android:state_checked="true" android:state_enabled="true" android:state_pressed="true"/>
+    <item android:drawable="@drawable/simplegreen_btn_radio_on_disabled" android:state_checked="true"/>
+    <item android:drawable="@drawable/simplegreen_btn_radio_off_disabled" android:state_checked="false"/>
 
 </selector>
