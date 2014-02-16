@@ -5,3 +5,5 @@ samples/demos/gen
 tests/bin
 tests/gen
 local.properties
+private.properties
+*.keystore
