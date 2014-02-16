@@ -16,7 +16,7 @@
 -->
 <resources>
 
-    <string name="app_name">SimpleAlertDialogDemo</string>
+    <string name="app_name">SAD-Demos</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_fragment_normal">Using fragment</string>
     <string name="title_activity_fragment_support">Using support v4 fragment</string>

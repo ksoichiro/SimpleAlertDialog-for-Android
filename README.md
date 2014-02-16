@@ -247,6 +247,9 @@ If you want to use styles based on Holo Light, set replace the `parent` attribut
 ## Samples
 
 * Sample applications using this library are included in the samples folder.
+* You can also try it on Google Play.
+
+  [![Demo on Google Play](samples/images/en_generic_rgb_wo_60.png "Banner")](https://play.google.com/store/apps/details?id=com.simplealertdialog.sample.demos)
 
 
 ## Developed By
