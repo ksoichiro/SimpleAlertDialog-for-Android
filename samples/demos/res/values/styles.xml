@@ -30,7 +30,9 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="icon">@drawable/ic_action_alerts_and_states_warning</item>
     </style>
 
     <style name="CustomBaseTheme" parent="android:Theme.Black">
@@ -45,6 +47,7 @@
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="simpleAlertDialogStyle">@style/SimpleAlertDialogStyle</item>
+        <item name="icon">@drawable/ic_action_alerts_and_states_warning</item>
     </style>
 
     <style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog">
@@ -84,6 +87,7 @@
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="simpleAlertDialogStyle">@style/Theme.SimpleAlertDialog.Light</item>
+        <item name="icon">@drawable/ic_action_alerts_and_states_warning_light</item>
     </style>
 
 </resources>

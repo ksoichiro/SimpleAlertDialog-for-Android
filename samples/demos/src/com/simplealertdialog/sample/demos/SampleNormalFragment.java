@@ -21,6 +21,7 @@ import com.simplealertdialog.SimpleAlertDialogFragment;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -64,8 +65,14 @@ public class SampleNormalFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
+                        TypedArray a = getActivity().getTheme().obtainStyledAttributes(new int[] {
+                            R.attr.icon
+                        });
+                        int iconResId = a.getResourceId(0, 0);
+                        a.recycle();
                         new SimpleAlertDialogFragment.Builder()
                                 .setTitle("Hello world!")
+                                .setIcon(iconResId)
                                 .setMessage("Hello world!")
                                 .setPositiveButton(android.R.string.ok)
                                 .setTargetFragment(SampleNormalFragment.this)

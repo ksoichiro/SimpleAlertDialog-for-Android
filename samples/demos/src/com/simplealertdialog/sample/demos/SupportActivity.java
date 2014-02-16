@@ -19,6 +19,7 @@ package com.simplealertdialog.sample.demos;
 import com.simplealertdialog.SimpleAlertDialog;
 import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -63,8 +64,12 @@ public class SupportActivity extends FragmentActivity
         findViewById(R.id.btn_message_title).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                TypedArray a = getTheme().obtainStyledAttributes(new int[] { R.attr.icon });
+                int iconResId = a.getResourceId(0, 0);
+                a.recycle();
                 new SimpleAlertDialogSupportFragment.Builder()
                         .setTitle("Hello world!")
+                        .setIcon(iconResId)
                         .setMessage("Hello world!")
                         .setPositiveButton(android.R.string.ok)
                         .create().show(getSupportFragmentManager(), "dialog");
