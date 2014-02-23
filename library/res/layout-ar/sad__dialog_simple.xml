@@ -15,7 +15,7 @@
   limitations under the License.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
     android:orientation="vertical" >
@@ -24,8 +24,7 @@
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/sad__dialog_top_holo_dark"
-        android:orientation="horizontal" >
+        android:background="@drawable/sad__dialog_top_holo_dark" >
 
         <ImageView
             android:id="@+id/icon"
@@ -33,17 +32,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp" />
+            android:paddingRight="12dp"
+            android:paddingTop="8dp" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/dialog_title_height"
-            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/icon"
             android:gravity="right|center_vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
+            android:paddingTop="8dp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </RelativeLayout>
 
@@ -77,14 +78,13 @@
                 android:id="@+id/message"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left|top"
+                android:gravity="right|top"
                 android:minHeight="48dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:paddingTop="8dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <LinearLayout
                 android:id="@+id/view"
