@@ -7,3 +7,7 @@ tests/gen
 local.properties
 private.properties
 *.keystore
+*.gradle/
+build/
+.idea/
+*.iml
