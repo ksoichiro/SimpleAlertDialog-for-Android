@@ -16,6 +16,7 @@
 
 package com.simplealertdialog;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -439,12 +440,13 @@ public class SimpleAlertDialog extends Dialog {
         setBackground(view, d);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressWarnings("deprecation")
     private void setBackground(final View view, final Drawable d) {
         if (view == null || d == null) {
             return;
         }
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             view.setBackground(d.getConstantState().newDrawable());
         } else {
             view.setBackgroundDrawable(d.getConstantState().newDrawable());
