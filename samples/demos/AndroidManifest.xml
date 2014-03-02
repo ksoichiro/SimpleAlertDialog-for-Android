@@ -97,6 +97,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".CancelSupportActivity"
+            android:label="@string/title_activity_cancel_support" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.simplealertdialog.sample.demos" />
+                <category android:name="com.simplealertdialog.sample.demos.gingerbread" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" />
     </application>
