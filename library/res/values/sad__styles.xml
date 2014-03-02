@@ -38,8 +38,6 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="TextAppearance.SimpleAlertDialog"></style>
-
     <style name="TextAppearance.SimpleAlertDialog.Light"></style>
 
     <style name="TextAppearance.SimpleAlertDialog.Light.Widget"></style>
