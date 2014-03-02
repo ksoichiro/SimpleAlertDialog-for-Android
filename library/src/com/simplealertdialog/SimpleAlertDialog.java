@@ -82,6 +82,7 @@ public class SimpleAlertDialog extends Dialog {
     public static final String ARG_NEGATIVE_BUTTON_RES_ID = "argNegativeButtonResId";
     public static final String ARG_REQUEST_CODE = "argRequestCode";
     public static final String ARG_CANCELABLE = "argCancelable";
+    public static final String ARG_CANCELED_ON_TOUCH_OUTSIDE = "argCanceledOnTouchOutside";
     public static final String ARG_SINGLE_CHOICE_CHECKED_ITEM = "argSingleChoiceCheckedItem";
     public static final String ARG_USE_VIEW = "argUseView";
     public static final String ARG_USE_ADAPTER = "argUseAdapter";
@@ -656,8 +657,12 @@ public class SimpleAlertDialog extends Dialog {
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_CANCELABLE)) {
                 cancelable = args.getBoolean(SimpleAlertDialog.ARG_CANCELABLE);
             }
-            dialog.setCancelable(cancelable);
-            dialog.setCanceledOnTouchOutside(cancelable);
+            boolean canceledOnTouchOutside = cancelable;
+            if (cancelable && args != null && args.containsKey(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE)) {
+                canceledOnTouchOutside = args
+                        .getBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE);
+            }
+            dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
             return dialog;
         }
 
@@ -700,6 +705,7 @@ public class SimpleAlertDialog extends Dialog {
         private int mNegativeButtonResId;
         private int mRequestCode;
         private boolean mCancelable = true;
+        private boolean mCanceledOnTouchOutside = true;
         private int mSingleChoiceCheckedItem = -1;
         private boolean mUseView;
         private boolean mUseAdapter;
@@ -759,6 +765,11 @@ public class SimpleAlertDialog extends Dialog {
             return this;
         }
 
+        public Builder<T, F> setCanceledOnTouchOutside(final boolean canceledOnTouchOutside) {
+            mCanceledOnTouchOutside = canceledOnTouchOutside;
+            return this;
+        }
+
         public Builder<T, F> setSingleChoiceCheckedItem(final int checkedItem) {
             mSingleChoiceCheckedItem = checkedItem;
             return this;
@@ -800,6 +811,8 @@ public class SimpleAlertDialog extends Dialog {
                 args.putInt(SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID, mNegativeButtonResId);
             }
             args.putBoolean(SimpleAlertDialog.ARG_CANCELABLE, mCancelable);
+            args.putBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE,
+                    mCanceledOnTouchOutside);
             if (mSingleChoiceCheckedItem >= 0) {
                 args.putInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM,
                         mSingleChoiceCheckedItem);

@@ -30,6 +30,10 @@ public class SimpleAlertDialogSupportFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle args = getArguments();
+        // Cancelable must be set to DialogFragment
+        if (args != null && args.containsKey(SimpleAlertDialog.ARG_CANCELABLE)) {
+            setCancelable(args.getBoolean(SimpleAlertDialog.ARG_CANCELABLE, true));
+        }
         return new SimpleAlertDialog.Helper<SimpleAlertDialogSupportFragment, Fragment, FragmentActivity>() {
             public FragmentActivity getActivity() {
                 return SimpleAlertDialogSupportFragment.this.getActivity();
