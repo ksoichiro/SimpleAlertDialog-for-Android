@@ -53,6 +53,10 @@ public class SimpleAlertDialog extends Dialog {
                 final View view);
     }
 
+    public static interface OnCancelListener {
+        void onDialogCancel(final SimpleAlertDialog dialog, final int requestCode, final View view);
+    }
+
     public static interface ViewProvider {
         View onCreateView(final SimpleAlertDialog dialog, final int requestCode);
     }

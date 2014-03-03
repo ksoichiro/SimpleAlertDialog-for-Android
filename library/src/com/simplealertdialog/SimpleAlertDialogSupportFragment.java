@@ -17,6 +17,7 @@
 package com.simplealertdialog;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -43,6 +44,31 @@ public class SimpleAlertDialogSupportFragment extends DialogFragment {
                 return SimpleAlertDialogSupportFragment.this.getTargetFragment();
             }
         }.createDialog(args, getTargetFragment(), getActivity());
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
+        int requestCode = 0;
+        Bundle args = getArguments();
+        if (args != null && args.containsKey(SimpleAlertDialog.ARG_CANCELABLE)) {
+            requestCode = args.getInt(SimpleAlertDialog.ARG_REQUEST_CODE);
+        }
+        Fragment targetFragment = getTargetFragment();
+        if (targetFragment != null
+                && targetFragment instanceof SimpleAlertDialog.OnCancelListener) {
+            ((SimpleAlertDialog.OnCancelListener) targetFragment)
+                    .onDialogCancel((SimpleAlertDialog) dialog,
+                            requestCode,
+                            ((SimpleAlertDialog) dialog).getView());
+        }
+        if (getActivity() != null
+                && getActivity() instanceof SimpleAlertDialog.OnCancelListener) {
+            ((SimpleAlertDialog.OnCancelListener) getActivity())
+                    .onDialogCancel((SimpleAlertDialog) dialog,
+                            requestCode,
+                            ((SimpleAlertDialog) dialog).getView());
+        }
     }
 
     public static class Builder extends

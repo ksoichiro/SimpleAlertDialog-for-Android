@@ -16,13 +16,19 @@
 
 package com.simplealertdialog.sample.demos;
 
+import com.simplealertdialog.SimpleAlertDialog;
 import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.Toast;
 
-public class CancelSupportActivity extends FragmentActivity {
+public class CancelSupportActivity extends FragmentActivity
+        implements SimpleAlertDialog.OnCancelListener {
+
+    private static final int REQUEST_CODE_CANCELABLE = 1;
+    private static final int REQUEST_CODE_DISALLOW_CANCEL_ON_TOUCH_OUTSIDE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,7 @@ public class CancelSupportActivity extends FragmentActivity {
                 new SimpleAlertDialogSupportFragment.Builder()
                         .setMessage("Cancelable")
                         .setPositiveButton(android.R.string.ok)
+                        .setRequestCode(REQUEST_CODE_CANCELABLE)
                         .create().show(getSupportFragmentManager(), "dialog");
             }
         });
@@ -66,9 +73,18 @@ public class CancelSupportActivity extends FragmentActivity {
                                         + "but not cancelable on touch outside")
                                 .setPositiveButton(android.R.string.ok)
                                 .setCanceledOnTouchOutside(false)
+                                .setRequestCode(REQUEST_CODE_DISALLOW_CANCEL_ON_TOUCH_OUTSIDE)
                                 .create().show(getSupportFragmentManager(), "dialog");
                     }
                 });
     }
 
+    @Override
+    public void onDialogCancel(SimpleAlertDialog dialog, int requestCode, View view) {
+        if (requestCode == REQUEST_CODE_CANCELABLE) {
+            Toast.makeText(this, "Canceled: cancelable dialog", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_DISALLOW_CANCEL_ON_TOUCH_OUTSIDE) {
+            Toast.makeText(this, "Canceled: not cancelable on touch outside dialog", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
