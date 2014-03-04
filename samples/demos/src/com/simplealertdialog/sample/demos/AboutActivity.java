@@ -32,7 +32,7 @@ import android.widget.TextView;
  */
 public final class AboutActivity extends Activity {
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,9 @@ public final class AboutActivity extends Activity {
 
         if (Build.VERSION_CODES.HONEYCOMB <= Build.VERSION.SDK_INT) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
-            getActionBar().setHomeButtonEnabled(true);
+            if (Build.VERSION_CODES.ICE_CREAM_SANDWICH <= Build.VERSION.SDK_INT) {
+                getActionBar().setHomeButtonEnabled(true);
+            }
         }
 
         ((TextView) findViewById(R.id.version_name)).setText(getVersionName());

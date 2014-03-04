@@ -17,7 +17,6 @@
 <resources>
 
     <string name="app_name">SAD-Demos</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_cancel_support">Handling cancel events</string>
     <string name="title_activity_fragment_normal">Using fragment</string>
     <string name="title_activity_fragment_support">Using support v4 fragment</string>
@@ -33,5 +32,6 @@
     <string name="msg_about_github_url">https://github.com/ksoichiro/SimpleAlertDialog</string>
     <string name="msg_about_afe_description">SimpleAlertDialog is a library for implementing DialogFragment easily in the Android application.</string>
     <string name="menu_about">About</string>
+    <string name="desc_about_app">About this app</string>
 
 </resources>

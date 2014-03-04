@@ -18,17 +18,18 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/sad__dialog_top_holo_dark"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/icon"
+            android:contentDescription="@string/sad__icon_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -49,7 +50,7 @@
         android:id="@+id/bar_wrapper"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/sad__dialog_middle_holo_dark" >
+        android:background="@drawable/sad__dialog_middle_holo_dark">
 
         <View
             android:id="@+id/bar"
@@ -63,13 +64,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:background="@drawable/sad__dialog_bottom_holo_dark"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/message"
