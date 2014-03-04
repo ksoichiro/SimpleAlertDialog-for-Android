@@ -39,7 +39,7 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/dialog_title_height"
+            android:layout_height="@dimen/sad__dialog_title_height"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/icon"
             android:gravity="right|center_vertical"
@@ -103,7 +103,7 @@
             android:id="@+id/button_divider_top"
             android:layout_width="fill_parent"
             android:layout_height="0.6dp"
-            android:background="@color/holo_dark_divider" />
+            android:background="@color/sad__holo_dark_divider" />
 
         <include
             android:id="@+id/footer"

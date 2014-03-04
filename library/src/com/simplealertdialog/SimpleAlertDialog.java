@@ -164,7 +164,7 @@ public class SimpleAlertDialog extends Dialog {
             setBackground(R.id.bar, mTitleSeparatorBackground);
             if (mTitleSeparatorHeight == 0) {
                 mTitleSeparatorHeight = getContext().getResources().getDimensionPixelSize(
-                        R.dimen.dialog_title_separator_height);
+                        R.dimen.sad__dialog_title_separator_height);
             }
             FrameLayout.LayoutParams lpBar = new FrameLayout.LayoutParams(
                     getMatchParent(),
@@ -359,9 +359,9 @@ public class SimpleAlertDialog extends Dialog {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
                         Resources res = getContext().getResources();
                         c.setPadding(
-                                res.getDimensionPixelSize(R.dimen.simple_list_item_padding_left),
+                                res.getDimensionPixelSize(R.dimen.sad__simple_list_item_padding_left),
                                 0,
-                                res.getDimensionPixelSize(R.dimen.simple_list_item_padding_right),
+                                res.getDimensionPixelSize(R.dimen.sad__simple_list_item_padding_right),
                                 0);
                     }
                 }
@@ -423,7 +423,7 @@ public class SimpleAlertDialog extends Dialog {
         mTitleSeparatorHeight = a.getLayoutDimension(
                 R.styleable.SimpleAlertDialogStyle_sadTitleSeparatorHeight,
                 getContext().getResources().getDimensionPixelSize(
-                        R.dimen.dialog_title_separator_height));
+                        R.dimen.sad__dialog_title_separator_height));
         mButtonTopDividerBackground = a
                 .getDrawable(R.styleable.SimpleAlertDialogStyle_sadButtonTopDividerBackground);
         mButtonVerticalDividerBackground = a

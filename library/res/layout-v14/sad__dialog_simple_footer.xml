@@ -46,7 +46,7 @@
         android:layout_width="0.6dp"
         android:layout_height="fill_parent"
         android:layout_weight="0"
-        android:background="@color/holo_dark_divider" />
+        android:background="@color/sad__holo_dark_divider" />
 
     <LinearLayout
         android:id="@+id/button_positive"
