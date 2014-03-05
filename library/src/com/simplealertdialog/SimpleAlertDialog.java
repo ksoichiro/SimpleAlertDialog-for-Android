@@ -602,11 +602,7 @@ public class SimpleAlertDialog extends Dialog {
                 positiveButton = activity.getString(args
                         .getInt(SimpleAlertDialog.ARG_POSITIVE_BUTTON_RES_ID));
             }
-            if (positiveButton != null
-                    || (!hasListProvider(args) && !hasSingleChoiceArrayItemProvider(args))) {
-                if (positiveButton == null) {
-                    positiveButton = activity.getResources().getText(android.R.string.ok);
-                }
+            if (positiveButton != null) {
                 dialog.setPositiveButton(positiveButton, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialog, final int which) {

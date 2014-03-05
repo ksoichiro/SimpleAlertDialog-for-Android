@@ -125,6 +125,7 @@ public class SampleNormalFragment extends Fragment
                 new SimpleAlertDialogFragment.Builder()
                         .setTitle("Enter something")
                         .setUseView(true)
+                        .setPositiveButton(android.R.string.ok)
                         .setRequestCode(REQUEST_CODE_VIEW)
                         .setTargetFragment(SampleNormalFragment.this)
                         .create().show(getActivity().getFragmentManager(), "dialog");

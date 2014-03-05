@@ -117,6 +117,7 @@ public class SupportActivity extends FragmentActivity
                 new SimpleAlertDialogSupportFragment.Builder()
                         .setTitle("Enter something")
                         .setUseView(true)
+                        .setPositiveButton(android.R.string.ok)
                         .setRequestCode(REQUEST_CODE_VIEW)
                         .create().show(getSupportFragmentManager(), "dialog");
             }
