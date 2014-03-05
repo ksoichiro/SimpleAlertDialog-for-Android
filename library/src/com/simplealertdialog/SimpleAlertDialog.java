@@ -495,9 +495,8 @@ public class SimpleAlertDialog extends Dialog {
             } else {
                 requestCode = 0;
             }
-            boolean useView = false;
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_USE_VIEW)) {
-                useView = args.getBoolean(SimpleAlertDialog.ARG_USE_VIEW);
+                boolean useView = args.getBoolean(SimpleAlertDialog.ARG_USE_VIEW);
                 if (useView) {
                     if (targetFragment != null
                             && targetFragment instanceof SimpleAlertDialog.ViewProvider) {
