@@ -24,7 +24,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 /**
+ * Simple alert dialog fragment based on the android.support.v4 library.<br/>
+ * If you use normal {@code Activity} for API level 11 and later,
+ * use {@link com.simplealertdialog.SimpleAlertDialogFragment} instead.
+ *
  * @author Soichiro Kashima
+ * @see com.simplealertdialog.SimpleAlertDialogFragment
  */
 public class SimpleAlertDialogSupportFragment extends DialogFragment {
 
@@ -71,6 +76,9 @@ public class SimpleAlertDialogSupportFragment extends DialogFragment {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public static class Builder extends
             SimpleAlertDialog.Builder<SimpleAlertDialogSupportFragment, Fragment> {
         private Fragment mTargetFragment;
