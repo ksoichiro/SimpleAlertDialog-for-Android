@@ -1,4 +1,4 @@
-SimpleAlertDialog
+SimpleAlertDialog for Android
 ===
 
 SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`AlertDialog`のように簡単に扱えるようにするためのライブラリです。
