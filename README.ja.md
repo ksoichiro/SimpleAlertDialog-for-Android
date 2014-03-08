@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android.png?branch=master)](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android)
+
 SimpleAlertDialog for Android
 ===
 
