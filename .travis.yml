@@ -28,4 +28,4 @@ before_script:
 
 script:
     - TERM=dumb ./gradlew build
-    - TERM=dumb ./gradlew connectedAndroidTest
+    - TERM=dumb ./gradlew connectedCheck

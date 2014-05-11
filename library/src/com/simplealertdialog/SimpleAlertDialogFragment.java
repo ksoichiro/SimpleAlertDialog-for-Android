@@ -37,6 +37,12 @@ import android.os.Bundle;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class SimpleAlertDialogFragment extends DialogFragment {
 
+    /**
+     * Default constructor.
+     */
+    public SimpleAlertDialogFragment() {
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle args = getArguments();

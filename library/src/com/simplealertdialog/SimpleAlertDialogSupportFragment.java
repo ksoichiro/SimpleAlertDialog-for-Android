@@ -33,6 +33,12 @@ import android.support.v4.app.FragmentActivity;
  */
 public class SimpleAlertDialogSupportFragment extends DialogFragment {
 
+    /**
+     * Default constructor.
+     */
+    public SimpleAlertDialogSupportFragment() {
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle args = getArguments();
