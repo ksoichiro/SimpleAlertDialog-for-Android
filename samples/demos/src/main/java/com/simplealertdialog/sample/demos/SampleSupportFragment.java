@@ -43,6 +43,12 @@ public class SampleSupportFragment extends Fragment
     private static final int REQUEST_CODE_ADAPTER = -3;
     private static final int REQUEST_CODE_VIEW = -4;
 
+    /*
+    * Default constructor must be implemented for Fragments.
+    */
+    public SampleSupportFragment() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sample_support, container, false);
