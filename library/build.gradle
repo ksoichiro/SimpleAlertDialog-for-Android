@@ -4,9 +4,18 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
 }
 
+// This is required to resolve Jacoco dependency
+repositories {
+    mavenCentral()
+}
+
 android {
     compileSdkVersion 19
     buildToolsVersion "19.0.3"
+
+    jacoco {
+        version = '0.7.0.201403182114'
+    }
 
     sourceSets {
         main {
@@ -34,5 +43,11 @@ android {
         // by a similar customization.
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
     }
 }
