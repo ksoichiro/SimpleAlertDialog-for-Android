@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android.png?branch=master)](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android)
-
 SimpleAlertDialog for Android
 ===
+
+[![Build Status](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android.png?branch=master)](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android)
 
 SimpleAlertDialog is a library for using `DialogFragment` like `AlertDialog` in the Android application.  
 
