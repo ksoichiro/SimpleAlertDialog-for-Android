@@ -1,12 +1,12 @@
 apply plugin: 'android-library'
 
-dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-}
-
 // This is required to resolve Jacoco dependency
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 android {
