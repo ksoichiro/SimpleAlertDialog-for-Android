@@ -109,7 +109,7 @@ public class MainActivity extends ListActivity {
 
             if (labelPath.length == 1) {
                 addItem(data,
-                        info.activityInfo.name.replace(info.activityInfo.packageName + ".", ""),
+                        info.activityInfo.name.replace(info.activityInfo.packageName + "", ""),
                         nextLabel,
                         activityIntent(
                                 info.activityInfo.applicationInfo.packageName,
