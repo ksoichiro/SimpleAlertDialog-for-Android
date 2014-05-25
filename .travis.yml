@@ -28,4 +28,4 @@ before_script:
 
 script:
     - TERM=dumb ./gradlew build
-    - TERM=dumb ./gradlew :library:connectedCheck
+    - TERM=dumb ./gradlew :simplealertdialog:connectedCheck

@@ -5,9 +5,9 @@ SimpleAlertDialog for Android
 
 SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`AlertDialog`のように簡単に扱えるようにするためのライブラリです。
 
-![Holo Dark](samples/images/screenshot_holo_dark.png "Holo Dark style")
-![Holo Light](samples/images/screenshot_holo_light.png "Holo Light style")
-![Custom](samples/images/screenshot_custom.png "Custom style")
+![Holo Dark](simplealertdialog-samples/images/screenshot_holo_dark.png "Holo Dark style")
+![Holo Light](simplealertdialog-samples/images/screenshot_holo_light.png "Holo Light style")
+![Custom](simplealertdialog-samples/images/screenshot_custom.png "Custom style")
 
 ## 特徴
 
@@ -22,7 +22,7 @@ SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`Ale
 
 ### メッセージとボタン
 
-![Message and a button](samples/images/screenshot_dialog1_message_button.png "Message and a button")
+![Message and a button](simplealertdialog-samples/images/screenshot_dialog1_message_button.png "Message and a button")
 
 メッセージとOKボタンだけのダイアログを表示するには、以下のようにします。
 
@@ -35,7 +35,7 @@ new SimpleAlertDialogFragment.Builder()
 
 ### ボタンのタップイベントのハンドリング
 
-![Handling button click](samples/images/screenshot_dialog2_buttons.png "Handling button click")
+![Handling button click](simplealertdialog-samples/images/screenshot_dialog2_buttons.png "Handling button click")
 
 ボタンがタップされたイベントをハンドリングする場合は、以下のようにダイアログを表示します。
 
@@ -80,7 +80,7 @@ public void onDialogNegativeButtonClicked(SimpleAlertDialog dialog,
 
 ### 単一選択リスト(Single choice list)
 
-![Single choice list](samples/images/screenshot_dialog3_singlechoice.png "Single choice list")
+![Single choice list](simplealertdialog-samples/images/screenshot_dialog3_singlechoice.png "Single choice list")
 
 単一選択リストのダイアログは、以下のように表示します。
 
@@ -120,7 +120,7 @@ public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int req
 
 ### カスタムアダプタ
 
-![Custom adapter](samples/images/screenshot_dialog4_adapter.png "Custom adapter")
+![Custom adapter](simplealertdialog-samples/images/screenshot_dialog4_adapter.png "Custom adapter")
 
 カスタマイズした`ListAdapter`を使ったダイアログは以下のように表示します。
 
@@ -160,7 +160,7 @@ public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int posit
 
 ### カスタムビュー
 
-![Custom view](samples/images/screenshot_dialog5_view.png "Custom view")
+![Custom view](simplealertdialog-samples/images/screenshot_dialog5_view.png "Custom view")
 
 カスタマイズしたビューを使ったダイアログは以下のように表示します。
 
@@ -242,10 +242,10 @@ Holo Lightスタイルを使用したい場合は、以下のようにスタイ�
 
 ## サンプル
 
-* ライブラリを使用したサンプルアプリケーションは、samplesフォルダに含まれています。
+* ライブラリを使用したサンプルアプリケーションは、simplealertdialog-samplesフォルダに含まれています。
 * Google Playからダウンロードしてお試しいただけます。
 
-  [![Demo on Google Play](samples/images/en_generic_rgb_wo_60.png "Banner")](https://play.google.com/store/apps/details?id=com.simplealertdialog.sample.demos)
+  [![Demo on Google Play](simplealertdialog-samples/images/en_generic_rgb_wo_60.png "Banner")](https://play.google.com/store/apps/details?id=com.simplealertdialog.sample.demos)
 
 
 ## 開発者
