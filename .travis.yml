@@ -21,6 +21,9 @@ before_install:
     - echo no | android create avd --force -n test -t android-19
     - emulator -avd test -no-skin -no-audio -no-window &
 
+install:
+    - ./graldew assemble --info --stacktrace
+
 before_script:
     # Make sure the emulator has started before running tests
     - chmod +x wait-for-emulator
