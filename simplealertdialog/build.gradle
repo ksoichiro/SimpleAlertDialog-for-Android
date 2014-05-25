@@ -1,4 +1,4 @@
-apply plugin: 'android'
+apply plugin: 'android-library'
 
 // This is required to resolve Jacoco dependency
 repositories {
@@ -6,8 +6,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':library')
+    compile 'com.android.support:support-v4:19.1.+'
 }
 
 android {
@@ -21,12 +20,20 @@ android {
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            resources.srcDirs = ['src/main/java']
-            aidl.srcDirs = ['src/main/java']
-            renderscript.srcDirs = ['src/main/java']
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
+
+        // Move the tests to tests/java, tests/res, etc...
+        androidTest.setRoot('../simplealertdialog-tests')
+        androidTest.java.srcDirs = ['../simplealertdialog-tests/src'];
+        androidTest.resources.srcDirs = ['../simplealertdialog-tests/src']
+        androidTest.renderscript.srcDirs = ['src']
+        androidTest.res.srcDirs = ['../simplealertdialog-tests/res']
 
         // Move the build types to build-types/<type>
         // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
@@ -38,10 +45,9 @@ android {
         release.setRoot('build-types/release')
     }
 
-    // This breaks entire app for now...
-//    buildTypes {
-//        debug {
-//            testCoverageEnabled = true
-//        }
-//    }
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+    }
 }

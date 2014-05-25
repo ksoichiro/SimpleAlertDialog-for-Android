@@ -1,2 +1,2 @@
-include ':library'
-include ':samples:demos'
+include ':simplealertdialog'
+include ':simplealertdialog-samples:demos'
