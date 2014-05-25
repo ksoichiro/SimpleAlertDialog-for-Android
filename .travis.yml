@@ -22,7 +22,7 @@ before_install:
     - emulator -avd test -no-skin -no-audio -no-window &
 
 install:
-    - ./graldew assemble --info --stacktrace
+    - ./gradlew assemble --info --stacktrace
 
 before_script:
     # Make sure the emulator has started before running tests
