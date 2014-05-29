@@ -18,6 +18,19 @@ SimpleAlertDialog is a library for using `DialogFragment` like `AlertDialog` in 
 * Dialog's lifecycle is synchronized with parent activity or fragment, which will suppress `IllegalStateException`.
 * Supports both the `Activity` on API level 11+ and the `FragmentActivity` in the android-support-v4 library.
 
+## Installation
+
+### Gradle
+
+    dependencies {
+        compile 'com.github.ksoichiro:simplealertdialog:1.1.0@aar'
+    }
+
+### Eclipse ADT (Import as a library project)
+
+The 'simplealertdialog' folder is the main library.
+Please import it into the Eclipse, Android Studio or other IDEs.
+
 ## Usage
 
 ### Message and a button

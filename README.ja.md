@@ -18,6 +18,19 @@ SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`Ale
 * ダイアログのライフサイクルは、親となるActivityやFragmentと同期しているため、`IllegalStateException`に悩まされることはありません。
 * APIレベル11以上での通常の`Activity`と、android-support-v4ライブラリの`FragmentActivity`の両方をサポートしています。
 
+## インストール
+
+### Gradle
+
+    dependencies {
+        compile 'com.github.ksoichiro:simplealertdialog:1.1.0@aar'
+    }
+
+### Eclipse ADT (ライブラリプロジェクトとしてインポート)
+
+simplealertdialogフォルダがライブラリ本体です。
+EclipseやAndroid StudioなどのIDEでAndroid Library Projectとして取り込んでください。
+
 ## 使用方法
 
 ### メッセージとボタン
