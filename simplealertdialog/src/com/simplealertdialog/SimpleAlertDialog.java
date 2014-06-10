@@ -586,7 +586,7 @@ public class SimpleAlertDialog extends Dialog {
         if (view == null || d == null) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.setBackground(d.getConstantState().newDrawable());
         } else {
             view.setBackgroundDrawable(d.getConstantState().newDrawable());
