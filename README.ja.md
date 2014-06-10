@@ -23,7 +23,7 @@ SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`Ale
 ### Gradle
 
     dependencies {
-        compile 'com.github.ksoichiro:simplealertdialog:1.1.0@aar'
+        compile 'com.github.ksoichiro:simplealertdialog:1.1.1@aar'
     }
 
 ### Eclipse ADT (ライブラリプロジェクトとしてインポート)
