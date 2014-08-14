@@ -1,10 +1,7 @@
-package com.simplealertdialog.test;
+package com.simplealertdialog;
 
 import android.os.Bundle;
 import android.test.InstrumentationTestCase;
-
-import com.simplealertdialog.SimpleAlertDialog;
-import com.simplealertdialog.SimpleAlertDialogFragment;
 
 public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
 
@@ -23,9 +20,9 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         Bundle args = builder.createArguments();
         assertNotNull(args);
         assertEquals(args.getInt(SimpleAlertDialog.ARG_TITLE_RES_ID, -1), -1);
-        assertEquals(builder.setTitle(R.string.title), builder);
+        assertEquals(builder.setTitle(R.string.sad__icon_description), builder);
         args = builder.createArguments();
-        assertEquals(args.getInt(SimpleAlertDialog.ARG_TITLE_RES_ID, -1), R.string.title);
+        assertEquals(args.getInt(SimpleAlertDialog.ARG_TITLE_RES_ID, -1), R.string.sad__icon_description);
     }
 
     public void testBuilderSetIcon() {
@@ -53,9 +50,9 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         Bundle args = builder.createArguments();
         assertNotNull(args);
         assertEquals(args.getInt(SimpleAlertDialog.ARG_MESSAGE_RES_ID, -1), -1);
-        assertEquals(builder.setMessage(R.string.message), builder);
+        assertEquals(builder.setMessage(R.string.sad__icon_description), builder);
         args = builder.createArguments();
-        assertEquals(args.getInt(SimpleAlertDialog.ARG_MESSAGE_RES_ID, -1), R.string.message);
+        assertEquals(args.getInt(SimpleAlertDialog.ARG_MESSAGE_RES_ID, -1), R.string.sad__icon_description);
     }
 
     public void testBuilderSetPositiveButton() {
