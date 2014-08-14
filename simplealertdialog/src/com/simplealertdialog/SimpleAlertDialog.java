@@ -206,21 +206,21 @@ public class SimpleAlertDialog extends Dialog {
                 final int position);
     }
 
-    public static final String ARG_TITLE = "argTitle";
-    public static final String ARG_TITLE_RES_ID = "argTitleResId";
-    public static final String ARG_ICON = "argIcon";
-    public static final String ARG_MESSAGE = "argMessage";
-    public static final String ARG_MESSAGE_RES_ID = "argMessageResId";
-    public static final String ARG_POSITIVE_BUTTON = "argPositiveButton";
-    public static final String ARG_POSITIVE_BUTTON_RES_ID = "argPositiveButtonResId";
-    public static final String ARG_NEGATIVE_BUTTON = "argNegativeButton";
-    public static final String ARG_NEGATIVE_BUTTON_RES_ID = "argNegativeButtonResId";
-    public static final String ARG_REQUEST_CODE = "argRequestCode";
-    public static final String ARG_CANCELABLE = "argCancelable";
-    public static final String ARG_CANCELED_ON_TOUCH_OUTSIDE = "argCanceledOnTouchOutside";
-    public static final String ARG_SINGLE_CHOICE_CHECKED_ITEM = "argSingleChoiceCheckedItem";
-    public static final String ARG_USE_VIEW = "argUseView";
-    public static final String ARG_USE_ADAPTER = "argUseAdapter";
+    static final String ARG_TITLE = "argTitle";
+    static final String ARG_TITLE_RES_ID = "argTitleResId";
+    static final String ARG_ICON = "argIcon";
+    static final String ARG_MESSAGE = "argMessage";
+    static final String ARG_MESSAGE_RES_ID = "argMessageResId";
+    static final String ARG_POSITIVE_BUTTON = "argPositiveButton";
+    static final String ARG_POSITIVE_BUTTON_RES_ID = "argPositiveButtonResId";
+    static final String ARG_NEGATIVE_BUTTON = "argNegativeButton";
+    static final String ARG_NEGATIVE_BUTTON_RES_ID = "argNegativeButtonResId";
+    static final String ARG_REQUEST_CODE = "argRequestCode";
+    static final String ARG_CANCELABLE = "argCancelable";
+    static final String ARG_CANCELED_ON_TOUCH_OUTSIDE = "argCanceledOnTouchOutside";
+    static final String ARG_SINGLE_CHOICE_CHECKED_ITEM = "argSingleChoiceCheckedItem";
+    static final String ARG_USE_VIEW = "argUseView";
+    static final String ARG_USE_ADAPTER = "argUseAdapter";
 
     private CharSequence mMessage;
     private CharSequence mTitle;
