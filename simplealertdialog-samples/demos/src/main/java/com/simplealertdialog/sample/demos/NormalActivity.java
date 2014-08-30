@@ -125,6 +125,17 @@ public class NormalActivity extends Activity
                         .create().show(getFragmentManager(), "dialog");
             }
         });
+
+        findViewById(R.id.btn_themed).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTheme(R.style.SimpleAlertDialogCustomTheme)
+                        .setMessage("Hello world!")
+                        .setPositiveButton(android.R.string.ok)
+                        .create().show(getFragmentManager(), "dialog");
+            }
+        });
     }
 
     @Override

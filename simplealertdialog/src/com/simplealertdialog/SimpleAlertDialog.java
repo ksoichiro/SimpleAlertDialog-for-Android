@@ -206,6 +206,7 @@ public class SimpleAlertDialog extends Dialog {
                 final int position);
     }
 
+    static final String ARG_THEME_RES_ID = "argThemeResId";
     static final String ARG_TITLE = "argTitle";
     static final String ARG_TITLE_RES_ID = "argTitleResId";
     static final String ARG_ICON = "argIcon";
@@ -249,6 +250,18 @@ public class SimpleAlertDialog extends Dialog {
     private Drawable mBackgroundTop;
     private Drawable mBackgroundMiddle;
     private Drawable mBackgroundBottom;
+
+    /**
+     * Creates the new dialog.
+     * Users should not directly call this.
+     *
+     * @param context Dialog owner context
+     * @param themeResId Dialog theme resource ID
+     */
+    public SimpleAlertDialog(Context context, int themeResId) {
+        super(context, themeResId);
+        obtainStyles();
+    }
 
     /**
      * Creates the new dialog.
@@ -608,7 +621,12 @@ public class SimpleAlertDialog extends Dialog {
         public abstract F getTargetFragment();
 
         public Dialog createDialog(Bundle args, F targetFragment, A activity) {
-            final SimpleAlertDialog dialog = new SimpleAlertDialog(activity);
+            final SimpleAlertDialog dialog;
+            if (args != null && args.containsKey(SimpleAlertDialog.ARG_THEME_RES_ID)) {
+                dialog = new SimpleAlertDialog(activity, args.getInt(SimpleAlertDialog.ARG_THEME_RES_ID));
+            } else {
+                dialog = new SimpleAlertDialog(activity);
+            }
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_TITLE)) {
                 dialog.setTitle(args.getCharSequence(SimpleAlertDialog.ARG_TITLE));
             } else if (args != null && args.containsKey(SimpleAlertDialog.ARG_TITLE_RES_ID)) {
@@ -839,6 +857,7 @@ public class SimpleAlertDialog extends Dialog {
      */
     public static abstract class Builder<T, F> {
 
+        private int mThemeResId;
         private CharSequence mTitle;
         private int mTitleResId;
         private int mIcon;
@@ -854,6 +873,17 @@ public class SimpleAlertDialog extends Dialog {
         private int mSingleChoiceCheckedItem = -1;
         private boolean mUseView;
         private boolean mUseAdapter;
+
+        /**
+         * Sets the theme of the dialog.
+         *
+         * @param resId Theme(style) resource ID
+         * @return Builder itself
+         */
+        public Builder<T, F> setTheme(final int resId) {
+            mThemeResId = resId;
+            return this;
+        }
 
         /**
          * Sets the title of the dialog.
@@ -1042,6 +1072,9 @@ public class SimpleAlertDialog extends Dialog {
          */
         public Bundle createArguments() {
             Bundle args = new Bundle();
+            if (mThemeResId > 0) {
+                args.putInt(SimpleAlertDialog.ARG_THEME_RES_ID, mThemeResId);
+            }
             if (mTitle != null) {
                 args.putCharSequence(SimpleAlertDialog.ARG_TITLE, mTitle);
             } else if (mTitleResId > 0) {
