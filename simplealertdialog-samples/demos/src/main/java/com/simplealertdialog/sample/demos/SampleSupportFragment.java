@@ -135,6 +135,18 @@ public class SampleSupportFragment extends Fragment
             }
         });
 
+        view.findViewById(R.id.btn_frag_themed).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogSupportFragment.Builder()
+                        .setTheme(R.style.SimpleAlertDialogCustomTheme)
+                        .setMessage("Hello world!")
+                        .setPositiveButton(android.R.string.ok)
+                        .setTargetFragment(SampleSupportFragment.this)
+                        .create().show(getActivity().getSupportFragmentManager(), "dialog");
+            }
+        });
+
         return view;
     }
 

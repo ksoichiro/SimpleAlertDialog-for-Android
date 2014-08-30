@@ -122,6 +122,17 @@ public class SupportActivity extends FragmentActivity
                         .create().show(getSupportFragmentManager(), "dialog");
             }
         });
+
+        findViewById(R.id.btn_themed).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogSupportFragment.Builder()
+                        .setTheme(R.style.SimpleAlertDialogCustomTheme)
+                        .setMessage("Hello world!")
+                        .setPositiveButton(android.R.string.ok)
+                        .create().show(getSupportFragmentManager(), "dialog");
+            }
+        });
     }
 
     @Override

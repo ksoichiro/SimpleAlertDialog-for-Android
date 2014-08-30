@@ -70,6 +70,15 @@
 
     <style name="SimpleAlertDialogListItemTextStyle"></style>
 
+    <style name="SimpleAlertDialogCustomTheme" parent="android:Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/SimpleAlertDialogCustomAnimation</item>
+    </style>
+
+    <style name="SimpleAlertDialogCustomAnimation" parent="android:Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
