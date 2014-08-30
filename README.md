@@ -259,6 +259,39 @@ If you want to use styles based on Holo Light, set replace the `parent` attribut
 ```
 
 
+## Customizing theme (window animation)
+
+First of all, define your style.  
+Put some codes like following to your `res/values/styles.xml`:
+
+```xml
+    <style name="SimpleAlertDialogCustomTheme" parent="android:Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/SimpleAlertDialogCustomAnimation</item>
+    </style>
+
+    <style name="SimpleAlertDialogCustomAnimation" parent="android:Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+```
+
+Then apply it to your dialog:
+
+```java
+findViewById(R.id.btn_themed).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(final View v) {
+        new SimpleAlertDialogSupportFragment.Builder()
+                .setTheme(R.style.SimpleAlertDialogCustomTheme)
+                .setMessage("Hello world!")
+                .setPositiveButton(android.R.string.ok)
+                .create().show(getSupportFragmentManager(), "dialog");
+    }
+});
+```
+
+You can see window entering/exiting animation defined by `@anim/fade_in` and `@anim/fade_out`.
+
 ## Samples
 
 * Sample applications using this library are included in the simplealertdialog-samples folder.
