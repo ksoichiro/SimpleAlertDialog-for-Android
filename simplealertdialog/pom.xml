@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.ksoichiro</groupId>
         <artifactId>simplealertdialog-parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -78,7 +78,7 @@
                                 </artifact>
                                 <artifact>
                                     <type>aar</type>
-                                    <file>${project.basedir}/build/libs/${project.artifactId}-${gradle.version}.aar</file>
+                                    <file>${project.basedir}/build/outputs/aar/${project.artifactId}-${gradle.version}.aar</file>
                                 </artifact>
                             </artifacts>
                         </configuration>

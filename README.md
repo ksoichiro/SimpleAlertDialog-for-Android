@@ -23,7 +23,7 @@ SimpleAlertDialog is a library for using `DialogFragment` like `AlertDialog` in 
 ### Gradle
 
     dependencies {
-        compile 'com.github.ksoichiro:simplealertdialog:1.1.1@aar'
+        compile 'com.github.ksoichiro:simplealertdialog:1.1.2@aar'
     }
 
 ### Eclipse ADT (Import as a library project)

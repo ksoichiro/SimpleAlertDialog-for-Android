@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.ksoichiro</groupId>
         <artifactId>simplealertdialog-parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -53,8 +53,8 @@
                 </executions>
                 <configuration>
                     <ignoreMissingFile>false</ignoreMissingFile>
-                    <file>target/generated-sources/r/com/simplealertdialog/test/R.java</file>
-                    <outputFile>target/generated-sources/r/com/simplealertdialog/test/R.java</outputFile>
+                    <file>target/generated-sources/r/com/simplealertdialog/R.java</file>
+                    <outputFile>target/generated-sources/r/com/simplealertdialog/R.java</outputFile>
                     <regex>false</regex>
                     <token>static final int</token>
                     <value>static int</value>
