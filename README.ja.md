@@ -268,7 +268,7 @@ SimpleAlertDialogは、呼び出し元のFragmentを`getTargetFragment()`メソ�
             :
 ```
 
-## なぜコールバックやパラメータ渡しのインタフェースを実装する必要があるのでしょうか？
+### なぜコールバックやパラメータ渡しのインタフェースを実装する必要があるのでしょうか？
 
 SimpleAlertDialogは`DialogFragment`の一種に過ぎないため、
 `Fragment`や`DialogFragment`の取り扱い方に従う必要があります。  

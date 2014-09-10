@@ -308,7 +308,7 @@ when building SimpleAlertDialog.
             :
 ```
 
-## Why do I have to implement interfaces for callbacks and passing parameters?
+### Why do I have to implement interfaces for callbacks and passing parameters?
 
 SimpleAlertDialog is just a kind of `DialogFragment`, so it must follow the manner of using `Fragment` or `DialogFragment`.  
 `DialogFragment` has its own lifecycle and it's not the same as the `Activity`'s one.
