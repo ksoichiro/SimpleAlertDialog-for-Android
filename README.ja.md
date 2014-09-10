@@ -11,7 +11,7 @@ SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`Ale
 
 ## 特徴
 
-* APIレベル4 (Android 1.6 Donut)からレベル19 (Android 4.4 KitKat) で利用可能です。
+* APIレベル4 (Android 1.6 Donut)からレベル19 (Android 4.4 KitKat) そして L で利用可能です。
 * Holoスタイルのダイアログを全てのバージョンで使えます。
 * `AlertDialog.Builder`のようにシンプルなインタフェースです。
 * 基本的なイベントをハンドリングするコールバックが用意してあります。
@@ -252,6 +252,36 @@ Holo Lightスタイルを使用したい場合は、以下のようにスタイ�
 <style name="SimpleAlertDialogStyle" parent="@style/Theme.SimpleAlertDialog.Light">
 ```
 
+## さらに詳しい使用方法と設計について
+
+### Fragmentと一緒に使う
+
+SimpleAlertDialogは、呼び出し元のFragmentを`getTargetFragment()`メソッドを使って取得します。  
+そのため、もしFragmentからSimpleAlertDialogのコールバックを受けたい場合は
+`setTargetFragment()`をBuilderによるダイアログ構築時に呼び出してください。
+
+```java
+        new SimpleAlertDialogSupportFragment.Builder()
+            // 以下によってSimpleAlertDialogはMyFragment
+            // が呼び出し元だと認識することができます
+            .setTargetFragment(MyFragment.this)
+            :
+```
+
+## なぜコールバックやパラメータ渡しのインタフェースを実装する必要があるのでしょうか？
+
+SimpleAlertDialogは`DialogFragment`の一種に過ぎないため、
+`Fragment`や`DialogFragment`の取り扱い方に従う必要があります。  
+`DialogFragment`はライフサイクルを持っており、`Activity`のライフサイクルとは異なります。
+
+そのため、カスタムビューやコールバックなどを直接渡してしまうと、アプリのクラッシュにつながってしまいます。
+ActivityやFragmentはそれぞれ別のライフサイクルを持っており再生成されるため、ActivityとFragmentの参照関係が無効(`NullPointerException`など)になってしまったり、`Builder`で渡したオブジェクトが途中で`null`になり再生成できないことがあるためです。
+
+この問題に対処するために、`Fragment`(`DialogFragment`)にはフィールドを持たせず、引数なしコンストラクタを定義し、`Fragment`へのすべてのパラメータは`Bundle`オブジェクトで取り扱う必要があります。
+
+これらを考慮すると、SimpleAlertDialogはコールバック先を`getActivity`または`getTargetFragment`でアクセスできるオブジェクトだと仮定し、さらに特定のインタフェースを実装していたらコールバックする、という特定のインスタンスの参照関係に頼らない方法でコールバックするのがベストではないかと考えました。
+
+そのため、一見して非常に回りくどいインタフェースを多用する方法を採っています。
 
 ## サンプル
 

@@ -11,7 +11,7 @@ SimpleAlertDialog is a library for using `DialogFragment` like `AlertDialog` in 
 
 ## Features
 
-* Available from API level 4 (Android 1.6 Donut) to 19 (Android 4.4 KitKat).
+* Available from API level 4 (Android 1.6 Donut) to 19 (Android 4.4 KitKat) and L.
 * Holo style for all versions.
 * Simple interface like `AlertDialog.Builder`.
 * Convenient callbacks are provided to handle basic events.
@@ -291,6 +291,36 @@ findViewById(R.id.btn_themed).setOnClickListener(new View.OnClickListener() {
 ```
 
 You can see window entering/exiting animation defined by `@anim/fade_in` and `@anim/fade_out`.
+
+## Further more detailed usage and about design
+
+### Use in Fragment
+
+SimpleAlertDialog accesses to its parent fragment by using `getTargetFragment()`.  
+So you can interact with Fragment by calling `setTargetFragment()`
+when building SimpleAlertDialog.
+
+```java
+        new SimpleAlertDialogSupportFragment.Builder()
+            // This enables SimpleAlertDialog to recognize that
+            // MyFragment is its caller.
+            .setTargetFragment(MyFragment.this)
+            :
+```
+
+## Why do I have to implement interfaces for callbacks and passing parameters?
+
+SimpleAlertDialog is just a kind of `DialogFragment`, so it must follow the manner of using `Fragment` or `DialogFragment`.  
+`DialogFragment` has its own lifecycle and it's not the same as the `Activity`'s one.
+
+So if you pass your custom view, callback, etc. directly, it may cause your app crash because `Activity` and `Fragment` are reproduced according to their own life cycles, which will result in invalid references(`NullPointerExeption` or something like that) or will make some parameters passed by `Builder` `null`.
+
+To handle this issue, `Fragment`s(`DialogFragment`s) must not have instance fields and can be recreated with no args constructor and all the parameters for Fragment's should be handled with `Bundle` object.  
+
+In consideration of all of these things, I concluded that it is the best solution that SimpleAlertDialog assumes objects got by `getActivity()` and `getTargetFragment()` as its callbacks candidates and if they implement some specific interfaces they must be called back.  
+This solution does not depend on references, so it's safe in terms of life cycles problems.
+
+Therefore, I've adopted a method of using interfaces.
 
 ## Samples
 
