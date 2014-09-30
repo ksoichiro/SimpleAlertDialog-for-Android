@@ -880,7 +880,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         public Dialog createDialog(final Activity activity) {
-            return new InternalHelper<T, F, Context>() {
+            return new InternalHelper<F, Context>() {
                 @Override
                 public Context getActivity() {
                     return activity;

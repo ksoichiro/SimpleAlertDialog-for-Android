@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
-abstract class InternalHelper<T, F, A extends Context> {
+abstract class InternalHelper<F, A extends Context> {
     public abstract A getActivity();
 
     public abstract F getTargetFragment();
