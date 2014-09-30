@@ -50,7 +50,7 @@ public class SimpleAlertDialogFragment extends DialogFragment {
         if (args != null && args.containsKey(SimpleAlertDialog.ARG_CANCELABLE)) {
             setCancelable(args.getBoolean(SimpleAlertDialog.ARG_CANCELABLE, true));
         }
-        return new SimpleAlertDialog.Helper<SimpleAlertDialogFragment, Fragment, Activity>() {
+        return new InternalHelper<SimpleAlertDialogFragment, Fragment, Activity>() {
             public Activity getActivity() {
                 return SimpleAlertDialogFragment.this.getActivity();
             }
