@@ -9,15 +9,11 @@ android:
     - extra-android-support
     - extra-android-m2repository
   licenses:
-    - android-sdk-license-bcbbd656
-    - android-sdk-license-5be876d5
-    - android-sdk-license-598b93a6
+    - 'android-sdk-license-.+'
     - android-sdk-preview-license-52d11cd2
 before_script:
     - echo no | android create avd --force -n test -t android-19 --abi default/armeabi-v7a
     - emulator -avd test -no-skin -no-audio -no-window &
-    - chmod +x wait-for-emulator
-    - ./wait-for-emulator
+    - android-wait-for-emulator
 script:
-    - TERM=dumb ./gradlew build
-    - TERM=dumb ./gradlew :simplealertdialog:connectedCheck
+    - travis_retry ./gradlew build :simplealertdialog:connectedCheck
