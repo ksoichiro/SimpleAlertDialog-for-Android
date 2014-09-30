@@ -621,34 +621,86 @@ public class SimpleAlertDialog extends Dialog {
         public abstract F getTargetFragment();
 
         public Dialog createDialog(Bundle args, F targetFragment, A activity) {
-            final SimpleAlertDialog dialog;
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_THEME_RES_ID)) {
-                dialog = new SimpleAlertDialog(activity, args.getInt(SimpleAlertDialog.ARG_THEME_RES_ID));
-            } else {
-                dialog = new SimpleAlertDialog(activity);
+            final SimpleAlertDialog dialog = newInstance(args, activity);
+            setTitle(args, dialog);
+            setIcon(args, dialog);
+            setMessage(args, dialog);
+            final int requestCode = getRequestCode(args);
+            setView(args, targetFragment, activity, dialog, requestCode);
+            setAdapter(args, targetFragment, activity, dialog, requestCode);
+            setSingleChoiceItems(args, targetFragment, activity, dialog, requestCode);
+            setPositiveButton(args, activity, dialog, requestCode);
+            setNegativeButton(args, activity, dialog, requestCode);
+            setCancelable(args, dialog);
+            return dialog;
+        }
+
+        public boolean hasListProvider(Bundle args) {
+            boolean useAdapter = false;
+            if (args != null && args.containsKey(SimpleAlertDialog.ARG_USE_ADAPTER)) {
+                useAdapter = args.getBoolean(SimpleAlertDialog.ARG_USE_ADAPTER);
             }
+            F targetFragment = getTargetFragment();
+            A activity = getActivity();
+            return useAdapter
+                    && ((targetFragment != null && targetFragment instanceof SimpleAlertDialog.ListProvider)
+                    || (activity != null && activity instanceof SimpleAlertDialog.ListProvider));
+        }
+
+        public boolean hasSingleChoiceArrayItemProvider(Bundle args) {
+            int singleChoiceCheckedItem = -1;
+            if (args != null && args.containsKey(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM)) {
+                singleChoiceCheckedItem = args
+                        .getInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM);
+            }
+            F targetFragment = getTargetFragment();
+            A activity = getActivity();
+            return singleChoiceCheckedItem >= 0
+                    && ((targetFragment != null && targetFragment instanceof SimpleAlertDialog.SingleChoiceArrayItemProvider)
+                    || (activity != null && activity instanceof SimpleAlertDialog.SingleChoiceArrayItemProvider));
+        }
+
+        private SimpleAlertDialog newInstance(Bundle args, A activity) {
+            return hasTheme(args)
+                    ? new SimpleAlertDialog(activity, args.getInt(SimpleAlertDialog.ARG_THEME_RES_ID))
+                    : new SimpleAlertDialog(activity);
+        }
+
+        private boolean hasTheme(Bundle args) {
+            return args != null && args.containsKey(SimpleAlertDialog.ARG_THEME_RES_ID);
+        }
+
+        private void setTitle(Bundle args, SimpleAlertDialog dialog) {
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_TITLE)) {
                 dialog.setTitle(args.getCharSequence(SimpleAlertDialog.ARG_TITLE));
             } else if (args != null && args.containsKey(SimpleAlertDialog.ARG_TITLE_RES_ID)) {
                 dialog.setTitle(args.getInt(SimpleAlertDialog.ARG_TITLE_RES_ID));
             }
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_TITLE_RES_ID)) {
-                dialog.setTitle(args.getInt(SimpleAlertDialog.ARG_TITLE_RES_ID));
-            }
+        }
+
+        private void setIcon(Bundle args, SimpleAlertDialog dialog) {
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_ICON)) {
                 dialog.setIcon(args.getInt(SimpleAlertDialog.ARG_ICON));
             }
+        }
+
+        private void setMessage(Bundle args, SimpleAlertDialog dialog) {
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_MESSAGE)) {
                 dialog.setMessage(args.getCharSequence(SimpleAlertDialog.ARG_MESSAGE));
             } else if (args != null && args.containsKey(SimpleAlertDialog.ARG_MESSAGE_RES_ID)) {
                 dialog.setMessage(args.getInt(SimpleAlertDialog.ARG_MESSAGE_RES_ID));
             }
-            final int requestCode;
+        }
+
+        private int getRequestCode(Bundle args) {
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_REQUEST_CODE)) {
-                requestCode = args.getInt(SimpleAlertDialog.ARG_REQUEST_CODE);
-            } else {
-                requestCode = 0;
+                return args.getInt(SimpleAlertDialog.ARG_REQUEST_CODE);
             }
+            return 0;
+        }
+
+        private void setView(Bundle args, F targetFragment, A activity, SimpleAlertDialog dialog,
+                             int requestCode) {
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_USE_VIEW)) {
                 boolean useView = args.getBoolean(SimpleAlertDialog.ARG_USE_VIEW);
                 if (useView) {
@@ -664,18 +716,22 @@ public class SimpleAlertDialog extends Dialog {
                     }
                 }
             }
+        }
+
+        private void setAdapter(Bundle args, F targetFragment, A activity, final SimpleAlertDialog dialog,
+                                final int requestCode) {
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_USE_ADAPTER)) {
                 boolean useAdapter = args.getBoolean(SimpleAlertDialog.ARG_USE_ADAPTER);
                 if (useAdapter) {
                     if (targetFragment != null
                             && targetFragment instanceof SimpleAlertDialog.ListProvider) {
                         dialog.setAdapter(((SimpleAlertDialog.ListProvider) targetFragment)
-                                .onCreateList(dialog, requestCode),
+                                        .onCreateList(dialog, requestCode),
                                 new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view,
-                                            int position,
-                                            long id) {
+                                                            int position,
+                                                            long id) {
                                         F targetFragment = getTargetFragment();
                                         if (targetFragment != null
                                                 && targetFragment instanceof SimpleAlertDialog.ListProvider) {
@@ -689,12 +745,12 @@ public class SimpleAlertDialog extends Dialog {
                     if (activity != null
                             && activity instanceof SimpleAlertDialog.ListProvider) {
                         dialog.setAdapter(((SimpleAlertDialog.ListProvider) activity)
-                                .onCreateList(dialog, requestCode),
+                                        .onCreateList(dialog, requestCode),
                                 new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view,
-                                            int position,
-                                            long id) {
+                                                            int position,
+                                                            long id) {
                                         if ((getActivity() != null && getActivity() instanceof SimpleAlertDialog.ListProvider)) {
                                             ((SimpleAlertDialog.ListProvider) getActivity())
                                                     .onListItemClick(dialog, requestCode, position);
@@ -704,6 +760,10 @@ public class SimpleAlertDialog extends Dialog {
                     }
                 }
             }
+        }
+
+        private void setSingleChoiceItems(Bundle args, F targetFragment, A activity, final SimpleAlertDialog dialog,
+                                          final int requestCode) {
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM)) {
                 int checkedItem = args.getInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM);
                 if (targetFragment != null
@@ -715,8 +775,8 @@ public class SimpleAlertDialog extends Dialog {
                             new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view,
-                                        int position,
-                                        long id) {
+                                                        int position,
+                                                        long id) {
                                     F targetFragment = getTargetFragment();
                                     if (targetFragment != null
                                             && targetFragment instanceof SimpleAlertDialog.SingleChoiceArrayItemProvider) {
@@ -736,8 +796,8 @@ public class SimpleAlertDialog extends Dialog {
                             new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view,
-                                        int position,
-                                        long id) {
+                                                        int position,
+                                                        long id) {
                                     if ((getActivity() != null && getActivity() instanceof SimpleAlertDialog.SingleChoiceArrayItemProvider)) {
                                         ((SimpleAlertDialog.SingleChoiceArrayItemProvider) getActivity())
                                                 .onSingleChoiceArrayItemClick(
@@ -747,6 +807,10 @@ public class SimpleAlertDialog extends Dialog {
                             });
                 }
             }
+        }
+
+        private void setPositiveButton(Bundle args, A activity, SimpleAlertDialog dialog,
+                                       final int requestCode) {
             CharSequence positiveButton = null;
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_POSITIVE_BUTTON)) {
                 positiveButton = args.getCharSequence(SimpleAlertDialog.ARG_POSITIVE_BUTTON);
@@ -777,6 +841,10 @@ public class SimpleAlertDialog extends Dialog {
                     }
                 });
             }
+        }
+
+        private void setNegativeButton(Bundle args, A activity, SimpleAlertDialog dialog,
+                                       final int requestCode) {
             CharSequence negativeButton = null;
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_NEGATIVE_BUTTON)) {
                 negativeButton = args.getCharSequence(SimpleAlertDialog.ARG_NEGATIVE_BUTTON);
@@ -807,7 +875,9 @@ public class SimpleAlertDialog extends Dialog {
                     }
                 });
             }
+        }
 
+        private void setCancelable(Bundle args, SimpleAlertDialog dialog) {
             boolean cancelable = true;
             if (args != null && args.containsKey(SimpleAlertDialog.ARG_CANCELABLE)) {
                 cancelable = args.getBoolean(SimpleAlertDialog.ARG_CANCELABLE);
@@ -818,32 +888,6 @@ public class SimpleAlertDialog extends Dialog {
                         .getBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE);
             }
             dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
-            return dialog;
-        }
-
-        public boolean hasListProvider(Bundle args) {
-            boolean useAdapter = false;
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_USE_ADAPTER)) {
-                useAdapter = args.getBoolean(SimpleAlertDialog.ARG_USE_ADAPTER);
-            }
-            F targetFragment = getTargetFragment();
-            A activity = getActivity();
-            return useAdapter
-                    && ((targetFragment != null && targetFragment instanceof SimpleAlertDialog.ListProvider)
-                    || (activity != null && activity instanceof SimpleAlertDialog.ListProvider));
-        }
-
-        public boolean hasSingleChoiceArrayItemProvider(Bundle args) {
-            int singleChoiceCheckedItem = -1;
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM)) {
-                singleChoiceCheckedItem = args
-                        .getInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM);
-            }
-            F targetFragment = getTargetFragment();
-            A activity = getActivity();
-            return singleChoiceCheckedItem >= 0
-                    && ((targetFragment != null && targetFragment instanceof SimpleAlertDialog.SingleChoiceArrayItemProvider)
-                    || (activity != null && activity instanceof SimpleAlertDialog.SingleChoiceArrayItemProvider));
         }
     }
 
