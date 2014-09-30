@@ -726,9 +726,8 @@ public class SimpleAlertDialog extends Dialog {
                                     public void onItemClick(AdapterView<?> parent, View view,
                                                             int position,
                                                             long id) {
-                                        F targetFragment = getTargetFragment();
                                         if (fragmentImplements(SimpleAlertDialog.ListProvider.class)) {
-                                            ((SimpleAlertDialog.ListProvider) targetFragment)
+                                            ((SimpleAlertDialog.ListProvider) getTargetFragment())
                                                     .onListItemClick(dialog, requestCode,
                                                             position);
                                         }
@@ -767,11 +766,9 @@ public class SimpleAlertDialog extends Dialog {
                                 public void onItemClick(AdapterView<?> parent, View view,
                                                         int position,
                                                         long id) {
-                                    F targetFragment = getTargetFragment();
                                     if (fragmentImplements(SimpleAlertDialog.SingleChoiceArrayItemProvider.class)) {
-                                        ((SimpleAlertDialog.SingleChoiceArrayItemProvider) targetFragment)
-                                                .onSingleChoiceArrayItemClick(
-                                                        dialog, requestCode, position);
+                                        ((SimpleAlertDialog.SingleChoiceArrayItemProvider) getTargetFragment())
+                                                .onSingleChoiceArrayItemClick(dialog, requestCode, position);
                                     }
                                 }
                             });
@@ -788,8 +785,7 @@ public class SimpleAlertDialog extends Dialog {
                                                         long id) {
                                     if (activityImplements(SimpleAlertDialog.SingleChoiceArrayItemProvider.class)) {
                                         ((SimpleAlertDialog.SingleChoiceArrayItemProvider) getActivity())
-                                                .onSingleChoiceArrayItemClick(
-                                                        dialog, requestCode, position);
+                                                .onSingleChoiceArrayItemClick(dialog, requestCode, position);
                                     }
                                 }
                             });
@@ -802,8 +798,7 @@ public class SimpleAlertDialog extends Dialog {
             if (has(args, SimpleAlertDialog.ARG_POSITIVE_BUTTON)) {
                 positiveButton = args.getCharSequence(SimpleAlertDialog.ARG_POSITIVE_BUTTON);
             } else if (has(args, SimpleAlertDialog.ARG_POSITIVE_BUTTON_RES_ID)) {
-                positiveButton = getActivity().getString(args
-                        .getInt(SimpleAlertDialog.ARG_POSITIVE_BUTTON_RES_ID));
+                positiveButton = getActivity().getString(args.getInt(SimpleAlertDialog.ARG_POSITIVE_BUTTON_RES_ID));
             }
             if (positiveButton != null) {
                 dialog.setPositiveButton(positiveButton, new DialogInterface.OnClickListener() {
@@ -831,8 +826,7 @@ public class SimpleAlertDialog extends Dialog {
             if (has(args, SimpleAlertDialog.ARG_NEGATIVE_BUTTON)) {
                 negativeButton = args.getCharSequence(SimpleAlertDialog.ARG_NEGATIVE_BUTTON);
             } else if (has(args, SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID)) {
-                negativeButton = getActivity().getString(args
-                        .getInt(SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID));
+                negativeButton = getActivity().getString(args.getInt(SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID));
             }
             if (negativeButton != null) {
                 dialog.setNegativeButton(negativeButton, new DialogInterface.OnClickListener() {
@@ -862,8 +856,7 @@ public class SimpleAlertDialog extends Dialog {
             }
             boolean canceledOnTouchOutside = cancelable;
             if (cancelable && has(args, SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE)) {
-                canceledOnTouchOutside = args
-                        .getBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE);
+                canceledOnTouchOutside = args.getBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE);
             }
             dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
         }
