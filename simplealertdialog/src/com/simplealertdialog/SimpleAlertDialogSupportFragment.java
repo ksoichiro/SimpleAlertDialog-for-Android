@@ -54,7 +54,7 @@ public class SimpleAlertDialogSupportFragment extends DialogFragment {
             public Fragment getTargetFragment() {
                 return SimpleAlertDialogSupportFragment.this.getTargetFragment();
             }
-        }.createDialog(args, getTargetFragment(), getActivity());
+        }.createDialog(args);
     }
 
     @Override
