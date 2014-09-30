@@ -666,34 +666,38 @@ public class SimpleAlertDialog extends Dialog {
                     : new SimpleAlertDialog(activity);
         }
 
+        private boolean has(Bundle args, String key) {
+            return args != null && args.containsKey(key);
+        }
+
         private boolean hasTheme(Bundle args) {
-            return args != null && args.containsKey(SimpleAlertDialog.ARG_THEME_RES_ID);
+            return has(args, SimpleAlertDialog.ARG_THEME_RES_ID);
         }
 
         private void setTitle(Bundle args, SimpleAlertDialog dialog) {
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_TITLE)) {
+            if (has(args, SimpleAlertDialog.ARG_TITLE)) {
                 dialog.setTitle(args.getCharSequence(SimpleAlertDialog.ARG_TITLE));
-            } else if (args != null && args.containsKey(SimpleAlertDialog.ARG_TITLE_RES_ID)) {
+            } else if (has(args, SimpleAlertDialog.ARG_TITLE_RES_ID)) {
                 dialog.setTitle(args.getInt(SimpleAlertDialog.ARG_TITLE_RES_ID));
             }
         }
 
         private void setIcon(Bundle args, SimpleAlertDialog dialog) {
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_ICON)) {
+            if (has(args, SimpleAlertDialog.ARG_ICON)) {
                 dialog.setIcon(args.getInt(SimpleAlertDialog.ARG_ICON));
             }
         }
 
         private void setMessage(Bundle args, SimpleAlertDialog dialog) {
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_MESSAGE)) {
+            if (has(args, SimpleAlertDialog.ARG_MESSAGE)) {
                 dialog.setMessage(args.getCharSequence(SimpleAlertDialog.ARG_MESSAGE));
-            } else if (args != null && args.containsKey(SimpleAlertDialog.ARG_MESSAGE_RES_ID)) {
+            } else if (has(args, SimpleAlertDialog.ARG_MESSAGE_RES_ID)) {
                 dialog.setMessage(args.getInt(SimpleAlertDialog.ARG_MESSAGE_RES_ID));
             }
         }
 
         private int getRequestCode(Bundle args) {
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_REQUEST_CODE)) {
+            if (has(args, SimpleAlertDialog.ARG_REQUEST_CODE)) {
                 return args.getInt(SimpleAlertDialog.ARG_REQUEST_CODE);
             }
             return 0;
@@ -701,7 +705,7 @@ public class SimpleAlertDialog extends Dialog {
 
         private void setView(Bundle args, F targetFragment, A activity, SimpleAlertDialog dialog,
                              int requestCode) {
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_USE_VIEW)) {
+            if (has(args, SimpleAlertDialog.ARG_USE_VIEW)) {
                 boolean useView = args.getBoolean(SimpleAlertDialog.ARG_USE_VIEW);
                 if (useView) {
                     if (targetFragment != null
@@ -720,7 +724,7 @@ public class SimpleAlertDialog extends Dialog {
 
         private void setAdapter(Bundle args, F targetFragment, A activity, final SimpleAlertDialog dialog,
                                 final int requestCode) {
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_USE_ADAPTER)) {
+            if (has(args, SimpleAlertDialog.ARG_USE_ADAPTER)) {
                 boolean useAdapter = args.getBoolean(SimpleAlertDialog.ARG_USE_ADAPTER);
                 if (useAdapter) {
                     if (targetFragment != null
@@ -764,7 +768,7 @@ public class SimpleAlertDialog extends Dialog {
 
         private void setSingleChoiceItems(Bundle args, F targetFragment, A activity, final SimpleAlertDialog dialog,
                                           final int requestCode) {
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM)) {
+            if (has(args, SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM)) {
                 int checkedItem = args.getInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM);
                 if (targetFragment != null
                         && targetFragment instanceof SimpleAlertDialog.SingleChoiceArrayItemProvider) {
@@ -812,10 +816,9 @@ public class SimpleAlertDialog extends Dialog {
         private void setPositiveButton(Bundle args, A activity, SimpleAlertDialog dialog,
                                        final int requestCode) {
             CharSequence positiveButton = null;
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_POSITIVE_BUTTON)) {
+            if (has(args, SimpleAlertDialog.ARG_POSITIVE_BUTTON)) {
                 positiveButton = args.getCharSequence(SimpleAlertDialog.ARG_POSITIVE_BUTTON);
-            } else if (args != null
-                    && args.containsKey(SimpleAlertDialog.ARG_POSITIVE_BUTTON_RES_ID)) {
+            } else if (has(args, SimpleAlertDialog.ARG_POSITIVE_BUTTON_RES_ID)) {
                 positiveButton = activity.getString(args
                         .getInt(SimpleAlertDialog.ARG_POSITIVE_BUTTON_RES_ID));
             }
@@ -846,10 +849,9 @@ public class SimpleAlertDialog extends Dialog {
         private void setNegativeButton(Bundle args, A activity, SimpleAlertDialog dialog,
                                        final int requestCode) {
             CharSequence negativeButton = null;
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_NEGATIVE_BUTTON)) {
+            if (has(args, SimpleAlertDialog.ARG_NEGATIVE_BUTTON)) {
                 negativeButton = args.getCharSequence(SimpleAlertDialog.ARG_NEGATIVE_BUTTON);
-            } else if (args != null
-                    && args.containsKey(SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID)) {
+            } else if (has(args, SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID)) {
                 negativeButton = activity.getString(args
                         .getInt(SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID));
             }
@@ -879,11 +881,11 @@ public class SimpleAlertDialog extends Dialog {
 
         private void setCancelable(Bundle args, SimpleAlertDialog dialog) {
             boolean cancelable = true;
-            if (args != null && args.containsKey(SimpleAlertDialog.ARG_CANCELABLE)) {
+            if (has(args, SimpleAlertDialog.ARG_CANCELABLE)) {
                 cancelable = args.getBoolean(SimpleAlertDialog.ARG_CANCELABLE);
             }
             boolean canceledOnTouchOutside = cancelable;
-            if (cancelable && args != null && args.containsKey(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE)) {
+            if (cancelable && has(args, SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE)) {
                 canceledOnTouchOutside = args
                         .getBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE);
             }
