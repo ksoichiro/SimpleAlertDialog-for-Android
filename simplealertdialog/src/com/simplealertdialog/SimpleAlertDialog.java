@@ -448,6 +448,7 @@ public class SimpleAlertDialog extends Dialog {
         setMessage(getContext().getText(resId));
     }
 
+    @Override
     public void setTitle(final CharSequence title) {
         if (title == null) {
             return;
@@ -455,6 +456,7 @@ public class SimpleAlertDialog extends Dialog {
         mTitle = title;
     }
 
+    @Override
     public void setTitle(final int resId) {
         setTitle(getContext().getText(resId));
     }
