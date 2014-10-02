@@ -4,9 +4,11 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.2'
+        classpath 'com.android.tools.build:gradle:0.13.0'
     }
 }
+
+apply plugin: 'android-reporting'
 
 allprojects {
     group = 'com.simplealertdialog'
