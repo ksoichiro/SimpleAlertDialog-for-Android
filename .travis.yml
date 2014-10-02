@@ -17,3 +17,5 @@ before_script:
     - android-wait-for-emulator
 script:
     - travis_retry ./gradlew build :simplealertdialog:connectedCheck
+after_success:
+    - ./gradlew -p simplealertdialog -b simplealertdialog/coverage.gradle coveralls
