@@ -1,6 +1,7 @@
 package com.simplealertdialog;
 
 import android.app.Dialog;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.test.InstrumentationTestCase;
 
@@ -174,7 +175,25 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         } catch (NullPointerException e) {
             // Creating dialog will fail
         }
+
         Dialog dialog = builder.createDialog(getInstrumentation().getContext());
+        assertNotNull(dialog);
+
+        builder.setTheme(android.R.style.Theme_Black);
+        builder.setTitle(android.R.string.dialog_alert_title);
+        builder.setIcon(android.R.drawable.sym_def_app_icon);
+        builder.setMessage(android.R.string.ok);
+        builder.setPositiveButton(android.R.string.ok);
+        builder.setNegativeButton(android.R.string.cancel);
+        dialog = builder.createDialog(getInstrumentation().getContext());
+        assertNotNull(dialog);
+
+        Resources res = getInstrumentation().getContext().getResources();
+        builder.setTitle(res.getString(android.R.string.dialog_alert_title));
+        builder.setMessage(res.getString(android.R.string.ok));
+        builder.setPositiveButton(res.getString(android.R.string.ok));
+        builder.setNegativeButton(res.getString(android.R.string.cancel));
+        dialog = builder.createDialog(getInstrumentation().getContext());
         assertNotNull(dialog);
     }
 
