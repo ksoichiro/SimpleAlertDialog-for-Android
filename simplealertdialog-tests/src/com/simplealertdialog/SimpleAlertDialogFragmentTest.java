@@ -125,6 +125,16 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         assertFalse(args.getBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE, true));
     }
 
+    public void testBuilderSetSingleChoiceCheckedItem() {
+        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
+        Bundle args = builder.createArguments();
+        assertNotNull(args);
+        assertEquals(args.getInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM, -1), -1);
+        builder.setSingleChoiceCheckedItem(1);
+        args = builder.createArguments();
+        assertEquals(args.getInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM, -1), 1);
+    }
+
     public void testBuilderSetUseView() {
         SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
         Bundle args = builder.createArguments();
