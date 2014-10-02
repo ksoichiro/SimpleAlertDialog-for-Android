@@ -85,6 +85,16 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         assertEquals(args.getString(SimpleAlertDialog.ARG_NEGATIVE_BUTTON), "NEGATIVE");
     }
 
+    public void testBuilderSetCancelable() {
+        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
+        Bundle args = builder.createArguments();
+        assertNotNull(args);
+        assertTrue(args.getBoolean(SimpleAlertDialog.ARG_CANCELABLE, false));
+        builder.setCancelable(false);
+        args = builder.createArguments();
+        assertFalse(args.getBoolean(SimpleAlertDialog.ARG_CANCELABLE, true));
+    }
+
     public void testBuilderSetUseView() {
         SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
         Bundle args = builder.createArguments();
