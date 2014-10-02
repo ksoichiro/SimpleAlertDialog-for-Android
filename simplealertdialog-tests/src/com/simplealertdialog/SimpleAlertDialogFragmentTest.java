@@ -5,6 +5,16 @@ import android.test.InstrumentationTestCase;
 
 public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
 
+    public void testBuilderSetTheme() {
+        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
+        Bundle args = builder.createArguments();
+        assertNotNull(args);
+        assertEquals(args.getInt(SimpleAlertDialog.ARG_THEME_RES_ID, -1), -1);
+        builder.setTheme(1);
+        args = builder.createArguments();
+        assertEquals(args.getInt(SimpleAlertDialog.ARG_THEME_RES_ID, 0), 1);
+    }
+
     public void testBuilderSetTitle() {
         SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
         Bundle args = builder.createArguments();
