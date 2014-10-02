@@ -17,7 +17,6 @@
 package com.simplealertdialog;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -881,7 +880,7 @@ public class SimpleAlertDialog extends Dialog {
             return args;
         }
 
-        public Dialog createDialog(final Activity activity) {
+        public Dialog createDialog(final Context activity) {
             return new InternalHelper<F, Context>() {
                 @Override
                 public Context getActivity() {

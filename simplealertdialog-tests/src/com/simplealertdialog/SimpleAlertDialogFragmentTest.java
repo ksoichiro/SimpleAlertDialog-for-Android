@@ -1,5 +1,6 @@
 package com.simplealertdialog;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.test.InstrumentationTestCase;
 
@@ -163,6 +164,18 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         assertEquals(builder.setNegativeButton(android.R.string.cancel), builder);
         args = builder.createArguments();
         assertEquals(args.getInt(SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID, -1), android.R.string.cancel);
+    }
+
+    public void testBuilderCreateDialog() {
+        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
+        try {
+            builder.createDialog(null);
+            fail();
+        } catch (NullPointerException e) {
+            // Creating dialog will fail
+        }
+        Dialog dialog = builder.createDialog(getInstrumentation().getContext());
+        assertNotNull(dialog);
     }
 
     public void testBuilderCreate() {
