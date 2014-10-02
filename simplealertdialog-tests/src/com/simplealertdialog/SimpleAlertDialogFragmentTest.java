@@ -145,6 +145,16 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         assertTrue(args.getBoolean(SimpleAlertDialog.ARG_USE_VIEW, false));
     }
 
+    public void testBuilderSetUseAdapter() {
+        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
+        Bundle args = builder.createArguments();
+        assertNotNull(args);
+        assertFalse(args.getBoolean(SimpleAlertDialog.ARG_USE_ADAPTER, true));
+        builder.setUseAdapter(true);
+        args = builder.createArguments();
+        assertTrue(args.getBoolean(SimpleAlertDialog.ARG_USE_ADAPTER, false));
+    }
+
     public void testBuilderSetNegativeButtonByResources() {
         SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
         Bundle args = builder.createArguments();
