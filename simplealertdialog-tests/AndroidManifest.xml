@@ -22,6 +22,7 @@
         <activity android:name=".DummyActivity" />
         <activity android:name=".NormalActivity" />
         <activity android:name=".SupportActivity" />
+        <activity android:name=".FragmentNormalActivity" />
     </application>
 
 </manifest>
