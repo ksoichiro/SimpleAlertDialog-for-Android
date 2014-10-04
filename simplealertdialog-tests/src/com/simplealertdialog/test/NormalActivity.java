@@ -34,7 +34,8 @@ public class NormalActivity extends Activity
         implements SimpleAlertDialog.OnClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
-        SimpleAlertDialog.ViewProvider {
+        SimpleAlertDialog.ViewProvider,
+        SimpleAlertDialog.OnCancelListener {
 
     private static final int REQUEST_CODE_BUTTONS = 1;
     private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 2;
@@ -136,7 +137,7 @@ public class NormalActivity extends Activity
 
     @Override
     public void onDialogPositiveButtonClicked(final SimpleAlertDialog dialog, int requestCode,
-            final View view) {
+                                              final View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(this, "OK button clicked", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
@@ -147,7 +148,7 @@ public class NormalActivity extends Activity
 
     @Override
     public void onDialogNegativeButtonClicked(final SimpleAlertDialog dialog, int requestCode,
-            final View view) {
+                                              final View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
         }
@@ -163,7 +164,7 @@ public class NormalActivity extends Activity
 
     @Override
     public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int requestCode,
-            int position) {
+                                             int position) {
         if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
             Toast.makeText(this,
                     getResources().getTextArray(com.simplealertdialog.test.R.array.single_choice)[position] + " selected",
@@ -198,4 +199,8 @@ public class NormalActivity extends Activity
         return null;
     }
 
+    @Override
+    public void onDialogCancel(SimpleAlertDialog dialog, int requestCode, View view) {
+        Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
+    }
 }
