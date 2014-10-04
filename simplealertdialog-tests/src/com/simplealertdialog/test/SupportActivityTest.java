@@ -5,16 +5,17 @@ import android.app.Dialog;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 
 import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class SupportActivityTest extends ActivityInstrumentationTestCase2<SupportActivity> {
 
     private SupportActivity activity;
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public SupportActivityTest() {
         super(SupportActivity.class);
     }
@@ -72,6 +73,30 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
         });
     }
 
+    public void testAdapter() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(com.simplealertdialog.test.R.id.btn_adapter).performClick();
+                activity.getSupportFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogSupportFragment) f).getDialog();
+        assertNotNull(d);
+
+        final ListView lv = (ListView) d.findViewById(R.id.list);
+        assertNotNull(lv);
+        assertTrue(lv.getAdapter() instanceof SweetsAdapter);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                lv.performItemClick(lv, 0, 0);
+            }
+        });
+    }
+
     public void testSingleChoiceItems() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override
@@ -82,7 +107,6 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
         });
         getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-        assertNotNull(f);
         assertNotNull(f);
 
         Dialog d = ((SimpleAlertDialogSupportFragment) f).getDialog();
@@ -95,6 +119,32 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 lv.performItemClick(lv, 0, 0);
             }
         });
+    }
 
+    public void testView() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_view).performClick();
+                activity.getSupportFragmentManager().executePendingTransactions();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        sendKeys(KeyEvent.KEYCODE_BACK);
+    }
+
+    public void testThemed() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_themed).performClick();
+                activity.getSupportFragmentManager().executePendingTransactions();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
     }
 }

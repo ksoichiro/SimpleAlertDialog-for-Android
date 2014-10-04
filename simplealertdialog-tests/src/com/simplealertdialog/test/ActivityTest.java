@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.os.Build;
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 
@@ -72,6 +73,30 @@ public class ActivityTest extends ActivityInstrumentationTestCase2<NormalActivit
         });
     }
 
+    public void testAdapter() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(com.simplealertdialog.test.R.id.btn_adapter).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+
+        final ListView lv = (ListView) d.findViewById(R.id.list);
+        assertNotNull(lv);
+        assertTrue(lv.getAdapter() instanceof SweetsAdapter);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                lv.performItemClick(lv, 0, 0);
+            }
+        });
+    }
+
     public void testSingleChoiceItems() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override
@@ -94,6 +119,32 @@ public class ActivityTest extends ActivityInstrumentationTestCase2<NormalActivit
                 lv.performItemClick(lv, 0, 0);
             }
         });
+    }
 
+    public void testView() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_view).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        sendKeys(KeyEvent.KEYCODE_BACK);
+    }
+
+    public void testThemed() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_themed).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
     }
 }
