@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   Copyright 2014 Soichiro Kashima
 
@@ -13,14 +14,16 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp" >
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.simplealertdialog.test">
+    <EditText
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
 
-    <application>
-        <uses-library android:name="android.test.runner" />
-        <activity android:name=".DummyActivity" />
-        <activity android:name=".NormalActivity" />
-    </application>
-
-</manifest>
+</LinearLayout>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   Copyright 2014 Soichiro Kashima
 
@@ -13,14 +14,12 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
+<resources>
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.simplealertdialog.test">
+    <string-array name="single_choice">
+        <item>English</item>
+        <item>Japanese</item>
+        <item>Chinese</item>
+    </string-array>
 
-    <application>
-        <uses-library android:name="android.test.runner" />
-        <activity android:name=".DummyActivity" />
-        <activity android:name=".NormalActivity" />
-    </application>
-
-</manifest>
+</resources>

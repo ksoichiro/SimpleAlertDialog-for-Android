@@ -1,4 +1,4 @@
-package com.simplealertdialog;
+package com.simplealertdialog.test;
 
 import android.app.Activity;
 

@@ -1,13 +1,11 @@
-package com.simplealertdialog;
+package com.simplealertdialog.test;
 
 import android.annotation.TargetApi;
-import android.app.Dialog;
 import android.app.Fragment;
-import android.content.res.Resources;
 import android.os.Build;
-import android.os.Bundle;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.InstrumentationTestCase;
+
+import com.simplealertdialog.SimpleAlertDialogFragment;
 
 public class SimpleAlertDialogFragmentTest2 extends ActivityInstrumentationTestCase2<DummyActivity> {
 
