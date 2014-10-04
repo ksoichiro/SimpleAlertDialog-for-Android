@@ -21,6 +21,7 @@
         <uses-library android:name="android.test.runner" />
         <activity android:name=".DummyActivity" />
         <activity android:name=".NormalActivity" />
+        <activity android:name=".SupportActivity" />
     </application>
 
 </manifest>
