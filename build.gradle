@@ -8,8 +8,8 @@ buildscript {
 }
 
 allprojects {
-    group = 'com.simplealertdialog'
-    version = '1.1.2'
+    group = GROUP
+    version = VERSION_NAME
     repositories {
         mavenCentral()
     }
