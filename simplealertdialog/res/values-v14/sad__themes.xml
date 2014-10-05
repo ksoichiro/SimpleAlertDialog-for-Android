@@ -16,8 +16,8 @@
 -->
 <resources>
 
-    <style name="Theme.SimpleAlertDialog" parent="@style/Theme.SimpleAlertDialogBase"></style>
+    <style name="Theme.SimpleAlertDialog" parent="@style/Theme.SimpleAlertDialogBase"/>
 
-    <style name="Theme.SimpleAlertDialog.Light" parent="@style/Theme.SimpleAlertDialogBase.Light"></style>
+    <style name="Theme.SimpleAlertDialog.Light" parent="@style/Theme.SimpleAlertDialogBase.Light"/>
 
 </resources>

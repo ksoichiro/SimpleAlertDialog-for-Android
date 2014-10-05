@@ -16,7 +16,7 @@
 -->
 <resources>
 
-    <style name="Theme"></style>
+    <style name="Theme"/>
 
     <style name="Theme.SimpleAlertDialogBase">
         <item name="sadListChoiceIndicatorSingle">?android:attr/listChoiceIndicatorSingle</item>

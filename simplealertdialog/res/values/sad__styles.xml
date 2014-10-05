@@ -16,11 +16,11 @@
 -->
 <resources>
 
-    <style name="TextAppearance"></style>
+    <style name="TextAppearance"/>
 
-    <style name="TextAppearance.SimpleAlertDialog"></style>
+    <style name="TextAppearance.SimpleAlertDialog"/>
 
-    <style name="TextAppearance.SimpleAlertDialog.Widget"></style>
+    <style name="TextAppearance.SimpleAlertDialog.Widget"/>
 
     <style name="TextAppearance.SimpleAlertDialog.Widget.Title">
         <item name="android:textColor">@color/sad__holo_blue</item>
@@ -38,9 +38,9 @@
         <item name="android:textColor">@color/sad__white</item>
     </style>
 
-    <style name="TextAppearance.SimpleAlertDialog.Light"></style>
+    <style name="TextAppearance.SimpleAlertDialog.Light"/>
 
-    <style name="TextAppearance.SimpleAlertDialog.Light.Widget"></style>
+    <style name="TextAppearance.SimpleAlertDialog.Light.Widget"/>
 
     <style name="TextAppearance.SimpleAlertDialog.Light.Widget.Title">
         <item name="android:textColor">@color/sad__holo_blue</item>
