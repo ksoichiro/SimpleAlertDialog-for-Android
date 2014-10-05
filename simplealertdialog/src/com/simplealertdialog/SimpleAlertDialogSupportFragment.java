@@ -83,6 +83,8 @@ public class SimpleAlertDialogSupportFragment extends DialogFragment {
     }
 
     /**
+     * Dialog builder for {@code android.support.v4.app.Fragment}.
+     * <p/>
      * {@inheritDoc}
      */
     public static class Builder extends

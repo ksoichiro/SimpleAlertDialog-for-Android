@@ -23,6 +23,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+/**
+ * Internal helper class to build dialog.
+ *
+ * @param <F> Fragment class
+ * @param <A> Activity class
+ */
 abstract class InternalHelper<F, A extends Context> {
     public abstract A getActivity();
 

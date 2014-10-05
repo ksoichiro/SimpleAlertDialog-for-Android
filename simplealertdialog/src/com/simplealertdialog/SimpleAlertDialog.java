@@ -40,76 +40,87 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /**
- * Dialog managed by {@link com.simplealertdialog.SimpleAlertDialogFragment}
- * or {@link com.simplealertdialog.SimpleAlertDialogSupportFragment}.
+ * <p>Dialog managed by {@link com.simplealertdialog.SimpleAlertDialogFragment}
+ * or {@link com.simplealertdialog.SimpleAlertDialogSupportFragment}.<br/>
  * When you use this dialog, create {@code DialogFragment} by
  * {@link com.simplealertdialog.SimpleAlertDialogFragment.Builder} or
  * {@link com.simplealertdialog.SimpleAlertDialogSupportFragment.Builder},
- * and manage it with {@code FragmentManager}.
+ * and manage it with {@code FragmentManager}.<br/>
+ * Do not instantiate or use this class directly.</p>
+ * <p>Basic usage for {@code android.app.Fragment}:</p>
+ * <pre>    new SimpleAlertDialogFragment.Builder()
+ *         .setMessage("Hello world!")
+ *         .setPositiveButton(android.R.string.ok)
+ *         .create().show(getFragmentManager(), "dialog");</pre>
+ * <p>Basic usage for {@code android.support.v4.app.Fragment}:</p>
+ * <pre>    new SimpleAlertDialogSupportFragment.Builder()
+ *         .setMessage("Hello world!")
+ *         .setPositiveButton(android.R.string.ok)
+ *         .create().show(getSupportFragmentManager(), "dialog");</pre>
  *
  * @author Soichiro Kashima
  */
 public class SimpleAlertDialog extends Dialog {
 
     /**
-     * Listener for click events of dialog buttons.
-     * There is no {@code setListener()} method to make these callbacks to be called.
+     * Listener for click events of dialog buttons.<br/>
+     * There is no {@code setListener()} method to make these callbacks to be called.<br/>
      * If the caller {@code Activity} or {@code Fragment} implements this interface,
      * {@linkplain com.simplealertdialog.SimpleAlertDialog} will
      * automatically call back.
      */
     public static interface OnClickListener {
         /**
-         * Called when the positive button is clicked.
+         * Called when the positive button is clicked.<br/>
          * Note that all of the click events from the {@linkplain com.simplealertdialog.SimpleAlertDialog}
          * will be sent to this method, so you should set {@code requestCode}
          * to distinguish each dialogs.
          *
-         * @param dialog Dialog that own this click event
+         * @param dialog      Dialog that own this click event
          * @param requestCode Request code set to distinguish dialogs
-         * @param view View of the dialog
+         * @param view        View of the dialog
          */
         void onDialogPositiveButtonClicked(final SimpleAlertDialog dialog, final int requestCode,
-                final View view);
+                                           final View view);
 
         /**
-         * Called when the negative button is clicked.
+         * Called when the negative button is clicked.<br/>
          * Note that all of the click events from the {@linkplain com.simplealertdialog.SimpleAlertDialog}
          * will be sent to this method, so you should set {@code requestCode}
          * to distinguish each dialogs.
          *
-         * @param dialog Dialog that own this click event
+         * @param dialog      Dialog that own this click event
          * @param requestCode Request code set to distinguish dialogs
-         * @param view View of the dialog
+         * @param view        View of the dialog
          */
         void onDialogNegativeButtonClicked(final SimpleAlertDialog dialog, final int requestCode,
-                final View view);
+                                           final View view);
     }
 
     /**
-     * Listener for cancel events of dialog.
-     * There is no {@code setListener()} method to make these callbacks to be called.
+     * Listener for cancel events of dialog.<br/>
+     * There is no {@code setListener()} method to make these callbacks to be called.<br/>
      * If the caller {@code Activity} or {@code Fragment} implements this interface,
      * {@linkplain com.simplealertdialog.SimpleAlertDialog} will
      * automatically call back.
      */
     public static interface OnCancelListener {
         /**
-         * Called when the dialog is canceled.
+         * Called when the dialog is canceled.<br/>
          * Note that all of the cancel events from the {@linkplain com.simplealertdialog.SimpleAlertDialog}
          * will be sent to this method, so you should set {@code requestCode}
          * to distinguish each dialogs.
          *
-         * @param dialog Dialog that own this cancel event
+         * @param dialog      Dialog that own this cancel event
          * @param requestCode Request code set to distinguish dialogs
-         * @param view View of the dialog
+         * @param view        View of the dialog
          */
         void onDialogCancel(final SimpleAlertDialog dialog, final int requestCode, final View view);
     }
 
     /**
-     * Providing the custom view of the dialog.
-     * Use {@code setUseView()} to indicate that the dialog has a custom view.
+     * Providing the custom view of the dialog.<br/>
+     * Use {@code setUseView()} to indicate that the dialog has a custom view.<br/>
      * If the {@code setUseView()} is set to {@code true} and the caller
      * {@code Activity} or {@code Fragment} implements this interface,
      * {@linkplain com.simplealertdialog.SimpleAlertDialog} will
@@ -117,21 +128,21 @@ public class SimpleAlertDialog extends Dialog {
      */
     public static interface ViewProvider {
         /**
-         * Called when the dialog is created to show custom view.
+         * Called when the dialog is created to show custom view.<br/>
          * Note that all of the view creation events from the
          * {@linkplain com.simplealertdialog.SimpleAlertDialog}
          * will be sent to this method, so you should set {@code requestCode}
          * to distinguish each dialogs.
          *
-         * @param dialog Dialog that own this view creation event
+         * @param dialog      Dialog that own this view creation event
          * @param requestCode Request code set to distinguish dialogs
          */
         View onCreateView(final SimpleAlertDialog dialog, final int requestCode);
     }
 
     /**
-     * Providing the custom {@code ListAdapter} of the dialog.
-     * Use {@code setUseAdapter()} to indicate that the dialog has a custom adapter.
+     * Providing the custom {@code ListAdapter} of the dialog.<br/>
+     * Use {@code setUseAdapter()} to indicate that the dialog has a custom adapter.<br/>
      * If the {@code setUseAdapter()} is set to {@code true} and the caller
      * {@code Activity} or {@code Fragment} implements this interface,
      * {@linkplain com.simplealertdialog.SimpleAlertDialog} will
@@ -139,37 +150,37 @@ public class SimpleAlertDialog extends Dialog {
      */
     public static interface ListProvider {
         /**
-         * Called when the dialog is created to show custom list.
+         * Called when the dialog is created to show custom list.<br/>
          * Note that all of the list creation events from the
          * {@linkplain com.simplealertdialog.SimpleAlertDialog}
          * will be sent to this method, so you should set {@code requestCode}
          * to distinguish each dialogs.
          *
-         * @param dialog Dialog that own this list creation event
+         * @param dialog      Dialog that own this list creation event
          * @param requestCode Request code set to distinguish dialogs
          * @return Custom list adapter
          */
         ListAdapter onCreateList(final SimpleAlertDialog dialog, final int requestCode);
 
         /**
-         * Called when the item in the custom adapter is clicked.
+         * Called when the item in the custom adapter is clicked.<br/>
          * Note that all of the view creation events from the
          * {@linkplain com.simplealertdialog.SimpleAlertDialog}
          * will be sent to this method, so you should set {@code requestCode}
          * to distinguish each dialogs.
          *
-         * @param dialog Dialog that own this click event
+         * @param dialog      Dialog that own this click event
          * @param requestCode Request code set to distinguish dialogs
-         * @param position Position of the list items (from 0)
+         * @param position    Position of the list items (from 0)
          */
         void onListItemClick(final SimpleAlertDialog dialog, final int requestCode,
-                final int position);
+                             final int position);
     }
 
     /**
-     * Providing the custom {@code SingleChoice} list of the dialog.
+     * Providing the custom {@code SingleChoice} list of the dialog.<br/>
      * Use {@code setSingleChoiceCheckedItem()} to indicate that the dialog
-     * has a single choice item list.
+     * has a single choice item list.<br/>
      * If the {@code setSingleChoiceCheckedItem()} is set to {@code true}
      * and the caller {@code Activity} or {@code Fragment} implements this interface,
      * {@linkplain com.simplealertdialog.SimpleAlertDialog} will
@@ -177,32 +188,32 @@ public class SimpleAlertDialog extends Dialog {
      */
     public static interface SingleChoiceArrayItemProvider {
         /**
-         * Called when the single choice items are created.
+         * Called when the single choice items are created.<br/>
          * Note that all of the creation events of the single choice items from the
          * {@linkplain com.simplealertdialog.SimpleAlertDialog}
          * will be sent to this method, so you should set {@code requestCode}
          * to distinguish each dialogs.
          *
-         * @param dialog Dialog that own single choice items creation event
+         * @param dialog      Dialog that own single choice items creation event
          * @param requestCode Request code set to distinguish dialogs
          * @return Char sequences of the single choice items
          */
         CharSequence[] onCreateSingleChoiceArray(final SimpleAlertDialog dialog,
-                final int requestCode);
+                                                 final int requestCode);
 
         /**
-         * Called when the item in the custom single choice items is clicked.
+         * Called when the item in the custom single choice items is clicked.<br/>
          * Note that all of the view creation events from the
          * {@linkplain com.simplealertdialog.SimpleAlertDialog}
          * will be sent to this method, so you should set {@code requestCode}
          * to distinguish each dialogs.
          *
-         * @param dialog Dialog that own this click event
+         * @param dialog      Dialog that own this click event
          * @param requestCode Request code set to distinguish dialogs
-         * @param position Position of the list items (from 0)
+         * @param position    Position of the list items (from 0)
          */
         void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, final int requestCode,
-                final int position);
+                                          final int position);
     }
 
     static final String ARG_THEME_RES_ID = "argThemeResId";
@@ -251,10 +262,10 @@ public class SimpleAlertDialog extends Dialog {
     private Drawable mBackgroundBottom;
 
     /**
-     * Creates the new dialog.
+     * Creates the new dialog.<br/>
      * Users should not directly call this.
      *
-     * @param context Dialog owner context
+     * @param context    Dialog owner context
      * @param themeResId Dialog theme resource ID
      */
     public SimpleAlertDialog(Context context, int themeResId) {
@@ -263,7 +274,7 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     /**
-     * Creates the new dialog.
+     * Creates the new dialog.<br/>
      * Users should not directly call this.
      *
      * @param context Dialog owner context
@@ -479,7 +490,7 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     public void setAdapter(final ListAdapter adapter,
-            final AdapterView.OnItemClickListener listener) {
+                           final AdapterView.OnItemClickListener listener) {
         if (adapter == null) {
             return;
         }
@@ -488,7 +499,7 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     public void setSingleChoiceItems(final CharSequence[] items, final int checkedItem,
-            final AdapterView.OnItemClickListener listener) {
+                                     final AdapterView.OnItemClickListener listener) {
         if (items == null) {
             return;
         }
@@ -524,7 +535,7 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     public void setPositiveButton(final CharSequence text,
-            final DialogInterface.OnClickListener listener) {
+                                  final DialogInterface.OnClickListener listener) {
         if (text == null) {
             return;
         }
@@ -533,12 +544,12 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     public void setPositiveButton(final int resId,
-            final DialogInterface.OnClickListener listener) {
+                                  final DialogInterface.OnClickListener listener) {
         setPositiveButton(getContext().getText(resId), listener);
     }
 
     public void setNegativeButton(final CharSequence text,
-            final DialogInterface.OnClickListener listener) {
+                                  final DialogInterface.OnClickListener listener) {
         if (text == null) {
             return;
         }
@@ -547,7 +558,7 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     public void setNegativeButton(final int resId,
-            final DialogInterface.OnClickListener listener) {
+                                  final DialogInterface.OnClickListener listener) {
         setNegativeButton(getContext().getText(resId), listener);
     }
 
@@ -617,7 +628,7 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     /**
-     * Dialog builder like {@link android.app.AlertDialog.Builder}.
+     * Dialog builder like {@link android.app.AlertDialog.Builder}.<br/>
      * To show your custom dialog, construct the dialog style with this builder,
      * and show with {@code FragmentManager}.
      *
@@ -710,7 +721,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the positive button's char sequence or string.
+         * Sets the positive button's char sequence or string.<br/>
          * This also enables callback of the click event of the positive button.
          *
          * @param positiveButton Char sequence or string of the positive button
@@ -722,7 +733,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the positive button's char sequence or string.
+         * Sets the positive button's char sequence or string.<br/>
          * This also enables callback of the click event of the positive button.
          *
          * @param resId String resource ID of the positive button
@@ -734,7 +745,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the negative button's char sequence or string.
+         * Sets the negative button's char sequence or string.<br/>
          * This also enables callback of the click event of the negative button.
          *
          * @param negativeButton Char sequence or string of the negative button
@@ -746,7 +757,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the negative button's char sequence or string.
+         * Sets the negative button's char sequence or string.<br/>
          * This also enables callback of the click event of the negative button.
          *
          * @param resId String resource ID of the negative button
@@ -758,7 +769,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the request code of the callbacks.
+         * Sets the request code of the callbacks.<br/>
          * This code will be passed to the callbacks to distinguish
          * other dialogs.
          *
@@ -771,8 +782,8 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the dialog to be cancelable or not.
-         * Default value is {@code true}.
+         * Sets the dialog to be cancelable or not.<br/>
+         * Default value is {@code true}.<br/>
          * If you set this to {@code false}, pressing back button
          * and touching outside of the dialog don't cancel the dialog.
          *
@@ -785,7 +796,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the dialog to be cancelable on touching outside of the dialog.
+         * Sets the dialog to be cancelable on touching outside of the dialog.<br/>
          * Default value is {@code true}.
          *
          * @param canceledOnTouchOutside {@code true} if the dialog should be canceled on touch outside
@@ -797,7 +808,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the default checked item of the single choice items.
+         * Sets the default checked item of the single choice items.<br/>
          * This also enables callback of the
          * {@link com.simplealertdialog.SimpleAlertDialog.SingleChoiceArrayItemProvider}.
          *
@@ -834,7 +845,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Creates the arguments of the {@code SimpleAlertDialog} as a {@code Bundle}.
+         * Creates the arguments of the {@code SimpleAlertDialog} as a {@code Bundle}.<br/>
          * In most cases, you don't have to call this method directly.
          *
          * @return Created arguments bundle
@@ -895,7 +906,7 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
-         * Sets the target fragment of this {@code DialogFragment}.
+         * Sets the target fragment of this {@code DialogFragment}.<br/>
          * Use this method to tell the dialog that {@code fragment} of the argument
          * is the callback instance for some of the events of dialogs.
          *
