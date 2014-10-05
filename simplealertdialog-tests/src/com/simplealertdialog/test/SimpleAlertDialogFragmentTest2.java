@@ -38,6 +38,20 @@ public class SimpleAlertDialogFragmentTest2 extends ActivityInstrumentationTestC
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void testBuilderCreateNullParams() {
+        new SimpleAlertDialogFragment.Builder()
+                .setIcon(0)
+                .setTitle(null)
+                .setMessage(null)
+                .setPositiveButton(null)
+                .setNegativeButton(null)
+                .create().show(getActivity().getFragmentManager(), "dialog");
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void testBuilderCreateHasParamsNoIcon() {
         new SimpleAlertDialogFragment.Builder()
                 .setTitle("Test")

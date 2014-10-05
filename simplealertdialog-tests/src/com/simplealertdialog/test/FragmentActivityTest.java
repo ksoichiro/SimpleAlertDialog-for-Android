@@ -148,6 +148,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         sendKeys(KeyEvent.KEYCODE_BACK);
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testThemed() throws Throwable {

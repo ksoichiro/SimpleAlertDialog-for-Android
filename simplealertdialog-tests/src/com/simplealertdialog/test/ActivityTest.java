@@ -73,6 +73,30 @@ public class ActivityTest extends ActivityInstrumentationTestCase2<NormalActivit
         });
     }
 
+    public void testButtonsString() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_buttons_string).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+        View positive = d.findViewById(R.id.button_positive);
+        assertNotNull(positive);
+        final View negative = d.findViewById(R.id.button_negative);
+        assertNotNull(negative);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                negative.performClick();
+            }
+        });
+    }
+
     public void testAdapter() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override
@@ -133,6 +157,7 @@ public class ActivityTest extends ActivityInstrumentationTestCase2<NormalActivit
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         sendKeys(KeyEvent.KEYCODE_BACK);
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testThemed() throws Throwable {

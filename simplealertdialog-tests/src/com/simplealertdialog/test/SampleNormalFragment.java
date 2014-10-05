@@ -36,7 +36,8 @@ public class SampleNormalFragment extends Fragment
         implements SimpleAlertDialog.OnClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
-        SimpleAlertDialog.ViewProvider {
+        SimpleAlertDialog.ViewProvider,
+        SimpleAlertDialog.OnCancelListener {
 
     // XXX Warning: Don't use codes which the parent activity uses.
     // If you do so, both the activity's and fragment's handler will be
@@ -71,8 +72,8 @@ public class SampleNormalFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        TypedArray a = getActivity().getTheme().obtainStyledAttributes(new int[] {
-                            R.attr.icon
+                        TypedArray a = getActivity().getTheme().obtainStyledAttributes(new int[]{
+                                R.attr.icon
                         });
                         int iconResId = a.getResourceId(0, 0);
                         a.recycle();
@@ -155,7 +156,7 @@ public class SampleNormalFragment extends Fragment
 
     @Override
     public void onDialogPositiveButtonClicked(final SimpleAlertDialog dialog, int requestCode,
-            View view) {
+                                              View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: OK button clicked", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
@@ -167,7 +168,7 @@ public class SampleNormalFragment extends Fragment
 
     @Override
     public void onDialogNegativeButtonClicked(final SimpleAlertDialog dialog, int requestCode,
-            View view) {
+                                              View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: Cancel button clicked", Toast.LENGTH_SHORT)
                     .show();
@@ -184,7 +185,7 @@ public class SampleNormalFragment extends Fragment
 
     @Override
     public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int requestCode,
-            int position) {
+                                             int position) {
         if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
             Toast.makeText(
                     getActivity(),
@@ -222,4 +223,8 @@ public class SampleNormalFragment extends Fragment
         return null;
     }
 
+    @Override
+    public void onDialogCancel(SimpleAlertDialog dialog, int requestCode, View view) {
+        Toast.makeText(getActivity(), "Canceled", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -133,6 +133,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
         Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         sendKeys(KeyEvent.KEYCODE_BACK);
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testThemed() throws Throwable {

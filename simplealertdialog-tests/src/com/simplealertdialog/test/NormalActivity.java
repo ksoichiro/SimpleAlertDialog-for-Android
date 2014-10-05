@@ -38,9 +38,10 @@ public class NormalActivity extends Activity
         SimpleAlertDialog.OnCancelListener {
 
     private static final int REQUEST_CODE_BUTTONS = 1;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 2;
-    private static final int REQUEST_CODE_ADAPTER = 3;
-    private static final int REQUEST_CODE_VIEW = 4;
+    private static final int REQUEST_CODE_BUTTONS_STRING = 2;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 3;
+    private static final int REQUEST_CODE_ADAPTER = 4;
+    private static final int REQUEST_CODE_VIEW = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +81,24 @@ public class NormalActivity extends Activity
             @Override
             public void onClick(final View v) {
                 new SimpleAlertDialogFragment.Builder()
-                        .setTitle("Hello world!")
-                        .setMessage("Hello world!")
+                        .setTitle(R.string.title)
+                        .setMessage(R.string.message)
                         .setPositiveButton(android.R.string.ok)
                         .setNegativeButton(android.R.string.cancel)
                         .setRequestCode(REQUEST_CODE_BUTTONS)
+                        .create().show(getFragmentManager(), "dialog");
+            }
+        });
+
+        findViewById(com.simplealertdialog.test.R.id.btn_buttons_string).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle(getString(R.string.title))
+                        .setMessage(getString(R.string.message))
+                        .setPositiveButton(getString(android.R.string.ok))
+                        .setNegativeButton(getString(android.R.string.cancel))
+                        .setRequestCode(REQUEST_CODE_BUTTONS_STRING)
                         .create().show(getFragmentManager(), "dialog");
             }
         });
