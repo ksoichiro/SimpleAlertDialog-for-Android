@@ -105,7 +105,7 @@ abstract class InternalHelper<F, A extends Context> {
     }
 
     private void setAdapter(Bundle args, final SimpleAlertDialog dialog, final int requestCode) {
-        if (!has(args, SimpleAlertDialog.ARG_USE_ADAPTER) || !args.getBoolean(SimpleAlertDialog.ARG_USE_ADAPTER)) {
+        if (!hasListProvider(args)) {
             return;
         }
         if (fragmentImplements(SimpleAlertDialog.ListProvider.class)) {
@@ -137,7 +137,7 @@ abstract class InternalHelper<F, A extends Context> {
     }
 
     private void setSingleChoiceItems(Bundle args, final SimpleAlertDialog dialog, final int requestCode) {
-        if (!has(args, SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM)) {
+        if (!hasSingleChoiceArrayItemProvider(args)) {
             return;
         }
         int checkedItem = args.getInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM);
