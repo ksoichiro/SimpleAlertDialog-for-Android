@@ -1,6 +1,7 @@
 package com.simplealertdialog;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.test.InstrumentationTestCase;
@@ -181,6 +182,7 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         Dialog dialog = builder.createDialog(getInstrumentation().getContext());
         assertNotNull(dialog);
 
+        builder = new SimpleAlertDialogFragment.Builder();
         builder.setTheme(android.R.style.Theme_Black);
         builder.setTitle(android.R.string.dialog_alert_title);
         builder.setIcon(android.R.drawable.sym_def_app_icon);
@@ -191,10 +193,20 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         assertNotNull(dialog);
 
         Resources res = getInstrumentation().getContext().getResources();
+        builder = new SimpleAlertDialogFragment.Builder();
         builder.setTitle(res.getString(android.R.string.dialog_alert_title));
         builder.setMessage(res.getString(android.R.string.ok));
         builder.setPositiveButton(res.getString(android.R.string.ok));
         builder.setNegativeButton(res.getString(android.R.string.cancel));
+        dialog = builder.createDialog(getInstrumentation().getContext());
+        assertNotNull(dialog);
+
+        builder = new SimpleAlertDialogFragment.Builder();
+        builder.setIcon(0);
+        builder.setTitle(null);
+        builder.setMessage(null);
+        builder.setPositiveButton(null);
+        builder.setNegativeButton(null);
         dialog = builder.createDialog(getInstrumentation().getContext());
         assertNotNull(dialog);
     }
@@ -205,4 +217,35 @@ public class SimpleAlertDialogFragmentTest extends InstrumentationTestCase {
         assertNotNull(fragment);
     }
 
+    public void testInternalHelperCreate() {
+        Dialog dialog = new InternalHelper<android.app.Fragment, Context>() {
+            @Override
+            public Context getActivity() {
+                return getInstrumentation().getContext();
+            }
+
+            @Override
+            public android.app.Fragment getTargetFragment() {
+                return null;
+            }
+        }.createDialog(null);
+        assertNotNull(dialog);
+
+        try {
+            new InternalHelper<android.app.Fragment, Context>() {
+                @Override
+                public Context getActivity() {
+                    return null;
+                }
+
+                @Override
+                public android.app.Fragment getTargetFragment() {
+                    return null;
+                }
+            }.createDialog(null);
+            fail();
+        } catch (NullPointerException e) {
+            // Can't create dialog without context(getActivity)
+        }
+    }
 }
