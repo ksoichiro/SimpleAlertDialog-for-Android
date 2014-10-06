@@ -14,6 +14,15 @@ Check if all the tests pass on a device.
 $ ./gradlew clean :simplealertdialog:connectedCheck
 ```
 
+## Coverage
+
+Check test coverage after executing tests.
+
+```sh
+(If you are a Mac OS X user:)
+$ open simplealertdialog/build/outputs/reports/coverage/debug/index.html
+```
+
 ## Documentation
 
 If you add or modify Java elements, please update comments
