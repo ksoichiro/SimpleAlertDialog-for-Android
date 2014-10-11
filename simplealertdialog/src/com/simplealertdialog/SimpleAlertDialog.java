@@ -891,20 +891,6 @@ public class SimpleAlertDialog extends Dialog {
             return args;
         }
 
-        public Dialog createDialog(final Context activity) {
-            return new InternalHelper<F, Context>() {
-                @Override
-                public Context getActivity() {
-                    return activity;
-                }
-
-                @Override
-                public F getTargetFragment() {
-                    return null;
-                }
-            }.createDialog(createArguments());
-        }
-
         /**
          * Sets the target fragment of this {@code DialogFragment}.<br/>
          * Use this method to tell the dialog that {@code fragment} of the argument

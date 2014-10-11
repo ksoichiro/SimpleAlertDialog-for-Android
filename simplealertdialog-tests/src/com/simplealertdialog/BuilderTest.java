@@ -187,47 +187,6 @@ public class BuilderTest extends InstrumentationTestCase {
         assertEquals(args.getInt(SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID, -1), android.R.string.cancel);
     }
 
-    public void testBuilderCreateDialog() {
-        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
-        try {
-            builder.createDialog(null);
-            fail();
-        } catch (NullPointerException e) {
-            // Creating dialog will fail
-        }
-
-        Dialog dialog = builder.createDialog(getInstrumentation().getContext());
-        assertNotNull(dialog);
-
-        builder = new SimpleAlertDialogFragment.Builder();
-        builder.setTheme(android.R.style.Theme_Black);
-        builder.setTitle(android.R.string.dialog_alert_title);
-        builder.setIcon(android.R.drawable.sym_def_app_icon);
-        builder.setMessage(android.R.string.ok);
-        builder.setPositiveButton(android.R.string.ok);
-        builder.setNegativeButton(android.R.string.cancel);
-        dialog = builder.createDialog(getInstrumentation().getContext());
-        assertNotNull(dialog);
-
-        Resources res = getInstrumentation().getContext().getResources();
-        builder = new SimpleAlertDialogFragment.Builder();
-        builder.setTitle(res.getString(android.R.string.dialog_alert_title));
-        builder.setMessage(res.getString(android.R.string.ok));
-        builder.setPositiveButton(res.getString(android.R.string.ok));
-        builder.setNegativeButton(res.getString(android.R.string.cancel));
-        dialog = builder.createDialog(getInstrumentation().getContext());
-        assertNotNull(dialog);
-
-        builder = new SimpleAlertDialogFragment.Builder();
-        builder.setIcon(0);
-        builder.setTitle(null);
-        builder.setMessage(null);
-        builder.setPositiveButton(null);
-        builder.setNegativeButton(null);
-        dialog = builder.createDialog(getInstrumentation().getContext());
-        assertNotNull(dialog);
-    }
-
     public void testBuilderCreate() {
         SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
         SimpleAlertDialogFragment fragment = builder.create();
