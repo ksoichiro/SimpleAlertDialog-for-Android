@@ -119,6 +119,29 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     /**
+     * Listener for item click events of dialog.<br/>
+     * There is no {@code setListener()} method to make these callbacks to be called.<br/>
+     * If the caller {@code Activity} or {@code Fragment} implements this interface
+     * and {@code setItems()} method of builder is called,
+     * {@linkplain com.simplealertdialog.SimpleAlertDialog} will
+     * automatically call back.<br/>
+     */
+    public static interface OnItemClickListener {
+        /**
+         * Called when the negative button is clicked.<br/>
+         * Note that all of the click events from the {@linkplain com.simplealertdialog.SimpleAlertDialog}
+         * will be sent to this method, so you should set {@code requestCode}
+         * to distinguish each dialogs.
+         *
+         * @param dialog      Dialog that own this click event
+         * @param requestCode Request code set to distinguish dialogs
+         * @param which       Selected item index that begins from 0
+         */
+        void onItemClick(final SimpleAlertDialog dialog,
+                                     final int requestCode, final int which);
+    }
+
+    /**
      * Providing the custom view of the dialog.<br/>
      * Use {@code setUseView()} to indicate that the dialog has a custom view.<br/>
      * If the {@code setUseView()} is set to {@code true} and the caller
@@ -226,6 +249,8 @@ public class SimpleAlertDialog extends Dialog {
     static final String ARG_POSITIVE_BUTTON_RES_ID = "argPositiveButtonResId";
     static final String ARG_NEGATIVE_BUTTON = "argNegativeButton";
     static final String ARG_NEGATIVE_BUTTON_RES_ID = "argNegativeButtonResId";
+    static final String ARG_ITEMS = "argItems";
+    static final String ARG_ITEMS_RES_ID = "argItemsResId";
     static final String ARG_REQUEST_CODE = "argRequestCode";
     static final String ARG_CANCELABLE = "argCancelable";
     static final String ARG_CANCELED_ON_TOUCH_OUTSIDE = "argCanceledOnTouchOutside";
@@ -489,6 +514,12 @@ public class SimpleAlertDialog extends Dialog {
         return mView;
     }
 
+    public void setItems(final CharSequence[] items,
+                         final AdapterView.OnItemClickListener listener) {
+        mAdapter = new ArrayAdapter<CharSequence>(getContext(), android.R.layout.simple_list_item_1, items);
+        mListItemListener = listener;
+    }
+
     public void setAdapter(final ListAdapter adapter,
                            final AdapterView.OnItemClickListener listener) {
         if (adapter == null) {
@@ -647,6 +678,8 @@ public class SimpleAlertDialog extends Dialog {
         private int mPositiveButtonResId;
         private CharSequence mNegativeButton;
         private int mNegativeButtonResId;
+        private int mItemsResId;
+        private CharSequence[] mItems;
         private int mRequestCode;
         private boolean mCancelable = true;
         private boolean mCanceledOnTouchOutside = true;
@@ -769,6 +802,31 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
+         * Sets the char sequence array items.<br/>
+         * This also enables callback of the click event of the list items.
+         *
+         * @param items Char sequence array for items
+         * @return Builder itself
+         */
+        @TargetApi(Build.VERSION_CODES.ECLAIR)
+        public Builder<T, F> setItems(final CharSequence[] items) {
+            mItems = items;
+            return this;
+        }
+
+        /**
+         * Sets the char sequence array items.<br/>
+         * This also enables callback of the click event of the list items.
+         *
+         * @param resId Char sequence array resource ID for items
+         * @return Builder itself
+         */
+        public Builder<T, F> setItems(final int resId) {
+            mItemsResId = resId;
+            return this;
+        }
+
+        /**
          * Sets the request code of the callbacks.<br/>
          * This code will be passed to the callbacks to distinguish
          * other dialogs.
@@ -877,6 +935,11 @@ public class SimpleAlertDialog extends Dialog {
                 args.putCharSequence(SimpleAlertDialog.ARG_NEGATIVE_BUTTON, mNegativeButton);
             } else if (mNegativeButtonResId > 0) {
                 args.putInt(SimpleAlertDialog.ARG_NEGATIVE_BUTTON_RES_ID, mNegativeButtonResId);
+            }
+            if (mItems != null && Build.VERSION_CODES.ECLAIR <= Build.VERSION.SDK_INT) {
+                args.putCharSequenceArray(SimpleAlertDialog.ARG_ITEMS, mItems);
+            } else if (mItemsResId > 0) {
+                args.putInt(SimpleAlertDialog.ARG_ITEMS_RES_ID, mItemsResId);
             }
             args.putBoolean(SimpleAlertDialog.ARG_CANCELABLE, mCancelable);
             args.putBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE,

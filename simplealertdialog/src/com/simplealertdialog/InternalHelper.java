@@ -19,6 +19,7 @@ package com.simplealertdialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,12 +42,18 @@ abstract class InternalHelper<F, A extends Context> {
         setMessage(args, dialog);
         final int requestCode = getRequestCode(args);
         setView(args, dialog, requestCode);
+        setItems(args, dialog, requestCode);
         setAdapter(args, dialog, requestCode);
         setSingleChoiceItems(args, dialog, requestCode);
         setPositiveButton(args, dialog, requestCode);
         setNegativeButton(args, dialog, requestCode);
         setCancelable(args, dialog);
         return dialog;
+    }
+
+    public boolean hasItemClickListener() {
+        return (fragmentImplements(SimpleAlertDialog.OnItemClickListener.class)
+                || activityImplements(SimpleAlertDialog.OnItemClickListener.class));
     }
 
     public boolean hasListProvider(Bundle args) {
@@ -123,6 +130,37 @@ abstract class InternalHelper<F, A extends Context> {
         if (activityImplements(SimpleAlertDialog.ViewProvider.class)) {
             dialog.setView(((SimpleAlertDialog.ViewProvider) getActivity())
                     .onCreateView(dialog, requestCode));
+        }
+    }
+
+    private void setItems(Bundle args, final SimpleAlertDialog dialog, final int requestCode) {
+        if (!hasItemClickListener()) {
+            return;
+        }
+        CharSequence[] items;
+        if (has(args, SimpleAlertDialog.ARG_ITEMS) && Build.VERSION_CODES.ECLAIR <= Build.VERSION.SDK_INT) {
+            items = args.getCharSequenceArray(SimpleAlertDialog.ARG_ITEMS);
+        } else if (has(args, SimpleAlertDialog.ARG_ITEMS_RES_ID)) {
+            items = getActivity().getResources().getTextArray(args.getInt(SimpleAlertDialog.ARG_ITEMS_RES_ID));
+        } else {
+            return;
+        }
+        if (fragmentImplements(SimpleAlertDialog.OnItemClickListener.class)
+                || activityImplements(SimpleAlertDialog.OnItemClickListener.class)) {
+            dialog.setItems(items,
+                    new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            if (fragmentImplements(SimpleAlertDialog.OnItemClickListener.class)) {
+                                ((SimpleAlertDialog.OnItemClickListener) getTargetFragment())
+                                        .onItemClick(dialog, requestCode, position);
+                            }
+                            if (activityImplements(SimpleAlertDialog.OnItemClickListener.class)) {
+                                ((SimpleAlertDialog.OnItemClickListener) getActivity())
+                                        .onItemClick(dialog, requestCode, position);
+                            }
+                        }
+                    });
         }
     }
 

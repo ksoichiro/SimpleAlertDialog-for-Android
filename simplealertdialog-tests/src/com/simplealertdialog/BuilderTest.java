@@ -16,8 +16,10 @@
 
 package com.simplealertdialog;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.test.InstrumentationTestCase;
 
@@ -115,6 +117,29 @@ public class BuilderTest extends InstrumentationTestCase {
         assertEquals(builder.setNegativeButton("NEGATIVE"), builder);
         args = builder.createArguments();
         assertEquals(args.getString(SimpleAlertDialog.ARG_NEGATIVE_BUTTON), "NEGATIVE");
+    }
+
+    @TargetApi(Build.VERSION_CODES.FROYO)
+    public void testBuilderSetItems() {
+        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
+        Bundle args = builder.createArguments();
+        assertNotNull(args);
+        assertEquals(args.getString(SimpleAlertDialog.ARG_ITEMS), null);
+        CharSequence[] items = new String[] {"a", "b", "c"};
+        assertEquals(builder.setItems(items), builder);
+        args = builder.createArguments();
+        assertEquals(args.getCharSequenceArray(SimpleAlertDialog.ARG_ITEMS), items);
+    }
+
+    @TargetApi(Build.VERSION_CODES.FROYO)
+    public void testBuilderSetItemsByResources() {
+        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
+        Bundle args = builder.createArguments();
+        assertNotNull(args);
+        assertEquals(args.getInt(SimpleAlertDialog.ARG_ITEMS_RES_ID, -1), -1);
+        assertEquals(builder.setItems(com.simplealertdialog.test.R.array.single_choice), builder);
+        args = builder.createArguments();
+        assertEquals(com.simplealertdialog.test.R.array.single_choice, args.getInt(SimpleAlertDialog.ARG_ITEMS_RES_ID));
     }
 
     public void testBuilderSetRequestCode() {

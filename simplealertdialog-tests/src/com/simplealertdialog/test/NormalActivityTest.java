@@ -116,6 +116,30 @@ public class NormalActivityTest extends ActivityInstrumentationTestCase2<NormalA
         });
     }
 
+    public void testItems() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(com.simplealertdialog.test.R.id.btn_items).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+        final ListView lv = (ListView) d.findViewById(R.id.list);
+        assertNotNull(lv);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                lv.performItemClick(lv, 0, 0);
+            }
+        });
+    }
+
     public void testAdapter() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override

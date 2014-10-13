@@ -30,15 +30,17 @@ import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
 public class SupportActivity extends FragmentActivity
         implements SimpleAlertDialog.OnClickListener,
+        SimpleAlertDialog.OnItemClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
         SimpleAlertDialog.ViewProvider,
         SimpleAlertDialog.OnCancelListener {
 
     private static final int REQUEST_CODE_BUTTONS = 1;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 2;
-    private static final int REQUEST_CODE_ADAPTER = 3;
-    private static final int REQUEST_CODE_VIEW = 4;
+    private static final int REQUEST_CODE_ITEMS = 2;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 3;
+    private static final int REQUEST_CODE_ADAPTER = 4;
+    private static final int REQUEST_CODE_VIEW = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,17 @@ public class SupportActivity extends FragmentActivity
                         .setPositiveButton(android.R.string.ok)
                         .setNegativeButton(android.R.string.cancel)
                         .setRequestCode(REQUEST_CODE_BUTTONS)
+                        .create().show(getSupportFragmentManager(), "dialog");
+            }
+        });
+
+        findViewById(R.id.btn_items).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogSupportFragment.Builder()
+                        .setTitle("Choose one")
+                        .setItems(R.array.single_choice)
+                        .setRequestCode(REQUEST_CODE_ITEMS)
                         .create().show(getSupportFragmentManager(), "dialog");
             }
         });
@@ -152,6 +165,15 @@ public class SupportActivity extends FragmentActivity
                                               View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onItemClick(SimpleAlertDialog dialog, int requestCode, int which) {
+        if (requestCode == REQUEST_CODE_ITEMS) {
+            Toast.makeText(this,
+                    getResources().getTextArray(R.array.single_choice)[which] + " selected",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
