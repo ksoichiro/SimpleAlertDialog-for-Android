@@ -32,6 +32,7 @@ import com.simplealertdialog.SimpleAlertDialogFragment;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class NormalActivity extends Activity
         implements SimpleAlertDialog.OnClickListener,
+        SimpleAlertDialog.OnItemClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
         SimpleAlertDialog.ViewProvider,
@@ -39,9 +40,11 @@ public class NormalActivity extends Activity
 
     private static final int REQUEST_CODE_BUTTONS = 1;
     private static final int REQUEST_CODE_BUTTONS_STRING = 2;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 3;
-    private static final int REQUEST_CODE_ADAPTER = 4;
-    private static final int REQUEST_CODE_VIEW = 5;
+    private static final int REQUEST_CODE_ITEMS_RES_ID = 3;
+    private static final int REQUEST_CODE_ITEMS = 4;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 5;
+    private static final int REQUEST_CODE_ADAPTER = 6;
+    private static final int REQUEST_CODE_VIEW = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,28 @@ public class NormalActivity extends Activity
                         .setPositiveButton(getString(android.R.string.ok))
                         .setNegativeButton(getString(android.R.string.cancel))
                         .setRequestCode(REQUEST_CODE_BUTTONS_STRING)
+                        .create().show(getFragmentManager(), "dialog");
+            }
+        });
+
+        findViewById(com.simplealertdialog.test.R.id.btn_items_res_id).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle("Choose one")
+                        .setItems(R.array.single_choice)
+                        .setRequestCode(REQUEST_CODE_ITEMS_RES_ID)
+                        .create().show(getFragmentManager(), "dialog");
+            }
+        });
+
+        findViewById(com.simplealertdialog.test.R.id.btn_items).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle("Choose one")
+                        .setItems(getResources().getTextArray(R.array.single_choice))
+                        .setRequestCode(REQUEST_CODE_ITEMS)
                         .create().show(getFragmentManager(), "dialog");
             }
         });
@@ -165,6 +190,19 @@ public class NormalActivity extends Activity
                                               final View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onItemClick(SimpleAlertDialog dialog, int requestCode, int which) {
+        if (requestCode == REQUEST_CODE_ITEMS_RES_ID) {
+            Toast.makeText(this,
+                    getResources().getTextArray(com.simplealertdialog.test.R.array.single_choice)[which] + " selected (resource ID)",
+                    Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_ITEMS) {
+            Toast.makeText(this,
+                    getResources().getTextArray(com.simplealertdialog.test.R.array.single_choice)[which] + " selected",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -34,6 +34,7 @@ import android.widget.Toast;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class SampleNormalFragment extends Fragment
         implements SimpleAlertDialog.OnClickListener,
+        SimpleAlertDialog.OnItemClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
         SimpleAlertDialog.ViewProvider {
@@ -42,9 +43,10 @@ public class SampleNormalFragment extends Fragment
     // If you do so, both the activity's and fragment's handler will be
     // executed.
     private static final int REQUEST_CODE_BUTTONS = -1;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -2;
-    private static final int REQUEST_CODE_ADAPTER = -3;
-    private static final int REQUEST_CODE_VIEW = -4;
+    private static final int REQUEST_CODE_ITEMS = -2;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -3;
+    private static final int REQUEST_CODE_ADAPTER = -4;
+    private static final int REQUEST_CODE_VIEW = -5;
 
     /*
      * Default constructor must be implemented for Fragments.
@@ -99,6 +101,19 @@ public class SampleNormalFragment extends Fragment
                         .create().show(getActivity().getFragmentManager(), "dialog");
             }
         });
+
+        view.findViewById(R.id.btn_frag_items).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        new SimpleAlertDialogFragment.Builder()
+                                .setTitle("Choose one")
+                                .setItems(R.array.single_choice)
+                                .setRequestCode(REQUEST_CODE_ITEMS)
+                                .setTargetFragment(SampleNormalFragment.this)
+                                .create().show(getActivity().getFragmentManager(), "dialog");
+                    }
+                });
 
         view.findViewById(R.id.btn_frag_single_choice_list).setOnClickListener(
                 new View.OnClickListener() {
@@ -171,6 +186,15 @@ public class SampleNormalFragment extends Fragment
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: Cancel button clicked", Toast.LENGTH_SHORT)
                     .show();
+        }
+    }
+
+    @Override
+    public void onItemClick(SimpleAlertDialog dialog, int requestCode, int which) {
+        if (requestCode == REQUEST_CODE_ITEMS) {
+            Toast.makeText(getActivity(),
+                    getResources().getTextArray(R.array.single_choice)[which] + " selected",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

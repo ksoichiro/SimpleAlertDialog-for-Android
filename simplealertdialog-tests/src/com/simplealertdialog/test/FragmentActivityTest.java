@@ -23,6 +23,7 @@ import android.os.Build;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.simplealertdialog.SimpleAlertDialogFragment;
@@ -91,6 +92,33 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
             @Override
             public void run() {
                 negative.performClick();
+            }
+        });
+    }
+
+    public void testItems() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Fragment f = activity.getFragmentManager().findFragmentById(R.id.fragment_sample);
+                assertNotNull(f);
+                assertNotNull(f.getView());
+                f.getView().findViewById(R.id.btn_frag_items).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+
+        final ListView lv = (ListView) d.findViewById(R.id.list);
+        assertNotNull(lv);
+        assertTrue(lv.getAdapter() instanceof ArrayAdapter<?>);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                lv.performItemClick(lv, 0, 0);
             }
         });
     }
