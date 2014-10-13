@@ -16,6 +16,7 @@
 
 package com.simplealertdialog;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -133,6 +134,7 @@ abstract class InternalHelper<F, A extends Context> {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.FROYO)
     private void setItems(Bundle args, final SimpleAlertDialog dialog, final int requestCode) {
         if (!hasItemClickListener()) {
             return;

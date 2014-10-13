@@ -908,6 +908,7 @@ public class SimpleAlertDialog extends Dialog {
          *
          * @return Created arguments bundle
          */
+        @TargetApi(Build.VERSION_CODES.FROYO)
         public Bundle createArguments() {
             Bundle args = new Bundle();
             if (mThemeResId > 0) {
