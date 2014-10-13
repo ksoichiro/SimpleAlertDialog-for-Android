@@ -94,9 +94,41 @@ public void onDialogNegativeButtonClicked(SimpleAlertDialog dialog,
 上記のリクエストコード(requestCode)を設定するのを忘れないでください。  
 ひとつの`Actvity`や`Fragment`の中で複数の種類のダイアログを表示させる場合、同じコールバックメソッドを共用することになります。そこで、「リクエストコード」を設定してからダイアログを表示させ、コールバックでそのリクエストコードを渡すこと、どのダイアログによるイベントなのかを区別します。
 
+### リスト
+
+![リスト](simplealertdialog-samples/images/screenshot_dialog3_items.png "リスト")
+
+リストのダイアログは、以下のように表示します。
+
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setTitle("Choose one")
+        .setItems(R.array.single_choice)
+        .setRequestCode(REQUEST_CODE_ITEMS)
+        .create().show(getFragmentManager(), "dialog");
+```
+
+インタフェースを実装します。
+
+```java
+implements SimpleAlertDialog.OnItemClickListener
+```
+
+コールバックを実装します。
+
+```java
+@Override
+public void onOnItemClick(final SimpleAlertDialog dialog, int requestCode,
+        int which) {
+    if (requestCode == REQUEST_CODE_ITEMS) {
+        // Do something
+    }
+}
+```
+
 ### 単一選択リスト(Single choice list)
 
-![Single choice list](simplealertdialog-samples/images/screenshot_dialog3_singlechoice.png "Single choice list")
+![Single choice list](simplealertdialog-samples/images/screenshot_dialog4_singlechoice.png "Single choice list")
 
 単一選択リストのダイアログは、以下のように表示します。
 
@@ -136,7 +168,7 @@ public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int req
 
 ### カスタムアダプタ
 
-![Custom adapter](simplealertdialog-samples/images/screenshot_dialog4_adapter.png "Custom adapter")
+![Custom adapter](simplealertdialog-samples/images/screenshot_dialog5_adapter.png "Custom adapter")
 
 カスタマイズした`ListAdapter`を使ったダイアログは以下のように表示します。
 
@@ -176,7 +208,7 @@ public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int posit
 
 ### カスタムビュー
 
-![Custom view](simplealertdialog-samples/images/screenshot_dialog5_view.png "Custom view")
+![Custom view](simplealertdialog-samples/images/screenshot_dialog6_view.png "Custom view")
 
 カスタマイズしたビューを使ったダイアログは以下のように表示します。
 

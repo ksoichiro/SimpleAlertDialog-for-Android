@@ -96,9 +96,43 @@ public void onDialogNegativeButtonClicked(SimpleAlertDialog dialog,
 Don't forget to set the request code.  
 If you handle multiple dialogs in an `Actvity` or `Fragment`, those dialogs call the same event handlers, so the request code is necessery to distinguish them.
 
+### String items
+
+![String items](simplealertdialog-samples/images/screenshot_dialog3_items.png "String items")
+
+You can use the string items style dialog.
+
+Create dialog:
+
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setTitle("Choose one")
+        .setItems(R.array.single_choice)
+        .setRequestCode(REQUEST_CODE_ITEMS)
+        .create().show(getFragmentManager(), "dialog");
+```
+
+Implement the interface:
+
+```java
+implements SimpleAlertDialog.OnItemClickListener
+```
+
+Implement callbacks:
+
+```java
+@Override
+public void onOnItemClick(final SimpleAlertDialog dialog, int requestCode,
+        int which) {
+    if (requestCode == REQUEST_CODE_ITEMS) {
+        // Do something
+    }
+}
+```
+
 ### Single choice list
 
-![Single choice list](simplealertdialog-samples/images/screenshot_dialog3_singlechoice.png "Single choice list")
+![Single choice list](simplealertdialog-samples/images/screenshot_dialog4_singlechoice.png "Single choice list")
 
 You can use the single choice list style dialog.
 
@@ -140,7 +174,7 @@ public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int req
 
 ### Custom adapter
 
-![Custom adapter](simplealertdialog-samples/images/screenshot_dialog4_adapter.png "Custom adapter")
+![Custom adapter](simplealertdialog-samples/images/screenshot_dialog5_adapter.png "Custom adapter")
 
 You can use your custom `ListAdapter` in the dialog.
 
@@ -182,7 +216,7 @@ public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int posit
 
 ### Custom view
 
-![Custom view](simplealertdialog-samples/images/screenshot_dialog5_view.png "Custom view")
+![Custom view](simplealertdialog-samples/images/screenshot_dialog6_view.png "Custom view")
 
 You can use your custom view in the dialog.
 
