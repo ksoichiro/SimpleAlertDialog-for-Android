@@ -22,4 +22,10 @@
         <item>Chinese</item>
     </string-array>
 
+    <string-array name="icon_items">
+        <item>Create</item>
+        <item>Edit</item>
+        <item>Search</item>
+    </string-array>
+
 </resources>

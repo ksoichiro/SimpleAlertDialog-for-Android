@@ -147,22 +147,30 @@ abstract class InternalHelper<F, A extends Context> {
         } else {
             return;
         }
+        int[] icons = null;
+        if (has(args, SimpleAlertDialog.ARG_ICONS)) {
+            icons = args.getIntArray(SimpleAlertDialog.ARG_ICONS);
+        }
         if (fragmentImplements(SimpleAlertDialog.OnItemClickListener.class)
                 || activityImplements(SimpleAlertDialog.OnItemClickListener.class)) {
-            dialog.setItems(items,
-                    new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            if (fragmentImplements(SimpleAlertDialog.OnItemClickListener.class)) {
-                                ((SimpleAlertDialog.OnItemClickListener) getTargetFragment())
-                                        .onItemClick(dialog, requestCode, position);
-                            }
-                            if (activityImplements(SimpleAlertDialog.OnItemClickListener.class)) {
-                                ((SimpleAlertDialog.OnItemClickListener) getActivity())
-                                        .onItemClick(dialog, requestCode, position);
-                            }
-                        }
-                    });
+            AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (fragmentImplements(SimpleAlertDialog.OnItemClickListener.class)) {
+                        ((SimpleAlertDialog.OnItemClickListener) getTargetFragment())
+                                .onItemClick(dialog, requestCode, position);
+                    }
+                    if (activityImplements(SimpleAlertDialog.OnItemClickListener.class)) {
+                        ((SimpleAlertDialog.OnItemClickListener) getActivity())
+                                .onItemClick(dialog, requestCode, position);
+                    }
+                }
+            };
+            if (icons == null) {
+                dialog.setItems(items, listener);
+            } else {
+                dialog.setItems(items, icons, listener);
+            }
         }
     }
 

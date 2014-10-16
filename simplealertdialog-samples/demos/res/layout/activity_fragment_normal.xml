@@ -63,6 +63,12 @@
             android:text="Items" />
 
         <Button
+            android:id="@+id/btn_icon_items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Items with icons" />
+
+        <Button
             android:id="@+id/btn_single_choice_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
