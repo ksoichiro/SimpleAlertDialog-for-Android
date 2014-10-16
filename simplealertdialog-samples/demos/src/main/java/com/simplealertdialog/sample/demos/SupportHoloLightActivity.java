@@ -18,4 +18,13 @@ package com.simplealertdialog.sample.demos;
 
 public class SupportHoloLightActivity extends SupportActivity {
 
+    @Override
+    protected int[] getIcons() {
+        return new int[] {
+                R.drawable.ic_action_aci_document3_holo_light,
+                R.drawable.ic_action_aci_edit_holo_light,
+                R.drawable.ic_action_aci_search_holo_light,
+        };
+    }
+
 }

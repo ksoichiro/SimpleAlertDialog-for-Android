@@ -42,9 +42,10 @@ public class NormalActivity extends Activity
     private static final int REQUEST_CODE_BUTTONS_STRING = 2;
     private static final int REQUEST_CODE_ITEMS_RES_ID = 3;
     private static final int REQUEST_CODE_ITEMS = 4;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 5;
-    private static final int REQUEST_CODE_ADAPTER = 6;
-    private static final int REQUEST_CODE_VIEW = 7;
+    private static final int REQUEST_CODE_ICON_ITEMS = 5;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 6;
+    private static final int REQUEST_CODE_ADAPTER = 7;
+    private static final int REQUEST_CODE_VIEW = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +129,17 @@ public class NormalActivity extends Activity
             }
         });
 
+        findViewById(com.simplealertdialog.test.R.id.btn_icon_items).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle("Choose one")
+                        .setItems(getResources().getTextArray(R.array.icon_items), getIcons())
+                        .setRequestCode(REQUEST_CODE_ICON_ITEMS)
+                        .create().show(getFragmentManager(), "dialog");
+            }
+        });
+
         findViewById(com.simplealertdialog.test.R.id.btn_single_choice_list).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -203,6 +215,10 @@ public class NormalActivity extends Activity
             Toast.makeText(this,
                     getResources().getTextArray(com.simplealertdialog.test.R.array.single_choice)[which] + " selected",
                     Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_ICON_ITEMS) {
+            Toast.makeText(this,
+                    getResources().getTextArray(com.simplealertdialog.test.R.array.icon_items)[which] + " selected",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -255,4 +271,12 @@ public class NormalActivity extends Activity
     public void onDialogCancel(SimpleAlertDialog dialog, int requestCode, View view) {
         Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
     }
+
+    protected int[] getIcons() {
+        return new int[]{R.drawable.ic_action_aci_document3,
+                R.drawable.ic_action_aci_edit,
+                R.drawable.ic_action_aci_search,
+        };
+    }
+
 }

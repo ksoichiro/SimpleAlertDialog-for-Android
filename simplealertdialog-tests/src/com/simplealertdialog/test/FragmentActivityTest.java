@@ -123,6 +123,33 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
         });
     }
 
+    public void testItemsWithIcons() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Fragment f = activity.getFragmentManager().findFragmentById(R.id.fragment_sample);
+                assertNotNull(f);
+                assertNotNull(f.getView());
+                f.getView().findViewById(R.id.btn_frag_icon_items).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+
+        final ListView lv = (ListView) d.findViewById(R.id.list);
+        assertNotNull(lv);
+        assertTrue(lv.getAdapter() instanceof ArrayAdapter<?>);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                lv.performItemClick(lv, 0, 0);
+            }
+        });
+    }
+
     public void testAdapter() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override

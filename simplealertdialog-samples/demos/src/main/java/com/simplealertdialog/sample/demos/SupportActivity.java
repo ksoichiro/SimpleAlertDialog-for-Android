@@ -16,9 +16,6 @@
 
 package com.simplealertdialog.sample.demos;
 
-import com.simplealertdialog.SimpleAlertDialog;
-import com.simplealertdialog.SimpleAlertDialogSupportFragment;
-
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -27,6 +24,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Toast;
+
+import com.simplealertdialog.SimpleAlertDialog;
+import com.simplealertdialog.SimpleAlertDialogSupportFragment;
 
 public class SupportActivity extends FragmentActivity
         implements SimpleAlertDialog.OnClickListener,
@@ -37,9 +37,10 @@ public class SupportActivity extends FragmentActivity
 
     private static final int REQUEST_CODE_BUTTONS = 1;
     private static final int REQUEST_CODE_ITEMS = 2;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 3;
-    private static final int REQUEST_CODE_ADAPTER = 4;
-    private static final int REQUEST_CODE_VIEW = 5;
+    private static final int REQUEST_CODE_ICON_ITEMS = 3;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 4;
+    private static final int REQUEST_CODE_ADAPTER = 5;
+    private static final int REQUEST_CODE_VIEW = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +99,17 @@ public class SupportActivity extends FragmentActivity
                         .setTitle("Choose one")
                         .setItems(R.array.single_choice)
                         .setRequestCode(REQUEST_CODE_ITEMS)
+                        .create().show(getSupportFragmentManager(), "dialog");
+            }
+        });
+
+        findViewById(R.id.btn_icon_items).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogSupportFragment.Builder()
+                        .setTitle("Choose one")
+                        .setItems(R.array.icon_items, getIcons())
+                        .setRequestCode(REQUEST_CODE_ICON_ITEMS)
                         .create().show(getSupportFragmentManager(), "dialog");
             }
         });
@@ -181,6 +193,10 @@ public class SupportActivity extends FragmentActivity
             Toast.makeText(this,
                     getResources().getTextArray(R.array.single_choice)[which] + " selected",
                     Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_ICON_ITEMS) {
+            Toast.makeText(this,
+                    getResources().getTextArray(R.array.icon_items)[which] + " selected",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -219,6 +235,13 @@ public class SupportActivity extends FragmentActivity
             return view;
         }
         return null;
+    }
+
+    protected int[] getIcons() {
+        return new int[]{R.drawable.ic_action_aci_document3,
+                R.drawable.ic_action_aci_edit,
+                R.drawable.ic_action_aci_search,
+        };
     }
 
 }

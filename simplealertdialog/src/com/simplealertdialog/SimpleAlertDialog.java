@@ -138,7 +138,7 @@ public class SimpleAlertDialog extends Dialog {
          * @param which       Selected item index that begins from 0
          */
         void onItemClick(final SimpleAlertDialog dialog,
-                                     final int requestCode, final int which);
+                         final int requestCode, final int which);
     }
 
     /**
@@ -239,6 +239,16 @@ public class SimpleAlertDialog extends Dialog {
                                           final int position);
     }
 
+    private class IconListItem {
+        public int iconResId;
+        public CharSequence text;
+
+        public IconListItem(final int iconResId, CharSequence text) {
+            this.iconResId = iconResId;
+            this.text = text;
+        }
+    }
+
     static final String ARG_THEME_RES_ID = "argThemeResId";
     static final String ARG_TITLE = "argTitle";
     static final String ARG_TITLE_RES_ID = "argTitleResId";
@@ -251,6 +261,7 @@ public class SimpleAlertDialog extends Dialog {
     static final String ARG_NEGATIVE_BUTTON_RES_ID = "argNegativeButtonResId";
     static final String ARG_ITEMS = "argItems";
     static final String ARG_ITEMS_RES_ID = "argItemsResId";
+    static final String ARG_ICONS = "argIcons";
     static final String ARG_REQUEST_CODE = "argRequestCode";
     static final String ARG_CANCELABLE = "argCancelable";
     static final String ARG_CANCELED_ON_TOUCH_OUTSIDE = "argCanceledOnTouchOutside";
@@ -520,6 +531,33 @@ public class SimpleAlertDialog extends Dialog {
         mListItemListener = listener;
     }
 
+    public void setItems(final CharSequence[] items,
+                         final int[] iconResIds,
+                         final AdapterView.OnItemClickListener listener) {
+        if (iconResIds == null || items == null) {
+            return;
+        }
+        final IconListItem[] iconListItems = new IconListItem[Math.min(iconResIds.length, items.length)];
+        for (int i = 0; i < iconResIds.length && i < items.length; i++) {
+            iconListItems[i] = new IconListItem(iconResIds[i], items[i]);
+        }
+        mAdapter = new ArrayAdapter<IconListItem>(getContext(), android.R.layout.simple_list_item_1, iconListItems) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                if (view != null) {
+                    TextView tv = (TextView) view.findViewById(android.R.id.text1);
+                    tv.setText(iconListItems[position].text);
+                    tv.setCompoundDrawablesWithIntrinsicBounds(iconListItems[position].iconResId, 0, 0, 0);
+                    int padding = (int) (8 * getContext().getResources().getDisplayMetrics().density);
+                    tv.setCompoundDrawablePadding(padding);
+                }
+                return view;
+            }
+        };
+        mListItemListener = listener;
+    }
+
     public void setAdapter(final ListAdapter adapter,
                            final AdapterView.OnItemClickListener listener) {
         if (adapter == null) {
@@ -680,6 +718,7 @@ public class SimpleAlertDialog extends Dialog {
         private int mNegativeButtonResId;
         private int mItemsResId;
         private CharSequence[] mItems;
+        private int[] mIcons;
         private int mRequestCode;
         private boolean mCancelable = true;
         private boolean mCanceledOnTouchOutside = true;
@@ -827,6 +866,35 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
+         * Sets the char sequence array items.<br/>
+         * This also enables callback of the click event of the list items.
+         *
+         * @param items Char sequence array for items
+         * @param icons Icon resource ID array
+         * @return Builder itself
+         */
+        @TargetApi(Build.VERSION_CODES.ECLAIR)
+        public Builder<T, F> setItems(final CharSequence[] items, final int[] icons) {
+            mItems = items;
+            mIcons = icons;
+            return this;
+        }
+
+        /**
+         * Sets the char sequence array items.<br/>
+         * This also enables callback of the click event of the list items.
+         *
+         * @param resId Char sequence array resource ID for items
+         * @param icons Icon resource ID array
+         * @return Builder itself
+         */
+        public Builder<T, F> setItems(final int resId, final int[] icons) {
+            mItemsResId = resId;
+            mIcons = icons;
+            return this;
+        }
+
+        /**
          * Sets the request code of the callbacks.<br/>
          * This code will be passed to the callbacks to distinguish
          * other dialogs.
@@ -941,6 +1009,9 @@ public class SimpleAlertDialog extends Dialog {
                 args.putCharSequenceArray(SimpleAlertDialog.ARG_ITEMS, mItems);
             } else if (mItemsResId > 0) {
                 args.putInt(SimpleAlertDialog.ARG_ITEMS_RES_ID, mItemsResId);
+            }
+            if (mIcons != null) {
+                args.putIntArray(SimpleAlertDialog.ARG_ICONS, mIcons);
             }
             args.putBoolean(SimpleAlertDialog.ARG_CANCELABLE, mCancelable);
             args.putBoolean(SimpleAlertDialog.ARG_CANCELED_ON_TOUCH_OUTSIDE,

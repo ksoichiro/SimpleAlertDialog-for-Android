@@ -116,6 +116,30 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
         });
     }
 
+    public void testItemsWithIcons() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_icon_items).performClick();
+                activity.getSupportFragmentManager().executePendingTransactions();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+
+        Dialog d = ((SimpleAlertDialogSupportFragment) f).getDialog();
+        assertNotNull(d);
+        final ListView lv = (ListView) d.findViewById(R.id.list);
+        assertNotNull(lv);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                lv.performItemClick(lv, 0, 0);
+            }
+        });
+    }
+
     public void testAdapter() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override

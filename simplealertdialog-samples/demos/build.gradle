@@ -12,11 +12,14 @@ apply plugin: 'com.android.application'
 // This is required to resolve Jacoco dependency
 repositories {
     mavenCentral()
+    maven {
+        url uri('https://oss.sonatype.org/content/repositories/releases/')
+    }
 }
 
 dependencies {
     compile 'com.android.support:support-v4:20.0.0'
-    compile 'com.github.ksoichiro:androidcolorfulicons:0.1.0'
+    compile 'com.github.ksoichiro:androidcolorfulicons:0.1.1'
     compile project(':simplealertdialog')
 }
 
