@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2014 Soichiro Kashima
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,90 +13,95 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:baselineAligned="false"
-    tools:context=".SupportActivity" >
+    tools:context=".SupportActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Activity" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Message" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Activity" />
 
-        <Button
-            android:id="@+id/btn_message_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Message &amp; Title" />
+            <Button
+                android:id="@+id/btn_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message" />
 
-        <Button
-            android:id="@+id/btn_buttons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buttons" />
+            <Button
+                android:id="@+id/btn_message_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message &amp; Title" />
 
-        <Button
-            android:id="@+id/btn_items"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Items" />
+            <Button
+                android:id="@+id/btn_buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buttons" />
 
-        <Button
-            android:id="@+id/btn_icon_items"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Items with icons" />
+            <Button
+                android:id="@+id/btn_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Items" />
 
-        <Button
-            android:id="@+id/btn_single_choice_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Single Choice" />
+            <Button
+                android:id="@+id/btn_icon_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Items with icons" />
 
-        <Button
-            android:id="@+id/btn_adapter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Adapter" />
+            <Button
+                android:id="@+id/btn_single_choice_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Single Choice" />
 
-        <Button
-            android:id="@+id/btn_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View" />
+            <Button
+                android:id="@+id/btn_adapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adapter" />
 
-        <Button
-            android:id="@+id/btn_themed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Themed" />
+            <Button
+                android:id="@+id/btn_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View" />
+
+            <Button
+                android:id="@+id/btn_themed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Themed" />
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/fragment_sample"
+            android:name="com.simplealertdialog.sample.demos.SampleNormalFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
     </LinearLayout>
-
-    <fragment
-        android:id="@+id/fragment_sample"
-        android:name="com.simplealertdialog.sample.demos.SampleNormalFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
-</LinearLayout>
+</ScrollView>
