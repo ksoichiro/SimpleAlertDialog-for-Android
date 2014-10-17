@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -44,6 +45,7 @@ public class NormalActivity extends Activity
     private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 4;
     private static final int REQUEST_CODE_ADAPTER = 5;
     private static final int REQUEST_CODE_VIEW = 6;
+    private static final int REQUEST_CODE_EDIT_TEXT = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +153,18 @@ public class NormalActivity extends Activity
             }
         });
 
+        findViewById(R.id.btn_edit_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle("Enter password")
+                        .setEditText("", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                        .setPositiveButton(android.R.string.ok)
+                        .setRequestCode(REQUEST_CODE_EDIT_TEXT)
+                        .create().show(getFragmentManager(), "dialog");
+            }
+        });
+
         findViewById(R.id.btn_themed).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -170,6 +184,9 @@ public class NormalActivity extends Activity
             Toast.makeText(this, "OK button clicked", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
             String text = ((EditText) view.findViewById(R.id.text)).getText().toString();
+            Toast.makeText(this, "You typed: " + text, Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_EDIT_TEXT) {
+            String text = ((EditText) view.findViewById(android.R.id.text1)).getText().toString();
             Toast.makeText(this, "You typed: " + text, Toast.LENGTH_SHORT).show();
         }
     }

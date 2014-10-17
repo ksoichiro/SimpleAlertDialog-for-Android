@@ -21,6 +21,7 @@ import android.app.Fragment;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class SampleNormalFragment extends Fragment
     private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -4;
     private static final int REQUEST_CODE_ADAPTER = -5;
     private static final int REQUEST_CODE_VIEW = -6;
+    private static final int REQUEST_CODE_EDIT_TEXT = -7;
 
     /*
      * Default constructor must be implemented for Fragments.
@@ -168,6 +170,19 @@ public class SampleNormalFragment extends Fragment
             }
         });
 
+        view.findViewById(R.id.btn_frag_edit_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle("Enter password")
+                        .setEditText("", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                        .setPositiveButton(android.R.string.ok)
+                        .setRequestCode(REQUEST_CODE_EDIT_TEXT)
+                        .setTargetFragment(SampleNormalFragment.this)
+                        .create().show(getActivity().getFragmentManager(), "dialog");
+            }
+        });
+
         view.findViewById(R.id.btn_frag_themed).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -190,6 +205,10 @@ public class SampleNormalFragment extends Fragment
             Toast.makeText(getActivity(), "Fragment: OK button clicked", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
             String text = ((EditText) view.findViewById(R.id.text)).getText().toString();
+            Toast.makeText(getActivity(), "Fragment: You typed: " + text, Toast.LENGTH_SHORT)
+                    .show();
+        } else if (requestCode == REQUEST_CODE_EDIT_TEXT) {
+            String text = ((EditText) view.findViewById(android.R.id.text1)).getText().toString();
             Toast.makeText(getActivity(), "Fragment: You typed: " + text, Toast.LENGTH_SHORT)
                     .show();
         }

@@ -227,6 +227,21 @@ public class NormalActivityTest extends ActivityInstrumentationTestCase2<NormalA
         getInstrumentation().waitForIdleSync();
     }
 
+    public void testEditText() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_edit_text).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        sendKeys(KeyEvent.KEYCODE_BACK);
+        getInstrumentation().waitForIdleSync();
+    }
+
     public void testThemed() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override
