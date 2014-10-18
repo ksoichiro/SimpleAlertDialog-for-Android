@@ -26,6 +26,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -267,6 +268,8 @@ public class SimpleAlertDialog extends Dialog {
     static final String ARG_CANCELED_ON_TOUCH_OUTSIDE = "argCanceledOnTouchOutside";
     static final String ARG_SINGLE_CHOICE_CHECKED_ITEM = "argSingleChoiceCheckedItem";
     static final String ARG_USE_VIEW = "argUseView";
+    static final String ARG_EDIT_TEXT_INITIAL_TEXT = "argEditTextInitialText";
+    static final String ARG_EDIT_TEXT_INPUT_TYPE = "argEditTextInputType";
     static final String ARG_USE_ADAPTER = "argUseAdapter";
 
     private CharSequence mMessage;
@@ -723,6 +726,8 @@ public class SimpleAlertDialog extends Dialog {
         private boolean mCancelable = true;
         private boolean mCanceledOnTouchOutside = true;
         private int mSingleChoiceCheckedItem = -1;
+        private CharSequence mEditTextInitialText;
+        private int mEditTextInputType;
         private boolean mUseView;
         private boolean mUseAdapter;
 
@@ -947,6 +952,32 @@ public class SimpleAlertDialog extends Dialog {
         }
 
         /**
+         * Sets the dialog to use {@code EditText} widget.<br/>
+         * Same as {@code setEditText(initialText, InputType.TYPE_CLASS_TEXT)}.
+         *
+         * @param initialText initial value of the {@code EditText}
+         * @return Builder itself
+         */
+        public Builder<T, F> setEditText(final CharSequence initialText) {
+            mEditTextInitialText = initialText;
+            mEditTextInputType = InputType.TYPE_CLASS_TEXT;
+            return this;
+        }
+
+        /**
+         * Sets the dialog to use {@code EditText} widget.
+         *
+         * @param initialText initial value of the {@code EditText}
+         * @param inputType   input types of the {@code EditText} defined in {@linkplain android.text.InputType}
+         * @return Builder itself
+         */
+        public Builder<T, F> setEditText(final CharSequence initialText, final int inputType) {
+            mEditTextInitialText = initialText;
+            mEditTextInputType = inputType;
+            return this;
+        }
+
+        /**
          * Sets the dialog to use custom view provided by
          * {@link com.simplealertdialog.SimpleAlertDialog.ViewProvider}.
          *
@@ -1019,6 +1050,10 @@ public class SimpleAlertDialog extends Dialog {
             if (mSingleChoiceCheckedItem >= 0) {
                 args.putInt(SimpleAlertDialog.ARG_SINGLE_CHOICE_CHECKED_ITEM,
                         mSingleChoiceCheckedItem);
+            }
+            if (mEditTextInitialText != null || 0 < mEditTextInputType) {
+                args.putCharSequence(SimpleAlertDialog.ARG_EDIT_TEXT_INITIAL_TEXT, mEditTextInitialText);
+                args.putInt(SimpleAlertDialog.ARG_EDIT_TEXT_INPUT_TYPE, mEditTextInputType);
             }
             args.putBoolean(SimpleAlertDialog.ARG_USE_VIEW, mUseView);
             args.putBoolean(SimpleAlertDialog.ARG_USE_ADAPTER, mUseAdapter);

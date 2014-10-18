@@ -16,20 +16,21 @@
 
 package com.simplealertdialog.sample.demos;
 
-import com.simplealertdialog.SimpleAlertDialog;
-import com.simplealertdialog.SimpleAlertDialogFragment;
-
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Toast;
+
+import com.simplealertdialog.SimpleAlertDialog;
+import com.simplealertdialog.SimpleAlertDialogFragment;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class SampleNormalFragment extends Fragment
@@ -48,6 +49,7 @@ public class SampleNormalFragment extends Fragment
     private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -4;
     private static final int REQUEST_CODE_ADAPTER = -5;
     private static final int REQUEST_CODE_VIEW = -6;
+    private static final int REQUEST_CODE_EDIT_TEXT = -7;
 
     /*
      * Default constructor must be implemented for Fragments.
@@ -74,8 +76,8 @@ public class SampleNormalFragment extends Fragment
                 new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        TypedArray a = getActivity().getTheme().obtainStyledAttributes(new int[] {
-                            R.attr.icon
+                        TypedArray a = getActivity().getTheme().obtainStyledAttributes(new int[]{
+                                R.attr.icon
                         });
                         int iconResId = a.getResourceId(0, 0);
                         a.recycle();
@@ -167,6 +169,20 @@ public class SampleNormalFragment extends Fragment
             }
         });
 
+
+        view.findViewById(R.id.btn_frag_edit_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle("Enter password")
+                        .setEditText("", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                        .setPositiveButton(android.R.string.ok)
+                        .setRequestCode(REQUEST_CODE_EDIT_TEXT)
+                        .setTargetFragment(SampleNormalFragment.this)
+                        .create().show(getActivity().getFragmentManager(), "dialog");
+            }
+        });
+
         view.findViewById(R.id.btn_frag_themed).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -184,11 +200,15 @@ public class SampleNormalFragment extends Fragment
 
     @Override
     public void onDialogPositiveButtonClicked(final SimpleAlertDialog dialog, int requestCode,
-            View view) {
+                                              View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: OK button clicked", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
             String text = ((EditText) view.findViewById(R.id.text)).getText().toString();
+            Toast.makeText(getActivity(), "Fragment: You typed: " + text, Toast.LENGTH_SHORT)
+                    .show();
+        } else if (requestCode == REQUEST_CODE_EDIT_TEXT) {
+            String text = ((EditText) view.findViewById(android.R.id.text1)).getText().toString();
             Toast.makeText(getActivity(), "Fragment: You typed: " + text, Toast.LENGTH_SHORT)
                     .show();
         }
@@ -196,7 +216,7 @@ public class SampleNormalFragment extends Fragment
 
     @Override
     public void onDialogNegativeButtonClicked(final SimpleAlertDialog dialog, int requestCode,
-            View view) {
+                                              View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: Cancel button clicked", Toast.LENGTH_SHORT)
                     .show();
@@ -226,7 +246,7 @@ public class SampleNormalFragment extends Fragment
 
     @Override
     public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int requestCode,
-            int position) {
+                                             int position) {
         if (requestCode == REQUEST_CODE_SINGLE_CHOICE_LIST) {
             Toast.makeText(
                     getActivity(),

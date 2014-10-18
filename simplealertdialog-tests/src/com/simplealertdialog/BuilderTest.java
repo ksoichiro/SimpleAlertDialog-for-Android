@@ -22,6 +22,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.test.InstrumentationTestCase;
+import android.text.InputType;
 
 /**
  * This test case is testing internal methods including package private fields.
@@ -190,6 +191,17 @@ public class BuilderTest extends InstrumentationTestCase {
         builder.setUseView(true);
         args = builder.createArguments();
         assertTrue(args.getBoolean(SimpleAlertDialog.ARG_USE_VIEW, false));
+    }
+
+    public void testBuilderSetEditText() {
+        SimpleAlertDialogFragment.Builder builder = new SimpleAlertDialogFragment.Builder();
+        Bundle args = builder.createArguments();
+        assertNotNull(args);
+        assertNull(args.getCharSequence(SimpleAlertDialog.ARG_EDIT_TEXT_INITIAL_TEXT));
+        assertEquals(0, args.getInt(SimpleAlertDialog.ARG_EDIT_TEXT_INPUT_TYPE, 0));
+        builder.setEditText("b");
+        args = builder.createArguments();
+        assertEquals(InputType.TYPE_CLASS_TEXT, args.getInt(SimpleAlertDialog.ARG_EDIT_TEXT_INPUT_TYPE, InputType.TYPE_NULL));
     }
 
     public void testBuilderSetUseAdapter() {

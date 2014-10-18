@@ -222,6 +222,24 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
         getInstrumentation().waitForIdleSync();
     }
 
+    public void testEditText() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Fragment f = activity.getFragmentManager().findFragmentById(R.id.fragment_sample);
+                assertNotNull(f);
+                assertNotNull(f.getView());
+                f.getView().findViewById(R.id.btn_frag_edit_text).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        sendKeys(KeyEvent.KEYCODE_BACK);
+        getInstrumentation().waitForIdleSync();
+    }
+
     public void testThemed() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override

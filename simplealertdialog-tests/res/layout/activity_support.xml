@@ -89,6 +89,12 @@
             android:text="View" />
 
         <Button
+            android:id="@+id/btn_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EditText" />
+
+        <Button
             android:id="@+id/btn_themed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

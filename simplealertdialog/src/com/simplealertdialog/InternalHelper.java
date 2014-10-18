@@ -22,8 +22,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 
 /**
  * Internal helper class to build dialog.
@@ -41,6 +43,7 @@ abstract class InternalHelper<F, A extends Context> {
         setTitle(args, dialog);
         setIcon(args, dialog);
         setMessage(args, dialog);
+        setEditText(args, dialog);
         final int requestCode = getRequestCode(args);
         setView(args, dialog, requestCode);
         setItems(args, dialog, requestCode);
@@ -118,6 +121,18 @@ abstract class InternalHelper<F, A extends Context> {
             return args.getInt(SimpleAlertDialog.ARG_REQUEST_CODE);
         }
         return 0;
+    }
+
+    private void setEditText(Bundle args, SimpleAlertDialog dialog) {
+        if (!has(args, SimpleAlertDialog.ARG_EDIT_TEXT_INITIAL_TEXT)
+                || !has(args, SimpleAlertDialog.ARG_EDIT_TEXT_INPUT_TYPE)) {
+            return;
+        }
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.sad__dialog_view_editor, null);
+        EditText editText = (EditText) view.findViewById(android.R.id.text1);
+        editText.setText(args.getCharSequence(SimpleAlertDialog.ARG_EDIT_TEXT_INITIAL_TEXT));
+        editText.setInputType(args.getInt(SimpleAlertDialog.ARG_EDIT_TEXT_INPUT_TYPE));
+        dialog.setView(view);
     }
 
     private void setView(Bundle args, SimpleAlertDialog dialog, int requestCode) {
