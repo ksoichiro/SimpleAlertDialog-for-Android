@@ -92,6 +92,51 @@ public class NormalActivityTest extends ActivityInstrumentationTestCase2<NormalA
         });
     }
 
+    public void test3Buttons() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(com.simplealertdialog.test.R.id.btn_3_buttons).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+        View positive = d.findViewById(R.id.button_positive);
+        assertNotNull(positive);
+        final View negative = d.findViewById(R.id.button_negative);
+        assertNotNull(negative);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                negative.performClick();
+            }
+        });
+
+        getInstrumentation().waitForIdleSync();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_3_buttons).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+        final View neutral = d.findViewById(R.id.button_neutral);
+        assertNotNull(neutral);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                neutral.performClick();
+            }
+        });
+    }
+
     public void testButtonsString() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override
@@ -112,6 +157,51 @@ public class NormalActivityTest extends ActivityInstrumentationTestCase2<NormalA
             @Override
             public void run() {
                 negative.performClick();
+            }
+        });
+    }
+
+    public void test3ButtonsString() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_3_buttons_string).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+        View positive = d.findViewById(R.id.button_positive);
+        assertNotNull(positive);
+        final View negative = d.findViewById(R.id.button_negative);
+        assertNotNull(negative);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                negative.performClick();
+            }
+        });
+
+        getInstrumentation().waitForIdleSync();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_3_buttons_string).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+        final View neutral = d.findViewById(R.id.button_neutral);
+        assertNotNull(neutral);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                neutral.performClick();
             }
         });
     }

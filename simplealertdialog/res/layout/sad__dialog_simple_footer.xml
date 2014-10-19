@@ -49,6 +49,33 @@
         android:background="@color/sad__holo_dark_divider" />
 
     <LinearLayout
+        android:id="@+id/button_neutral"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@drawable/sad__list_selector_jb_holo_dark"
+        android:clickable="true"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/button_neutral_label"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:text="@android:string/untitled"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/button_divider_neutral"
+        android:layout_width="0.6dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="0"
+        android:background="@color/sad__holo_dark_divider" />
+
+    <LinearLayout
         android:id="@+id/button_negative"
         android:layout_width="fill_parent"
         android:layout_height="48dp"

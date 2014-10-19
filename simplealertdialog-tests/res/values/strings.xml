@@ -3,5 +3,6 @@
 
     <string name="title">Title by resources</string>
     <string name="message">Message by resources</string>
+    <string name="neutral">Neutral</string>
 
 </resources>

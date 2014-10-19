@@ -25,6 +25,7 @@
     <string name="title_activity_support_custom">Custom styles</string>
     <string name="title_activity_support_holo_light">Holo light styles</string>
     <string name="title_activity_about">About this app</string>
+    <string name="neutral">Neutral</string>
     <string name="msg_version">Version</string>
     <string name="msg_copyright">&amp;copy; 2014 Soichiro Kashima All rights reserved.</string>
     <string name="msg_about_description">Demo app for SimpleAlertDialog.</string>

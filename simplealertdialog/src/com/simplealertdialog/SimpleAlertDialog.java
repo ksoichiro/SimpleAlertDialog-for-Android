@@ -99,6 +99,28 @@ public class SimpleAlertDialog extends Dialog {
     }
 
     /**
+     * Listener for click events of dialog buttons.<br/>
+     * There is no {@code setListener()} method to make these callbacks to be called.<br/>
+     * If the caller {@code Activity} or {@code Fragment} implements this interface,
+     * {@linkplain com.simplealertdialog.SimpleAlertDialog} will
+     * automatically call back.
+     */
+    public static interface OnNeutralButtonClickListener {
+        /**
+         * Called when the neutral button is clicked.<br/>
+         * Note that all of the click events from the {@linkplain com.simplealertdialog.SimpleAlertDialog}
+         * will be sent to this method, so you should set {@code requestCode}
+         * to distinguish each dialogs.
+         *
+         * @param dialog      Dialog that own this click event
+         * @param requestCode Request code set to distinguish dialogs
+         * @param view        View of the dialog
+         */
+        void onDialogNeutralButtonClicked(final SimpleAlertDialog dialog, final int requestCode,
+                                           final View view);
+    }
+
+    /**
      * Listener for cancel events of dialog.<br/>
      * There is no {@code setListener()} method to make these callbacks to be called.<br/>
      * If the caller {@code Activity} or {@code Fragment} implements this interface,
@@ -258,6 +280,8 @@ public class SimpleAlertDialog extends Dialog {
     static final String ARG_MESSAGE_RES_ID = "argMessageResId";
     static final String ARG_POSITIVE_BUTTON = "argPositiveButton";
     static final String ARG_POSITIVE_BUTTON_RES_ID = "argPositiveButtonResId";
+    static final String ARG_NEUTRAL_BUTTON = "argNeutralButton";
+    static final String ARG_NEUTRAL_BUTTON_RES_ID = "argNeutralButtonResId";
     static final String ARG_NEGATIVE_BUTTON = "argNegativeButton";
     static final String ARG_NEGATIVE_BUTTON_RES_ID = "argNegativeButtonResId";
     static final String ARG_ITEMS = "argItems";
@@ -276,8 +300,10 @@ public class SimpleAlertDialog extends Dialog {
     private CharSequence mTitle;
     private int mIcon;
     private CharSequence mPositiveButtonText;
+    private CharSequence mNeutralButtonText;
     private CharSequence mNegativeButtonText;
     private DialogInterface.OnClickListener mPositiveButtonListener;
+    private DialogInterface.OnClickListener mNeutralButtonListener;
     private DialogInterface.OnClickListener mNegativeButtonListener;
     private View mView;
     private ListAdapter mAdapter;
@@ -448,6 +474,32 @@ public class SimpleAlertDialog extends Dialog {
             findViewById(R.id.button_positive).setVisibility(View.GONE);
         }
 
+        // Neutral Button
+        boolean hasNeutralButton = false;
+        if (mNeutralButtonText != null) {
+            hasNeutralButton = true;
+            ((TextView) findViewById(R.id.button_neutral_label)).setText(mNeutralButtonText);
+            if (mButtonTextStyle != 0) {
+                ((TextView) findViewById(R.id.button_neutral_label)).setTextAppearance(
+                        getContext(), mButtonTextStyle);
+            }
+        }
+        if (mNeutralButtonListener != null) {
+            hasNeutralButton = true;
+            findViewById(R.id.button_neutral).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    if (mNeutralButtonListener != null) {
+                        mNeutralButtonListener.onClick(SimpleAlertDialog.this, 0);
+                    }
+                    dismiss();
+                }
+            });
+        }
+        if (!hasNeutralButton) {
+            findViewById(R.id.button_neutral).setVisibility(View.GONE);
+        }
+
         // Negative Button
         boolean hasNegativeButton = false;
         if (mNegativeButtonText != null) {
@@ -483,6 +535,11 @@ public class SimpleAlertDialog extends Dialog {
         } else {
             setBackground(R.id.button_divider_top, mButtonTopDividerBackground);
             setBackground(R.id.button_divider, mButtonVerticalDividerBackground);
+        }
+        if (hasNeutralButton) {
+            setBackground(R.id.button_divider_neutral, mButtonVerticalDividerBackground);
+        } else {
+            findViewById(R.id.button_divider_neutral).setVisibility(View.GONE);
         }
     }
 
@@ -620,6 +677,20 @@ public class SimpleAlertDialog extends Dialog {
         setPositiveButton(getContext().getText(resId), listener);
     }
 
+    public void setNeutralButton(final CharSequence text,
+                                  final DialogInterface.OnClickListener listener) {
+        if (text == null) {
+            return;
+        }
+        mNeutralButtonText = text;
+        mNeutralButtonListener = listener;
+    }
+
+    public void setNeutralButton(final int resId,
+                                  final DialogInterface.OnClickListener listener) {
+        setNeutralButton(getContext().getText(resId), listener);
+    }
+
     public void setNegativeButton(final CharSequence text,
                                   final DialogInterface.OnClickListener listener) {
         if (text == null) {
@@ -717,6 +788,8 @@ public class SimpleAlertDialog extends Dialog {
         private int mMessageResId;
         private CharSequence mPositiveButton;
         private int mPositiveButtonResId;
+        private CharSequence mNeutralButton;
+        private int mNeutralButtonResId;
         private CharSequence mNegativeButton;
         private int mNegativeButtonResId;
         private int mItemsResId;
@@ -818,6 +891,30 @@ public class SimpleAlertDialog extends Dialog {
          */
         public Builder<T, F> setPositiveButton(final int resId) {
             mPositiveButtonResId = resId;
+            return this;
+        }
+
+        /**
+         * Sets the neutral button's char sequence or string.<br/>
+         * This also enables callback of the click event of the neutral button.
+         *
+         * @param neutralButton Char sequence or string of the neutral button
+         * @return Builder itself
+         */
+        public Builder<T, F> setNeutralButton(final CharSequence neutralButton) {
+            mNeutralButton = neutralButton;
+            return this;
+        }
+
+        /**
+         * Sets the neutral button's char sequence or string.<br/>
+         * This also enables callback of the click event of the neutral button.
+         *
+         * @param resId String resource ID of the neutral button
+         * @return Builder itself
+         */
+        public Builder<T, F> setNeutralButton(final int resId) {
+            mNeutralButtonResId = resId;
             return this;
         }
 
@@ -1030,6 +1127,11 @@ public class SimpleAlertDialog extends Dialog {
                 args.putCharSequence(SimpleAlertDialog.ARG_POSITIVE_BUTTON, mPositiveButton);
             } else if (mPositiveButtonResId > 0) {
                 args.putInt(SimpleAlertDialog.ARG_POSITIVE_BUTTON_RES_ID, mPositiveButtonResId);
+            }
+            if (mNeutralButton != null) {
+                args.putCharSequence(SimpleAlertDialog.ARG_NEUTRAL_BUTTON, mNeutralButton);
+            } else if (mNeutralButtonResId > 0) {
+                args.putInt(SimpleAlertDialog.ARG_NEUTRAL_BUTTON_RES_ID, mNeutralButtonResId);
             }
             if (mNegativeButton != null) {
                 args.putCharSequence(SimpleAlertDialog.ARG_NEGATIVE_BUTTON, mNegativeButton);

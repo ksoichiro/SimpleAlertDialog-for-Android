@@ -96,6 +96,59 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
         });
     }
 
+    public void test3Buttons() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Fragment f = activity.getFragmentManager().findFragmentById(R.id.fragment_sample);
+                assertNotNull(f);
+                assertNotNull(f.getView());
+                f.getView().findViewById(R.id.btn_frag_3_buttons).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+        View positive = d.findViewById(R.id.button_positive);
+        assertNotNull(positive);
+        final View negative = d.findViewById(R.id.button_negative);
+        assertNotNull(negative);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                negative.performClick();
+            }
+        });
+    }
+
+    public void test3Buttons_Neutral() throws Throwable {
+        getInstrumentation().waitForIdleSync();
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Fragment f = activity.getFragmentManager().findFragmentById(R.id.fragment_sample);
+                assertNotNull(f);
+                assertNotNull(f.getView());
+                f.getView().findViewById(R.id.btn_frag_3_buttons).performClick();
+                activity.getFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
+        assertNotNull(d);
+        final View neutral = d.findViewById(R.id.button_neutral);
+        assertNotNull(neutral);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                neutral.performClick();
+            }
+        });
+    }
+
     public void testItems() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override

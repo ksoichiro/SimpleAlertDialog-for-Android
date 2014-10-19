@@ -92,6 +92,52 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
         });
     }
 
+    public void test3Buttons() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_3_buttons).performClick();
+                activity.getSupportFragmentManager().executePendingTransactions();
+            }
+        });
+        Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        Dialog d = ((SimpleAlertDialogSupportFragment) f).getDialog();
+        assertNotNull(d);
+        View positive = d.findViewById(R.id.button_positive);
+        assertNotNull(positive);
+        final View negative = d.findViewById(R.id.button_negative);
+        assertNotNull(negative);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                negative.performClick();
+            }
+        });
+
+        getInstrumentation().waitForIdleSync();
+        runTestOnUiThread(new Runnable() {
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public void run() {
+                activity.findViewById(R.id.btn_3_buttons).performClick();
+                activity.getSupportFragmentManager().executePendingTransactions();
+            }
+        });
+        f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        assertNotNull(f);
+        d = ((SimpleAlertDialogSupportFragment) f).getDialog();
+        assertNotNull(d);
+        final View neutral = d.findViewById(R.id.button_neutral);
+        assertNotNull(neutral);
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                neutral.performClick();
+            }
+        });
+    }
+
     public void testItems() throws Throwable {
         runTestOnUiThread(new Runnable() {
             @Override
