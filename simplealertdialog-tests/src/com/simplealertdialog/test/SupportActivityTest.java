@@ -54,6 +54,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 activity.getSupportFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogSupportFragment) f).getDialog();
@@ -66,6 +67,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 positive.performClick();
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testButtons() throws Throwable {
@@ -76,6 +78,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 activity.getSupportFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogSupportFragment) f).getDialog();
@@ -90,6 +93,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 negative.performClick();
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void test3Buttons() throws Throwable {
@@ -100,6 +104,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 activity.getSupportFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogSupportFragment) f).getDialog();
@@ -124,6 +129,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 activity.getSupportFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         d = ((SimpleAlertDialogSupportFragment) f).getDialog();
@@ -136,6 +142,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 neutral.performClick();
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testItems() throws Throwable {
@@ -160,6 +167,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 lv.performItemClick(lv, 0, 0);
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testItemsWithIcons() throws Throwable {
@@ -184,6 +192,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 lv.performItemClick(lv, 0, 0);
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testAdapter() throws Throwable {
@@ -194,6 +203,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 activity.getSupportFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogSupportFragment) f).getDialog();
@@ -208,6 +218,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 lv.performItemClick(lv, 0, 0);
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testSingleChoiceItems() throws Throwable {
@@ -232,6 +243,7 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
                 lv.performItemClick(lv, 0, 0);
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testView() throws Throwable {
@@ -275,5 +287,6 @@ public class SupportActivityTest extends ActivityInstrumentationTestCase2<Suppor
         getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
+        getInstrumentation().waitForIdleSync();
     }
 }

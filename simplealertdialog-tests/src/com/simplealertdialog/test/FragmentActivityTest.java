@@ -55,6 +55,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 activity.getFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
@@ -67,6 +68,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 positive.performClick();
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testButtons() throws Throwable {
@@ -80,6 +82,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 activity.getFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
@@ -94,6 +97,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 negative.performClick();
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void test3Buttons() throws Throwable {
@@ -107,6 +111,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 activity.getFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
@@ -121,6 +126,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 negative.performClick();
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void test3Buttons_Neutral() throws Throwable {
@@ -135,6 +141,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 activity.getFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
@@ -147,6 +154,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 neutral.performClick();
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testItems() throws Throwable {
@@ -160,6 +168,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 activity.getFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
@@ -174,6 +183,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 lv.performItemClick(lv, 0, 0);
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testItemsWithIcons() throws Throwable {
@@ -187,6 +197,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 activity.getFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
@@ -201,6 +212,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 lv.performItemClick(lv, 0, 0);
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testAdapter() throws Throwable {
@@ -214,6 +226,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 activity.getFragmentManager().executePendingTransactions();
             }
         });
+        getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
         Dialog d = ((SimpleAlertDialogFragment) f).getDialog();
@@ -228,6 +241,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 lv.performItemClick(lv, 0, 0);
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testSingleChoiceItems() throws Throwable {
@@ -255,6 +269,7 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
                 lv.performItemClick(lv, 0, 0);
             }
         });
+        getInstrumentation().waitForIdleSync();
     }
 
     public void testView() throws Throwable {
@@ -307,5 +322,6 @@ public class FragmentActivityTest extends ActivityInstrumentationTestCase2<Fragm
         getInstrumentation().waitForIdleSync();
         Fragment f = getActivity().getFragmentManager().findFragmentByTag("dialog");
         assertNotNull(f);
+        getInstrumentation().waitForIdleSync();
     }
 }

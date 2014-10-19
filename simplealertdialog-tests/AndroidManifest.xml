@@ -26,6 +26,7 @@
         <activity android:name=".NormalActivity" />
         <activity android:name=".SupportActivity" />
         <activity android:name=".FragmentNormalActivity" />
+        <activity android:name=".FragmentSupportActivity" />
     </application>
 
 </manifest>
