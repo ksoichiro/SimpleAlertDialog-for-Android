@@ -98,7 +98,7 @@ If you handle multiple dialogs in an `Actvity` or `Fragment`, those dialogs call
 
 ### String items
 
-![String items](simplealertdialog-samples/images/screenshot_dialog3_items.png "String items")
+![String items](simplealertdialog-samples/images/screenshot_dialog4_items.png "String items")
 
 You can use the string items style dialog.
 
@@ -132,7 +132,7 @@ public void onOnItemClick(final SimpleAlertDialog dialog, int requestCode,
 
 ### Single choice list
 
-![Single choice list](simplealertdialog-samples/images/screenshot_dialog4_singlechoice.png "Single choice list")
+![Single choice list](simplealertdialog-samples/images/screenshot_dialog6_singlechoice.png "Single choice list")
 
 You can use the single choice list style dialog.
 
@@ -174,7 +174,7 @@ public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int req
 
 ### Custom adapter
 
-![Custom adapter](simplealertdialog-samples/images/screenshot_dialog5_adapter.png "Custom adapter")
+![Custom adapter](simplealertdialog-samples/images/screenshot_dialog7_adapter.png "Custom adapter")
 
 You can use your custom `ListAdapter` in the dialog.
 
@@ -216,7 +216,7 @@ public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int posit
 
 ### Custom view
 
-![Custom view](simplealertdialog-samples/images/screenshot_dialog6_view.png "Custom view")
+![Custom view](simplealertdialog-samples/images/screenshot_dialog8_view.png "Custom view")
 
 You can use your custom view in the dialog.
 

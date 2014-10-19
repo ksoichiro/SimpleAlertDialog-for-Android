@@ -96,7 +96,7 @@ public void onDialogNegativeButtonClicked(SimpleAlertDialog dialog,
 
 ### リスト
 
-![リスト](simplealertdialog-samples/images/screenshot_dialog3_items.png "リスト")
+![リスト](simplealertdialog-samples/images/screenshot_dialog4_items.png "リスト")
 
 リストのダイアログは、以下のように表示します。
 
@@ -128,7 +128,7 @@ public void onOnItemClick(final SimpleAlertDialog dialog, int requestCode,
 
 ### 単一選択リスト(Single choice list)
 
-![Single choice list](simplealertdialog-samples/images/screenshot_dialog4_singlechoice.png "Single choice list")
+![Single choice list](simplealertdialog-samples/images/screenshot_dialog6_singlechoice.png "Single choice list")
 
 単一選択リストのダイアログは、以下のように表示します。
 
@@ -168,7 +168,7 @@ public void onSingleChoiceArrayItemClick(final SimpleAlertDialog dialog, int req
 
 ### カスタムアダプタ
 
-![Custom adapter](simplealertdialog-samples/images/screenshot_dialog5_adapter.png "Custom adapter")
+![Custom adapter](simplealertdialog-samples/images/screenshot_dialog7_adapter.png "Custom adapter")
 
 カスタマイズした`ListAdapter`を使ったダイアログは以下のように表示します。
 
@@ -208,7 +208,7 @@ public void onListItemClick(SimpleAlertDialog dialog, int requestCode, int posit
 
 ### カスタムビュー
 
-![Custom view](simplealertdialog-samples/images/screenshot_dialog6_view.png "Custom view")
+![Custom view](simplealertdialog-samples/images/screenshot_dialog8_view.png "Custom view")
 
 カスタマイズしたビューを使ったダイアログは以下のように表示します。
 
