@@ -21,6 +21,7 @@ import com.simplealertdialog.SimpleAlertDialogFragment;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,18 +35,20 @@ import android.widget.Toast;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class NormalActivity extends Activity
         implements SimpleAlertDialog.OnClickListener,
+        SimpleAlertDialog.OnNeutralButtonClickListener,
         SimpleAlertDialog.OnItemClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
         SimpleAlertDialog.ViewProvider {
 
     private static final int REQUEST_CODE_BUTTONS = 1;
-    private static final int REQUEST_CODE_ITEMS = 2;
-    private static final int REQUEST_CODE_ICON_ITEMS = 3;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 4;
-    private static final int REQUEST_CODE_ADAPTER = 5;
-    private static final int REQUEST_CODE_VIEW = 6;
-    private static final int REQUEST_CODE_EDIT_TEXT = 7;
+    private static final int REQUEST_CODE_3_BUTTONS = 2;
+    private static final int REQUEST_CODE_ITEMS = 3;
+    private static final int REQUEST_CODE_ICON_ITEMS = 4;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = 5;
+    private static final int REQUEST_CODE_ADAPTER = 6;
+    private static final int REQUEST_CODE_VIEW = 7;
+    private static final int REQUEST_CODE_EDIT_TEXT = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +96,20 @@ public class NormalActivity extends Activity
                         .setPositiveButton(android.R.string.ok)
                         .setNegativeButton(android.R.string.cancel)
                         .setRequestCode(REQUEST_CODE_BUTTONS)
+                        .create().show(getFragmentManager(), "dialog");
+            }
+        });
+
+        findViewById(R.id.btn_3_buttons).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle("Hello world!")
+                        .setMessage("Hello world!")
+                        .setPositiveButton(android.R.string.ok)
+                        .setNeutralButton(R.string.neutral)
+                        .setNegativeButton(android.R.string.cancel)
+                        .setRequestCode(REQUEST_CODE_3_BUTTONS)
                         .create().show(getFragmentManager(), "dialog");
             }
         });
@@ -182,6 +199,8 @@ public class NormalActivity extends Activity
             final View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(this, "OK button clicked", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_3_BUTTONS) {
+            Toast.makeText(this, "OK button clicked (3 buttons)", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
             String text = ((EditText) view.findViewById(R.id.text)).getText().toString();
             Toast.makeText(this, "You typed: " + text, Toast.LENGTH_SHORT).show();
@@ -196,6 +215,15 @@ public class NormalActivity extends Activity
             final View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_3_BUTTONS) {
+            Toast.makeText(this, "Cancel button clicked (3 buttons)", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDialogNeutralButtonClicked(SimpleAlertDialog dialog, int requestCode, View view) {
+        if (requestCode == REQUEST_CODE_3_BUTTONS) {
+            Toast.makeText(this, "Neutral button clicked", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -263,5 +291,4 @@ public class NormalActivity extends Activity
                 R.drawable.ic_action_aci_search,
         };
     }
-
 }

@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 public class SampleSupportFragment extends Fragment
         implements SimpleAlertDialog.OnClickListener,
+        SimpleAlertDialog.OnNeutralButtonClickListener,
         SimpleAlertDialog.OnItemClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
@@ -41,12 +42,13 @@ public class SampleSupportFragment extends Fragment
     // If you do so, both the activity's and fragment's handler will be
     // executed.
     private static final int REQUEST_CODE_BUTTONS = -1;
-    private static final int REQUEST_CODE_ITEMS = -2;
-    private static final int REQUEST_CODE_ICON_ITEMS = -3;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -4;
-    private static final int REQUEST_CODE_ADAPTER = -5;
-    private static final int REQUEST_CODE_VIEW = -6;
-    private static final int REQUEST_CODE_EDIT_TEXT = -7;
+    private static final int REQUEST_CODE_3_BUTTONS = -2;
+    private static final int REQUEST_CODE_ITEMS = -3;
+    private static final int REQUEST_CODE_ICON_ITEMS = -4;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -5;
+    private static final int REQUEST_CODE_ADAPTER = -6;
+    private static final int REQUEST_CODE_VIEW = -7;
+    private static final int REQUEST_CODE_EDIT_TEXT = -8;
 
     /*
     * Default constructor must be implemented for Fragments.
@@ -97,6 +99,21 @@ public class SampleSupportFragment extends Fragment
                         .setPositiveButton(android.R.string.ok)
                         .setNegativeButton(android.R.string.cancel)
                         .setRequestCode(REQUEST_CODE_BUTTONS)
+                        .setTargetFragment(SampleSupportFragment.this)
+                        .create().show(getActivity().getSupportFragmentManager(), "dialog");
+            }
+        });
+
+        view.findViewById(R.id.btn_frag_3_buttons).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogSupportFragment.Builder()
+                        .setTitle("Hello world!")
+                        .setMessage("Hello world!")
+                        .setPositiveButton(android.R.string.ok)
+                        .setNeutralButton(R.string.neutral)
+                        .setNegativeButton(android.R.string.cancel)
+                        .setRequestCode(REQUEST_CODE_3_BUTTONS)
                         .setTargetFragment(SampleSupportFragment.this)
                         .create().show(getActivity().getSupportFragmentManager(), "dialog");
             }
@@ -199,6 +216,8 @@ public class SampleSupportFragment extends Fragment
             View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: OK button clicked", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_3_BUTTONS) {
+            Toast.makeText(getActivity(), "Fragment: OK button clicked (3 buttons)", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
             String text = ((EditText) view.findViewById(R.id.text)).getText().toString();
             Toast.makeText(getActivity(), "Fragment: You typed: " + text, Toast.LENGTH_SHORT)
@@ -216,6 +235,15 @@ public class SampleSupportFragment extends Fragment
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: Cancel button clicked", Toast.LENGTH_SHORT)
                     .show();
+        } else if (requestCode == REQUEST_CODE_3_BUTTONS) {
+            Toast.makeText(getActivity(), "Fragment: Cancel button clicked (3 buttons)", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDialogNeutralButtonClicked(SimpleAlertDialog dialog, int requestCode, View view) {
+        if (requestCode == REQUEST_CODE_3_BUTTONS) {
+            Toast.makeText(getActivity(), "Fragment: Neutral button clicked", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -291,5 +319,4 @@ public class SampleSupportFragment extends Fragment
                 R.drawable.ic_action_aci_search,
         };
     }
-
 }

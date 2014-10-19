@@ -50,6 +50,7 @@ abstract class InternalHelper<F, A extends Context> {
         setAdapter(args, dialog, requestCode);
         setSingleChoiceItems(args, dialog, requestCode);
         setPositiveButton(args, dialog, requestCode);
+        setNeutralButton(args, dialog, requestCode);
         setNegativeButton(args, dialog, requestCode);
         setCancelable(args, dialog);
         return dialog;
@@ -280,6 +281,35 @@ abstract class InternalHelper<F, A extends Context> {
                 if (activityImplements(SimpleAlertDialog.OnClickListener.class)) {
                     ((SimpleAlertDialog.OnClickListener) getActivity())
                             .onDialogPositiveButtonClicked((SimpleAlertDialog) dialog,
+                                    requestCode,
+                                    ((SimpleAlertDialog) dialog).getView());
+                }
+            }
+        });
+    }
+
+    private void setNeutralButton(Bundle args, SimpleAlertDialog dialog, final int requestCode) {
+        CharSequence neutralButton = null;
+        if (has(args, SimpleAlertDialog.ARG_NEUTRAL_BUTTON)) {
+            neutralButton = args.getCharSequence(SimpleAlertDialog.ARG_NEUTRAL_BUTTON);
+        } else if (has(args, SimpleAlertDialog.ARG_NEUTRAL_BUTTON_RES_ID)) {
+            neutralButton = getActivity().getString(args.getInt(SimpleAlertDialog.ARG_NEUTRAL_BUTTON_RES_ID));
+        }
+        if (neutralButton == null) {
+            return;
+        }
+        dialog.setNeutralButton(neutralButton, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialog, final int which) {
+                if (fragmentImplements(SimpleAlertDialog.OnNeutralButtonClickListener.class)) {
+                    ((SimpleAlertDialog.OnNeutralButtonClickListener) getTargetFragment())
+                            .onDialogNeutralButtonClicked((SimpleAlertDialog) dialog,
+                                    requestCode,
+                                    ((SimpleAlertDialog) dialog).getView());
+                }
+                if (activityImplements(SimpleAlertDialog.OnNeutralButtonClickListener.class)) {
+                    ((SimpleAlertDialog.OnNeutralButtonClickListener) getActivity())
+                            .onDialogNeutralButtonClicked((SimpleAlertDialog) dialog,
                                     requestCode,
                                     ((SimpleAlertDialog) dialog).getView());
                 }

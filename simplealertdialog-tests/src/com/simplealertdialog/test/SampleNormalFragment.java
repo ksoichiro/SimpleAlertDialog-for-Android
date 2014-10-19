@@ -35,6 +35,7 @@ import com.simplealertdialog.SimpleAlertDialogFragment;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class SampleNormalFragment extends Fragment
         implements SimpleAlertDialog.OnClickListener,
+        SimpleAlertDialog.OnNeutralButtonClickListener,
         SimpleAlertDialog.OnItemClickListener,
         SimpleAlertDialog.SingleChoiceArrayItemProvider,
         SimpleAlertDialog.ListProvider,
@@ -45,12 +46,13 @@ public class SampleNormalFragment extends Fragment
     // If you do so, both the activity's and fragment's handler will be
     // executed.
     private static final int REQUEST_CODE_BUTTONS = -1;
-    private static final int REQUEST_CODE_ITEMS = -2;
-    private static final int REQUEST_CODE_ICON_ITEMS = -3;
-    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -4;
-    private static final int REQUEST_CODE_ADAPTER = -5;
-    private static final int REQUEST_CODE_VIEW = -6;
-    private static final int REQUEST_CODE_EDIT_TEXT = -7;
+    private static final int REQUEST_CODE_3_BUTTONS = -2;
+    private static final int REQUEST_CODE_ITEMS = -3;
+    private static final int REQUEST_CODE_ICON_ITEMS = -4;
+    private static final int REQUEST_CODE_SINGLE_CHOICE_LIST = -5;
+    private static final int REQUEST_CODE_ADAPTER = -6;
+    private static final int REQUEST_CODE_VIEW = -7;
+    private static final int REQUEST_CODE_EDIT_TEXT = -8;
 
     /*
      * Default constructor must be implemented for Fragments.
@@ -101,6 +103,21 @@ public class SampleNormalFragment extends Fragment
                         .setPositiveButton(android.R.string.ok)
                         .setNegativeButton(android.R.string.cancel)
                         .setRequestCode(REQUEST_CODE_BUTTONS)
+                        .setTargetFragment(SampleNormalFragment.this)
+                        .create().show(getActivity().getFragmentManager(), "dialog");
+            }
+        });
+
+        view.findViewById(R.id.btn_frag_3_buttons).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new SimpleAlertDialogFragment.Builder()
+                        .setTitle("Hello world!")
+                        .setMessage("Hello world!")
+                        .setPositiveButton(android.R.string.ok)
+                        .setNegativeButton(android.R.string.cancel)
+                        .setNeutralButton(R.string.neutral)
+                        .setRequestCode(REQUEST_CODE_3_BUTTONS)
                         .setTargetFragment(SampleNormalFragment.this)
                         .create().show(getActivity().getFragmentManager(), "dialog");
             }
@@ -203,6 +220,8 @@ public class SampleNormalFragment extends Fragment
                                               View view) {
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: OK button clicked", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REQUEST_CODE_3_BUTTONS) {
+            Toast.makeText(getActivity(), "Fragment: OK button clicked (Neutral)", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REQUEST_CODE_VIEW) {
             String text = ((EditText) view.findViewById(R.id.text)).getText().toString();
             Toast.makeText(getActivity(), "Fragment: You typed: " + text, Toast.LENGTH_SHORT)
@@ -220,6 +239,16 @@ public class SampleNormalFragment extends Fragment
         if (requestCode == REQUEST_CODE_BUTTONS) {
             Toast.makeText(getActivity(), "Fragment: Cancel button clicked", Toast.LENGTH_SHORT)
                     .show();
+        } else if (requestCode == REQUEST_CODE_3_BUTTONS) {
+                Toast.makeText(getActivity(), "Fragment: Cancel button clicked (Neutral)", Toast.LENGTH_SHORT)
+                        .show();
+        }
+    }
+
+    @Override
+    public void onDialogNeutralButtonClicked(SimpleAlertDialog dialog, int requestCode, View view) {
+        if (requestCode == REQUEST_CODE_3_BUTTONS) {
+            Toast.makeText(getActivity(), "Fragment: Neutral button clicked", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -299,5 +328,4 @@ public class SampleNormalFragment extends Fragment
                 R.drawable.ic_action_aci_search,
         };
     }
-
 }

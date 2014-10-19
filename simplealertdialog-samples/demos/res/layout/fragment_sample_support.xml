@@ -44,6 +44,12 @@
         android:text="Buttons" />
 
     <Button
+        android:id="@+id/btn_frag_3_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buttons (Neutral)" />
+
+    <Button
         android:id="@+id/btn_frag_items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
