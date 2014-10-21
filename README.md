@@ -96,6 +96,40 @@ public void onDialogNegativeButtonClicked(SimpleAlertDialog dialog,
 Don't forget to set the request code.  
 If you handle multiple dialogs in an `Actvity` or `Fragment`, those dialogs call the same event handlers, so the request code is necessery to distinguish them.
 
+### Neutral button
+
+![Neutral button](simplealertdialog-samples/images/screenshot_dialog3_buttons_neutral.png "Neutral button")
+
+Like `AlertDialog.Builder`, you can use a neutral button like this:
+
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setMessage("Hello world!")
+        .setPositiveButton(android.R.string.ok)
+        .setNeutralButton(R.string.neutral)
+        .setNegativeButton(android.R.string.cancel)
+        .setRequestCode(1)
+        .create().show(getFragmentManager(), "dialog");
+```
+
+To handle neutral button taps, implement `SimpleAlertDialog.OnNeutralButtonClickListener` interface in addition to `SimpleAlertDialog.OnClickListener`.
+
+```java
+public class NormalActivity extends Activity
+        implements SimpleAlertDialog.OnNeutralButtonClickListener
+```
+
+The implement callback.
+
+```java
+@Override
+public void onDialogNeutralButtonClicked(SimpleAlertDialog dialog, int requestCode, View view) {
+    if (requestCode == 1) {
+        Toast.makeText(this, "Neutral button clicked", Toast.LENGTH_SHORT).show();
+    }
+}
+```
+
 ### String items
 
 ![String items](simplealertdialog-samples/images/screenshot_dialog4_items.png "String items")
@@ -129,6 +163,25 @@ public void onOnItemClick(final SimpleAlertDialog dialog, int requestCode,
     }
 }
 ```
+
+### String items with icons
+
+![String items with icons](simplealertdialog-samples/images/screenshot_dialog5_items_with_icons.png "String items with icons")
+
+To show string items with icons, create dialog like this:
+
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setTitle("Choose one")
+        .setItems(R.array.icon_items, new int[]{
+                R.drawable.ic_action_aci_document3,
+                R.drawable.ic_action_aci_edit,
+                R.drawable.ic_action_aci_search})
+        .setRequestCode(REQUEST_CODE_ICON_ITEMS)
+        .create().show(getFragmentManager(), "dialog");
+```
+
+To handle list item taps, use `SimpleAlertDialog.OnItemClickListener` just like string items.
 
 ### Single choice list
 
@@ -248,6 +301,20 @@ public View onCreateView(SimpleAlertDialog dialog, int requestCode) {
     }
     return null;
 }
+```
+
+### EditText
+
+![EditText](simplealertdialog-samples/images/screenshot_dialog9_edittext.png "EditText")
+
+If you want to use a view with an `EditText`, you don't have to create layout files: just call `setEditText()` on `Builder`.
+
+```java
+new SimpleAlertDialogFragment.Builder()
+        .setTitle("Enter something")
+        .setEditText("Sample", InputType.TYPE_CLASS_TEXT)
+        .setRequestCode(REQUEST_CODE_EDIT_TEXT)
+        .create().show(getFragmentManager(), "dialog");
 ```
 
 ## Customizing styles
