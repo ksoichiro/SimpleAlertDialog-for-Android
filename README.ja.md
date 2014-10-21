@@ -25,7 +25,7 @@ SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`Ale
 
 ```groovy
 dependencies {
-    compile 'com.github.ksoichiro:simplealertdialog:1.1.2@aar'
+    compile 'com.github.ksoichiro:simplealertdialog:1.2.0@aar'
 }
 ```
 
