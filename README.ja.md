@@ -1,8 +1,9 @@
 SimpleAlertDialog for Android
 ===
 
-[![Build Status](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android.png?branch=master)](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android)
-[![Coverage Status](https://coveralls.io/repos/ksoichiro/SimpleAlertDialog-for-Android/badge.png?branch=master)](https://coveralls.io/r/ksoichiro/SimpleAlertDialog-for-Android?branch=master)
+[![Build Status](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android.svg?branch=master)](https://travis-ci.org/ksoichiro/SimpleAlertDialog-for-Android)
+[![Coverage Status](https://img.shields.io/coveralls/ksoichiro/SimpleAlertDialog-for-Android/master.svg)](https://coveralls.io/r/ksoichiro/SimpleAlertDialog-for-Android?branch=master)
+[![Maven Central](http://img.shields.io/maven-central/v/com.github.ksoichiro/simplealertdialog.svg)](https://github.com/ksoichiro/SimpleAlertDialog-for-Android/releases/latest)
 
 SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`AlertDialog`のように簡単に扱えるようにするためのライブラリです。
 
