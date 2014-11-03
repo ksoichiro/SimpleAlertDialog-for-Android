@@ -95,7 +95,7 @@ public void onDialogNegativeButtonClicked(SimpleAlertDialog dialog,
 ```
 
 Don't forget to set the request code.  
-If you handle multiple dialogs in an `Actvity` or `Fragment`, those dialogs call the same event handlers, so the request code is necessery to distinguish them.
+If you handle multiple dialogs in an `Activity` or `Fragment`, those dialogs call the same event handlers, so the request code is necessary to distinguish them.
 
 ### Neutral button
 
