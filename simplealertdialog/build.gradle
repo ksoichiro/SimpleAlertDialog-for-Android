@@ -4,7 +4,7 @@ buildscript {
     }
     dependencies {
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
-        classpath 'com.android.tools.build:gradle:0.13.3'
+        classpath 'com.android.tools.build:gradle:0.14.1'
     }
 }
 
@@ -19,16 +19,16 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:20.0.0'
+    compile 'com.android.support:support-v4:21.0.0'
     androidTestCompile 'com.github.ksoichiro:androidcolorfulicons:0.1.1'
 }
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    buildToolsVersion "21.1.0"
 
     jacoco {
-        version = '0.7.0.201403182114'
+        version = '0.7.2.201409121644'
     }
 
     sourceSets {
