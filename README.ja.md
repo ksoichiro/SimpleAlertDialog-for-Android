@@ -26,7 +26,7 @@ SimpleAlertDialogは、Androidアプリケーションで`DialogFragment`を`Ale
 
 ```groovy
 dependencies {
-    compile 'com.github.ksoichiro:simplealertdialog:1.2.0@aar'
+    compile 'com.github.ksoichiro:simplealertdialog:1.2.1@aar'
 }
 ```
 
@@ -332,7 +332,7 @@ new SimpleAlertDialogFragment.Builder()
     <item name="sadMessageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
     <!-- OK / キャンセル ボタン部分のTextViewのスタイル -->
     <item name="sadButtonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
-    <!-- 単一選択リスト項目のTextViewのスタイル -->
+    <!-- 単一選択リスト項目/リスト/アイコンつきリストのTextViewのスタイル -->
     <item name="sadListItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
     <!-- 単一選択リスト項目のラジオボタンのDrawable -->
     <item name="sadListChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>

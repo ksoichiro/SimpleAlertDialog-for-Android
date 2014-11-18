@@ -28,7 +28,7 @@ SimpleAlertDialog is a library for using `DialogFragment` like `AlertDialog` in 
 
 ```groovy
 dependencies {
-    compile 'com.github.ksoichiro:simplealertdialog:1.2.0@aar'
+    compile 'com.github.ksoichiro:simplealertdialog:1.2.1@aar'
 }
 ```
 
