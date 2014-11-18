@@ -587,7 +587,20 @@ public class SimpleAlertDialog extends Dialog {
 
     public void setItems(final CharSequence[] items,
                          final AdapterView.OnItemClickListener listener) {
-        mAdapter = new ArrayAdapter<CharSequence>(getContext(), android.R.layout.simple_list_item_1, items);
+        mAdapter = new ArrayAdapter<CharSequence>(getContext(), android.R.layout.simple_list_item_1, items) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                if (view != null) {
+                    TextView tv = (TextView) view.findViewById(android.R.id.text1);
+                    if (mListItemTextStyle != 0) {
+                        tv.setTextAppearance(getContext(), mListItemTextStyle);
+                    }
+                    tv.setText(items[position]);
+                }
+                return view;
+            }
+        };
         mListItemListener = listener;
     }
 
@@ -607,6 +620,9 @@ public class SimpleAlertDialog extends Dialog {
                 View view = super.getView(position, convertView, parent);
                 if (view != null) {
                     TextView tv = (TextView) view.findViewById(android.R.id.text1);
+                    if (mListItemTextStyle != 0) {
+                        tv.setTextAppearance(getContext(), mListItemTextStyle);
+                    }
                     tv.setText(iconListItems[position].text);
                     tv.setCompoundDrawablesWithIntrinsicBounds(iconListItems[position].iconResId, 0, 0, 0);
                     int padding = (int) (8 * getContext().getResources().getDisplayMetrics().density);

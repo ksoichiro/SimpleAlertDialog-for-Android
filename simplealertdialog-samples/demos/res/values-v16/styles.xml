@@ -46,6 +46,7 @@
     </style>
 
     <style name="SimpleAlertDialogListItemTextStyle">
+        <item name="android:textColor">#FFDCE775</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
