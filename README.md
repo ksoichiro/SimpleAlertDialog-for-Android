@@ -342,7 +342,7 @@ This style can be constructed like this:
     <item name="sadMessageTextStyle">@style/SimpleAlertDialogMessageTextStyle</item>
     <!-- TextView style of the OK / Cancel buttons -->
     <item name="sadButtonTextStyle">@style/SimpleAlertDialogButtonTextStyle</item>
-    <!-- TextView in the Single choise list item -->
+    <!-- TextView in the Single choise list item, String items and String items with icons -->
     <item name="sadListItemTextStyle">@style/SimpleAlertDialogListItemTextStyle</item>
     <!-- Drawable for radio button of the single choice list item -->
     <item name="sadListChoiceIndicatorSingle">@drawable/simpleblue_btn_radio</item>

@@ -68,7 +68,9 @@
 
     <style name="SimpleAlertDialogButtonTextStyle"></style>
 
-    <style name="SimpleAlertDialogListItemTextStyle"></style>
+    <style name="SimpleAlertDialogListItemTextStyle">
+        <item name="android:textColor">#FFDCE775</item>
+    </style>
 
     <style name="SimpleAlertDialogCustomTheme" parent="android:Theme.Dialog">
         <item name="android:windowAnimationStyle">@style/SimpleAlertDialogCustomAnimation</item>
