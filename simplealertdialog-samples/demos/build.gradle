@@ -18,14 +18,14 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.0'
+    compile 'com.android.support:support-v4:22.1.1'
     compile 'com.github.ksoichiro:androidcolorfulicons:0.1.1'
     compile project(':simplealertdialog')
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
     jacoco {
         version = '0.7.2.201409121644'
@@ -40,15 +40,6 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
-
-        // Move the build types to build-types/<type>
-        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
-        // This moves them out of them default location under src/<type>/... which would
-        // conflict with src/ being used by the main source set.
-        // Adding new build types or product flavors should be accompanied
-        // by a similar customization.
-        debug.setRoot('build-types/debug')
-        release.setRoot('build-types/release')
     }
 
     // This breaks entire app for now...
