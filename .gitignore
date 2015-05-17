@@ -7,7 +7,7 @@ simplealertdialog-tests/gen
 local.properties
 private.properties
 *.keystore
-*.gradle/
+.gradle/
 build/
 target/
 .idea/
