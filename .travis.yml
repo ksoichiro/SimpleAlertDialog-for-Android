@@ -15,6 +15,10 @@ before_script:
     - emulator -avd test -no-skin -no-audio -no-window &
     - android-wait-for-emulator
 script:
-    - travis_retry ./gradlew build :simplealertdialog:connectedCheck
+    - ./gradlew build :simplealertdialog:connectedCheck
 after_success:
     - ./gradlew :simplealertdialog:coveralls
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
